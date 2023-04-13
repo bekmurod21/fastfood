@@ -1,16 +1,17 @@
 ﻿using FastFood.Domain.Entities;
+using FastFood.Service.DTOs.UserDto;
 using FastFood.Service.Helpers;
+using System.Linq.Expressions;
 
 namespace FastFood.Service.Interfaces
 {
     public interface IUserService
     {
-        public Task<Response<User>> AddAsync(User user);
-        public Task<Response<User>> UpdateAsync(long id,User user);
-        public Task<Response<bool>> DeleteByIdAsync(long id);
-        public Task<Response<List<User>>> GetAllAsync();
-        public Task<Response<User>> GetByIdAsync(long id);
-        public Task<Response<User>> GetByNameAsync(string name);
-        public Task<Response<User>> GetAsync(Predicate<User> predicate = null);
+        ValueTask<UserForResultDto> AddAsync(UserForCreationDto dto);
+        ValueTask<UserForResultDto> ModifyAsync(long id, UserForResultDto dto);
+        ValueTask<UserForResultDto> SelectAsync(Expression<Func<User, bool>> expression);
+        ValueTask<IEnumerable<UserForResultDto>> SelectAllAsync(Expression<Func<User, bool>> expression = null, string search = null);
+        ValueTask<bool> DeleteAsync(Expression<Func<User, bool>> expression);
+        ValueTask<UserForResultDto> ChangePasswordAsync(UserForChangePassword dto);
     }
 }
