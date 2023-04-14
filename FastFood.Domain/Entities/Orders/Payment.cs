@@ -5,8 +5,10 @@ namespace FastFood.Domain.Entities.Order
 {
     public class Payment : Auditable
     {
+        public decimal PaidPrice { get; set; }
+        public PaymentType PaymentType { get; set; }
+
         public long OrderId { get; set; }
-        public PaymentType Status { get; set; }
-        public decimal Amount { get; set; }
+        public Order Order { get; set; }
     }
 }

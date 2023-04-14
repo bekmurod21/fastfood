@@ -1,6 +1,6 @@
 ﻿namespace FastFood.Domain.Enums;
 
-public enum PaymentStatus
+public enum PaymentType
 {
     Cash,
     Paypal,

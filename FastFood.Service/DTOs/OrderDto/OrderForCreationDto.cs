@@ -18,9 +18,5 @@ namespace FastFood.Service.DTOs.OrderDto
 
         public ICollection<OrderProductForCreationDto> OrderProducts { get; set; }
     }
-    public class CategoryForCreationDto
-    {
-        [Required]
-        public string Name { get; set; }
-    }
+   
 }

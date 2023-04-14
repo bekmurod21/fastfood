@@ -1,8 +1,14 @@
-﻿namespace FastFood.Domain.Entities.Order;
-public class OrderProduct
+﻿using FastFood.Domain.Commons;
+using FastFood.Domain.Entities.Product;
+
+namespace FastFood.Domain.Entities.Order;
+public class OrderProduct:Auditable
 {
-    public long OrderId { get; set; }
-    public long ProductId { get; set; }
-    public decimal Quantity { get; set; }
-    public decimal Price { get; set; }
+    public int Quatity { get; set; }
+
+    public long CategoryId { get; set; }
+    public ProductCategory Category { get; set; }
+
+    public int ProductId { get; set; }
+    public Product Product { get; set; }
 }

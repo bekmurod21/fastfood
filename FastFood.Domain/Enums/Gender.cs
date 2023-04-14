@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace FastFood.Domain.Enums;
 
-namespace FastFood.Domain.Enums
+public enum Gender
 {
-    internal class Gender
-    {
-    }
+    Male=1,
+    Female
 }

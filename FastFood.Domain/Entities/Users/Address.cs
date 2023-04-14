@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FastFood.Domain.Commons;
 
-namespace FastFood.Domain.Entities.User
+namespace FastFood.Domain.Entities.User;
+
+public class Address:Auditable
 {
-    internal class Address
-    {
-    }
+    public string City { get; set; }
+    public string Street { get; set; }
+    public string Home { get; set; }
+    public int Landmark { get; set; }
 }

@@ -1,5 +1,6 @@
+
 ﻿using FastFood.Domain.Commons;
-using FastFood.Domain.Enums;
+
 
 namespace FastFood.Domain.Entities.Order
 {
