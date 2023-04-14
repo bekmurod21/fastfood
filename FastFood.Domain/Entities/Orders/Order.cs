@@ -6,11 +6,13 @@ namespace FastFood.Domain.Entities.Order
 {
     public class Order : Auditable
     {
-        public long UserId { get; set; }
-        public long? PaymentId { get; set; } = null;
-        public List<OrderProduct> Items { get; set; }
-        public bool IsPaid { get; set; }
-        public OrderStatus OrderStatus { get; set; } = OrderStatus.Unpaid;
         public decimal TotalAmount { get; set; }
+        public bool IsPaid { get; set; }
+        public long AddressId { get; set; }
+
+        public long UserId { get; set; }
+        public User User { get; set; }
+  
+
     }
 }

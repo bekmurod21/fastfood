@@ -1,6 +1,6 @@
 ﻿using FastFood.Domain.Commons;
 
-namespace FastFood.Domain.Entities.Product;
+namespace FastFood.Domain.Entities.Products;
 
 public class ProductCategory:Auditable
 {

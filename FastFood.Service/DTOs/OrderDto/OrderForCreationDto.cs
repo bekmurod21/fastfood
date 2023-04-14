@@ -1,4 +1,4 @@
-﻿using FastFood.Domain.Entities.Order;
+﻿using FastFood.Domain.Entities.Orders;
 using FastFood.Domain.Enums;
 using System;
 using System.Collections.Generic;

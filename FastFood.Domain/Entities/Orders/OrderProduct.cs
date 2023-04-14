@@ -1,7 +1,7 @@
 ﻿using FastFood.Domain.Commons;
-using FastFood.Domain.Entities.Product;
+using FastFood.Domain.Entities.Products;
 
-namespace FastFood.Domain.Entities.Order;
+namespace FastFood.Domain.Entities.Orders;
 public class OrderProduct:Auditable
 {
     public int Quatity { get; set; }

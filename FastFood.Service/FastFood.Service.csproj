@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\FastFood.Data\FastFood.Data.csproj" />
     <ProjectReference Include="..\FastFood.Domain\FastFood.Domain.csproj" />
   </ItemGroup>

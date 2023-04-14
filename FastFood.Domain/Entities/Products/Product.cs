@@ -2,7 +2,7 @@
 using FastFood.Domain.Entities.Commons;
 using FastFood.Domain.Enums;
 
-namespace FastFood.Domain.Entities.Product
+namespace FastFood.Domain.Entities.Products
 {
     public class Product : Auditable
     {

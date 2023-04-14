@@ -1,6 +1,6 @@
 ﻿using FastFood.Domain.Commons;
 
-namespace FastFood.Domain.Entities.User;
+namespace FastFood.Domain.Entities.Users;
 
 public class Address:Auditable
 {
