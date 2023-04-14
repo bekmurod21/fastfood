@@ -19,3 +19,4 @@ namespace FastFood.Service.DTOs.ProductDto
         public IFormFile File { get; set; }
 
     }
+}
