@@ -1,5 +1,5 @@
-﻿namespace FastFood.Domain.Entities;
-public class OrderItem
+﻿namespace FastFood.Domain.Entities.Order;
+public class OrderProduct
 {
     public long OrderId { get; set; }
     public long ProductId { get; set; }

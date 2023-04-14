@@ -1,7 +1,8 @@
 ﻿namespace FastFood.Domain.Enums;
 public enum UserRole
 {
-    Admin=10,
-    Courier=20,
-    Customer=30
+    Customer = 1,
+    Chef,
+    Admin,
+    SuperAdmin
 }

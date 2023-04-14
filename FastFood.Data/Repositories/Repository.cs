@@ -2,6 +2,7 @@
 using FastFood.Data.IRepositories;
 using FastFood.Domain.Commons;
 using FastFood.Domain.Entities;
+using FastFood.Domain.Entities.Product;
 using Newtonsoft.Json;
 using System.Text.Json.Serialization;
 

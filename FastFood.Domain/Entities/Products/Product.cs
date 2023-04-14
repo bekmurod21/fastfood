@@ -1,9 +1,9 @@
 ﻿using FastFood.Domain.Commons;
 using FastFood.Domain.Enums;
 
-namespace FastFood.Domain.Entities
+namespace FastFood.Domain.Entities.Product
 {
-    public class Product:Auditable
+    public class Product : Auditable
     {
         public long OwnerId { get; set; }
         public string Name { get; set; }

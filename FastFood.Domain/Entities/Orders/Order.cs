@@ -1,13 +1,13 @@
-﻿using FastFood.Domain.Entities;
+﻿using FastFood.Domain.Commons;
 using FastFood.Domain.Enums;
 
-namespace FastFood.Service.DTOs.OrderDto
+namespace FastFood.Domain.Entities.Order
 {
-    public class OrderResultDto
+    public class Order : Auditable
     {
         public long UserId { get; set; }
         public long? PaymentId { get; set; } = null;
-        public List<OrderItem> Items { get; set; }
+        public List<OrderProduct> Items { get; set; }
         public bool IsPaid { get; set; }
         public OrderStatus OrderStatus { get; set; } = OrderStatus.Unpaid;
         public decimal TotalAmount { get; set; }
