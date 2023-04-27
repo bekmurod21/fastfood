@@ -11,7 +11,7 @@ namespace FastFood.Domain.Entities.Orders
 
         public long UserId { get; set; }
         public User User { get; set; }
-  
 
+        public ICollection<OrderProduct> OrderProducts { get; set; }
     }
 }
