@@ -1,8 +1,7 @@
-
 ﻿using FastFood.Domain.Commons;
+using FastFood.Domain.Entities.Users;
 
-
-namespace FastFood.Domain.Entities.Order
+namespace FastFood.Domain.Entities.Orders
 {
     public class Order : Auditable
     {
