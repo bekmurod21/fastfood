@@ -1,11 +1,14 @@
-﻿namespace FastFood.Data.IRepositories
+﻿using FastFood.Domain.Commons;
+using System.Linq.Expressions;
+
+namespace FastFood.Data.IRepositories
 {
-    public interface IRepository<TResult>
+    public interface IRepository<TResult> where TResult:Auditable
     {
-        Task<TResult> CreateAsync(TResult value);
-        Task<TResult> UpdateAsync(TResult value);
-        Task<bool> DeleteAsync(Predicate<TResult> predicate);
-        Task<TResult> GetAsync(Predicate<TResult> predicate);
-        Task<List<TResult>> GetAllAsync();
+        ValueTask<TResult> CreateAsync(TResult value);
+        ValueTask<TResult> UpdateAsync(TResult value,long id);
+        ValueTask<bool> DeleteAsync(Expression<Func<TResult,bool>> expression);
+        ValueTask<TResult> GetAsync(Expression<Func<TResult,bool>> expression);
+        IQueryable<TResult> GetAllAsync();
     }
 }
