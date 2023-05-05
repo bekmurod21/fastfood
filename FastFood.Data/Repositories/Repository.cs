@@ -39,6 +39,10 @@ namespace FastFood.Data.Repositories
             return (await dbSet.FirstOrDefaultAsync(expression));
         }
 
+        public async ValueTask SaveChangesAsync()
+        =>  dbContext.SaveChanges();
+        
+
         public async ValueTask<TResult> UpdateAsync(TResult value, long id)
         {
             value.Id = id;

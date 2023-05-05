@@ -10,5 +10,6 @@ namespace FastFood.Data.IRepositories
         ValueTask<bool> DeleteAsync(Expression<Func<TResult,bool>> expression);
         ValueTask<TResult> GetAsync(Expression<Func<TResult,bool>> expression);
         IQueryable<TResult> GetAllAsync();
+        ValueTask SaveChangesAsync();
     }
 }
