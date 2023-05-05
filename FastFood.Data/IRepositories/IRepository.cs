@@ -9,7 +9,7 @@ namespace FastFood.Data.IRepositories
         ValueTask<TResult> UpdateAsync(TResult value,long id);
         ValueTask<bool> DeleteAsync(Expression<Func<TResult,bool>> expression);
         ValueTask<TResult> GetAsync(Expression<Func<TResult,bool>> expression);
-        IQueryable<TResult> GetAllAsync();
+        IQueryable<TResult> GetAllAsync(Expression<Func<TResult,bool>> expression);
         ValueTask SaveChangesAsync();
     }
 }

@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using FastFood.Data.IRepositories;
+using FastFood.Domain.Configurations;
 using FastFood.Domain.Entities.Users;
 using FastFood.Service.DTOs.UserDto;
 using FastFood.Service.Exceptions;
 using FastFood.Service.Extensions;
 using FastFood.Service.Interfaces;
+using System.Linq.Expressions;
 
 namespace FastFood.Service.Services
 {
@@ -48,10 +50,7 @@ namespace FastFood.Service.Services
             return await userRepository.DeleteAsync(x => x == entity);
         }
 
-        public IEnumerable<User> GetAllAsync()
-        {
-            return userRepository.GetAllAsync();
-        }
+        
 
         public async ValueTask<User> ModifyAsync(long id, UserForCreationDto model)
         {
@@ -67,6 +66,14 @@ namespace FastFood.Service.Services
             await userRepository.SaveChangesAsync();
 
             return mappedUser;
+        }
+
+        public IEnumerable<User> SelectAll(PaginationParams @params, Expression<Func<User, bool>> expression = null)
+        {
+            var users =
+            this.userRepository.GetAllAsync(expression).ToPaged(@params);
+
+            return users.ToList();
         }
 
         public ValueTask<User> SelectAsync(long id)
