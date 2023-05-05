@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FastFood.Domain.Entities.Orders;
+using FastFood.Service.DTOs.OrderDto;
 
-namespace FastFood.Service.Interfaces
+namespace FastFood.Service.Interfaces;
+
+public interface IPaymentService
 {
-    internal class IPaymentService
-    {
-    }
+    ValueTask<Payment> AddAsync(PaymentForCreationDto model);
+    ValueTask<Payment> ModifyAsync(long id, PaymentForCreationDto model);
+    ValueTask<Payment> DeleteAsync(long id);
+    ValueTask<Payment> SelectAsync(long id);
+    IEnumerable<Payment> SelectAllAsync();
 }
