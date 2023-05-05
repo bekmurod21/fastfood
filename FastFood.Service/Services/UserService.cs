@@ -3,6 +3,7 @@ using FastFood.Data.IRepositories;
 using FastFood.Domain.Entities.Users;
 using FastFood.Service.DTOs.UserDto;
 using FastFood.Service.Exceptions;
+using FastFood.Service.Extensions;
 using FastFood.Service.Interfaces;
 
 namespace FastFood.Service.Services
@@ -21,9 +22,7 @@ namespace FastFood.Service.Services
             User user = await this.userRepository.GetAsync(u => u.UserName.ToLower() == model.Login.ToLower());
 
             if (user is not null)
-            {
                 throw new CustomException(403, "User already exist with this username");
-            }
 
             User mappedUser = mapper.Map<User>(model);
 
@@ -59,12 +58,24 @@ namespace FastFood.Service.Services
             User entity = await userRepository.GetAsync(x => x.Id == id);
             if (entity is null)
                 throw new CustomException(404, "User not found");
-            entity.LastName = model.LastName;
+
+            entity.UpdatedAt = DateTime.UtcNow;
+            var mappedUser = this.mapper.Map(model,entity);
+            mappedUser.Update();
+
+            await userRepository.UpdateAsync(mappedUser,id);
+            await userRepository.SaveChangesAsync();
+
+            return mappedUser;
         }
 
         public ValueTask<User> SelectAsync(long id)
         {
-            throw new NotImplementedException();
+            var entity = userRepository.GetAsync(x => x.Id == id);
+            if (entity == null)
+                throw new CustomException(404, "User not found");
+
+            return entity;
         }
     }
 }
