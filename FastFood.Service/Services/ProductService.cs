@@ -1,10 +1,13 @@
 ﻿using AutoMapper;
 using FastFood.Data.IRepositories;
+using FastFood.Domain.Configurations;
 using FastFood.Domain.Entities.Products;
+using FastFood.Domain.Entities.Users;
 using FastFood.Service.DTOs.ProductDto;
 using FastFood.Service.Exceptions;
 using FastFood.Service.Extensions;
 using FastFood.Service.Interfaces;
+using System.Linq.Expressions;
 
 namespace FastFood.Service.Services
 {
@@ -54,10 +57,12 @@ namespace FastFood.Service.Services
             return mapped;
         }
 
-        public  IEnumerable<Product> SelectAllAsync()
+        public IEnumerable<Product> SelectAllAsync(PaginationParams @params, Expression<Func<Product, bool>> expression = null)
         {
-            var entities =  productRepository.GetAllAsync();
-            return entities;
+            var products =
+            this.productRepository.GetAllAsync(expression).ToPaged(@params);
+
+            return products.ToList();
         }
 
         public async ValueTask<Product> SelectAsync(long id)
