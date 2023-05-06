@@ -25,5 +25,7 @@ namespace FastFood.WebApi.Controllers
         [Authorize(Policy = "AdminPolicy")]
         public IActionResult SelectAllAsync([FromQuery] PaginationParams @params) =>
             Ok(this.userService.SelectAll(@params));  
+
+
     }
 }
