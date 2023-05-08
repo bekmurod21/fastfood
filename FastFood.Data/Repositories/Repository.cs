@@ -3,7 +3,6 @@ using FastFood.Data.IRepositories;
 using FastFood.Domain.Commons;
 using FastFood.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
 using System.Linq.Expressions;
 using System.Text.Json.Serialization;
 
