@@ -35,7 +35,8 @@ namespace FastFood.Data.Repositories
 
         public async ValueTask<TResult> GetAsync(Expression<Func<TResult, bool>> expression)
         {
-            return (await dbSet.FirstOrDefaultAsync(expression));
+            var entity = await dbSet.FirstOrDefaultAsync(expression);
+            return entity;
         }
 
         public async ValueTask SaveChangesAsync()

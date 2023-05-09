@@ -33,7 +33,7 @@ namespace FastFood.WebApi.Controllers
         /// <param name="params"></param>
         /// <returns></returns>
         [HttpGet]
-        [Authorize(Policy = "AdminPolicy")]
+        //[Authorize(Policy = "AdminPolicy")]
         public IActionResult SelectAllAsync([FromQuery] PaginationParams @params) =>
             Ok(this.userService.SelectAll(@params));
 

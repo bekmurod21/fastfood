@@ -21,7 +21,7 @@ namespace FastFood.Service.Services
         }
         public async ValueTask<User> AddAsync(UserForCreationDto model)
         {
-            User user = await this.userRepository.GetAsync(u => u.UserName.ToLower() == model.Login.ToLower());
+            User user = await this.userRepository.GetAsync(u => u.UserName.ToLower() == model.UserName.ToLower());
 
             if (user is not null)
                 throw new CustomException(403, "User already exist with this username");
@@ -76,10 +76,10 @@ namespace FastFood.Service.Services
             return users.ToList();
         }
 
-        public ValueTask<User> SelectAsync(long id)
+        public async ValueTask<User> SelectAsync(long id)
         {
-            var entity = userRepository.GetAsync(x => x.Id == id);
-            if (entity == null)
+            var entity = await userRepository.GetAsync(x => x.Id == id);
+            if (entity is null)
                 throw new CustomException(404, "User not found");
 
             return entity;
