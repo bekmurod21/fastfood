@@ -8,7 +8,6 @@ public class AppDbContext:DbContext
     {
     
     }
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    { }
+    
     public virtual DbSet<User> Users { get; set; }
 }
