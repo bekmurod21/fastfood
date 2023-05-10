@@ -7,6 +7,8 @@ using FastFood.Service.Exceptions;
 using FastFood.Service.Extensions;
 using FastFood.Service.Interfaces;
 using System.Linq.Expressions;
+using MailKit.Net.Imap;
+using FastFood.Service.Helpers;
 
 namespace FastFood.Service.Services
 {
@@ -14,10 +16,11 @@ namespace FastFood.Service.Services
     {
         private readonly IRepository<User> userRepository;
         private readonly IMapper mapper;
-        public UserService(IRepository<User> repository, IMapper mapper)
+        public UserService(IMapper mapper,
+        IRepository<User> userRepository)
         {
-            this.userRepository = repository;
             this.mapper = mapper;
+            this.userRepository = userRepository;
         }
         public async ValueTask<User> AddAsync(UserForCreationDto model)
         {
@@ -45,9 +48,16 @@ namespace FastFood.Service.Services
         public async ValueTask<bool> DeleteAsync(long id)
         {
             var entity = await userRepository.GetAsync(x=>x.Id==id);
-            if(entity is null)
+            if(entity is null || entity.IsDeleted)
                 throw new CustomException(404, "User not found");
-            return await userRepository.DeleteAsync(x => x == entity);
+
+            entity.DeletedBy = HttpContextHelper.UserId;
+
+            await this.userRepository.DeleteAsync(u => u.Id == id);
+
+            await this.userRepository.SaveChangesAsync();
+
+            return true;
         }
 
         
@@ -68,12 +78,14 @@ namespace FastFood.Service.Services
             return mappedUser;
         }
 
-        public IEnumerable<User> SelectAll(PaginationParams @params, Expression<Func<User, bool>> expression = null)
+        public async ValueTask<IEnumerable<User>> SelectAll(PaginationParams @params)
         {
             var users =
-            this.userRepository.GetAllAsync(expression).ToPaged(@params);
+             this.userRepository.GetAllAsync()
+            .Where(u => u.IsDeleted == false)
+            .ToPagedList(@params).ToList();
 
-            return users.ToList();
+            return this.mapper.Map<IEnumerable<User>>(users);
         }
 
         public async ValueTask<User> SelectAsync(long id)
