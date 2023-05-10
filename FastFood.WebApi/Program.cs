@@ -1,5 +1,6 @@
 using FastFood.Data.Contexts;
 using FastFood.Service.Mappers;
+using FastFood.WebApi.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,10 +15,13 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
     b => b.MigrationsAssembly("FastFood.Data")));
+builder.Services.AddCustomService();
 
-//builder.Services.A(typeof(MappingProfile));
+builder.Services.AddAutoMapper(typeof(MappingProfile));
 //builder.Services.AddCustomServices();
 var app = builder.Build();
+app.ApplyMigration();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
