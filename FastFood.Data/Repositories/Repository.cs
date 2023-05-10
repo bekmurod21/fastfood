@@ -30,7 +30,7 @@ namespace FastFood.Data.Repositories
             return true;
         }
 
-        public IQueryable<TResult> GetAllAsync(Expression<Func<TResult, bool>> expression)
+        public IQueryable<TResult> GetAllAsync()
         => dbSet;
 
         public async ValueTask<TResult> GetAsync(Expression<Func<TResult, bool>> expression)

@@ -11,5 +11,5 @@ public interface IUserService
     ValueTask<User> ModifyAsync(long id, UserForCreationDto model);
     ValueTask<bool> DeleteAsync(long id);
     ValueTask<User> SelectAsync(long id);
-    IEnumerable<User> SelectAll(PaginationParams @params,Expression<Func<User,bool>> expression=null);
+    ValueTask<IEnumerable<User>> SelectAll(PaginationParams @params);
 }

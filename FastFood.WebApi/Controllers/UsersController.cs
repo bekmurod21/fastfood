@@ -42,7 +42,7 @@ namespace FastFood.WebApi.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpGet("{Id}")]
+        [HttpGet("{id}")]
         public async ValueTask<IActionResult> SelectByIdAsync(long id) =>
             Ok(await this.userService.SelectAsync(id));
 

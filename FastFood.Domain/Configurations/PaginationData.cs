@@ -4,16 +4,16 @@
     {
         public int CurrentPage { get; set; }
         public int TotalCount { get; set; }
-        public int TotalPage { get; set; }
+        public int TotalPages { get; set; }
         public bool HasPrevious => CurrentPage > 1;
-        public bool HasNext => CurrentPage < TotalPage;
+        public bool HasNext => CurrentPage < TotalPages;
 
         public PaginationData(int totalCount,PaginationParams @params)
         {
             CurrentPage = @params.PageIndex;
             TotalCount = totalCount;
 
-            TotalPage = (int)Math.Ceiling(totalCount / (double)@params.PageSize);
+            TotalPages = (int)Math.Ceiling(totalCount / (double)@params.PageSize);
         }
     }
 }

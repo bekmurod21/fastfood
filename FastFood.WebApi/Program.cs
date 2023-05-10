@@ -17,6 +17,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     b => b.MigrationsAssembly("FastFood.Data")));
 builder.Services.AddCustomService();
 
+builder.Services.AddHttpContextAccessor();
+
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 //builder.Services.AddCustomServices();
 var app = builder.Build();

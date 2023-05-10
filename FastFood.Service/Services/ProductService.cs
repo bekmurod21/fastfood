@@ -60,7 +60,7 @@ namespace FastFood.Service.Services
         public IEnumerable<Product> SelectAllAsync(PaginationParams @params, Expression<Func<Product, bool>> expression = null)
         {
             var products =
-            this.productRepository.GetAllAsync(expression).ToPaged(@params);
+            this.productRepository.GetAllAsync().ToPagedList(@params);
 
             return products.ToList();
         }
