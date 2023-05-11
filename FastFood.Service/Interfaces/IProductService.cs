@@ -12,5 +12,5 @@ public interface IProductService
     ValueTask<Product> ModifyAsync(long id,ProductForCreationDto model);
     ValueTask<bool> DeleteAsync(long id);
     ValueTask<Product> SelectAsync(long id);
-    IEnumerable<Product> SelectAllAsync(PaginationParams @params, Expression<Func<Product, bool>> expression = null);
+    IEnumerable<Product> SelectAllAsync(PaginationParams @params);
 }

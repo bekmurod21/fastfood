@@ -27,9 +27,20 @@ namespace FastFood.Service.Services
             if (entity is not null)
                 throw new CustomException(405, "Product already exist");
 
-            await productRepository.CreateAsync(entity);
-            await productRepository.SaveChangesAsync();
-            return entity;
+            Product mappedProduct = this.mapper.Map<Product>(model);
+
+            try
+            {
+                var result = await this.productRepository.CreateAsync(mappedProduct);
+                await this.productRepository.SaveChangesAsync();
+
+                return this.mapper.Map<Product>(result);
+            }
+
+            catch (Exception)
+            {
+                throw new CustomException(500, "Something went wrong");
+            }
         }
 
         public async ValueTask<bool> DeleteAsync(long id)
@@ -57,7 +68,7 @@ namespace FastFood.Service.Services
             return mapped;
         }
 
-        public IEnumerable<Product> SelectAllAsync(PaginationParams @params, Expression<Func<Product, bool>> expression = null)
+        public IEnumerable<Product> SelectAllAsync(PaginationParams @params)
         {
             var products =
             this.productRepository.GetAllAsync().ToPagedList(@params);
