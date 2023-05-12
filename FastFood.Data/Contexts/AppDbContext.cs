@@ -10,8 +10,9 @@ public class AppDbContext:DbContext
     {
     
     }
-    
+   
+
     public virtual DbSet<User> Users { get; set; }
     public virtual DbSet<Product> Products { get; set; }
-    public virtual DbSet<Attachment> Attachments { get; set; }
+   
 }
