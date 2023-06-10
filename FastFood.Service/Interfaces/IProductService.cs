@@ -8,9 +8,9 @@ namespace FastFood.Service.Interfaces;
 
 public interface IProductService
 {
-    ValueTask<Product> AddAsync(ProductForCreationDto model);
-    ValueTask<Product> ModifyAsync(long id,ProductForCreationDto model);
+    ValueTask<ProductForResultDto> AddAsync(ProductForCreationDto model);
+    ValueTask<ProductForResultDto> ModifyAsync(long id,ProductForUpdateDto model);
     ValueTask<bool> DeleteAsync(long id);
-    ValueTask<Product> SelectAsync(long id);
-    IEnumerable<Product> SelectAllAsync(PaginationParams @params);
+    ValueTask<ProductForResultDto> RetrieveAsync(long id);
+    IEnumerable<ProductForResultDto> RetrieveAll(PaginationParams @params);
 }

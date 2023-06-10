@@ -22,9 +22,9 @@ namespace FastFood.Service.Services
             this.mapper = mapper;
             this.userRepository = userRepository;
         }
-        public async ValueTask<User> AddAsync(UserForCreationDto model)
+        public async ValueTask<UserForResultDto> AddAsync(UserForCreationDto model)
         {
-            User user = await this.userRepository.GetAsync(u => u.UserName.ToLower() == model.UserName.ToLower());
+            User user = await this.userRepository.SelectAsync(u => u.UserName.ToLower() == model.UserName.ToLower());
 
             if (user is not null)
                 throw new CustomException(403, "User already exist with this username");
@@ -33,10 +33,10 @@ namespace FastFood.Service.Services
 
             try
             {
-                var result = await this.userRepository.CreateAsync(mappedUser);
+                var result = await this.userRepository.InsertAsync(mappedUser);
                 await this.userRepository.SaveChangesAsync();
 
-                return this.mapper.Map<User>(result);
+                return this.mapper.Map<UserForResultDto>(result);
             }
 
             catch (Exception)
@@ -47,7 +47,7 @@ namespace FastFood.Service.Services
 
         public async ValueTask<bool> DeleteAsync(long id)
         {
-            var entity = await userRepository.GetAsync(x=>x.Id==id);
+            var entity = await userRepository.SelectAsync(x=>x.Id==id);
             if(entity is null || entity.IsDeleted)
                 throw new CustomException(404, "User not found");
 
@@ -62,9 +62,9 @@ namespace FastFood.Service.Services
 
         
 
-        public async ValueTask<User> ModifyAsync(long id, UserForCreationDto model)
+        public async ValueTask<UserForResultDto> ModifyAsync(long id, UserForUpdateDto model)
         {
-            User entity = await userRepository.GetAsync(x => x.Id == id);
+            var entity = await userRepository.SelectAsync(x => x.Id == id);
             if (entity is null)
                 throw new CustomException(404, "User not found");
 
@@ -72,29 +72,28 @@ namespace FastFood.Service.Services
             var mappedUser = this.mapper.Map(model,entity);
             mappedUser.Update();
 
-            await userRepository.UpdateAsync(mappedUser,id);
+            await userRepository.UpdateAsync(mappedUser);
             await userRepository.SaveChangesAsync();
 
-            return mappedUser;
+            return this.mapper.Map<UserForResultDto>(mappedUser);
         }
 
-        public async ValueTask<IEnumerable<User>> SelectAll(PaginationParams @params)
+        public async ValueTask<IEnumerable<UserForResultDto>> RetrieveAll(PaginationParams @params)
         {
-            var users =
-             this.userRepository.GetAllAsync()
-            .Where(u => u.IsDeleted == false)
-            .ToPagedList(@params).ToList();
+            var users = this.userRepository.SelectAllAsync(u => !u.IsDeleted)
+                .ToPagedList(@params)   
+                .ToList();
 
-            return this.mapper.Map<IEnumerable<User>>(users);
+            return this.mapper.Map<IEnumerable<UserForResultDto>>(users);
         }
 
-        public async ValueTask<User> SelectAsync(long id)
+        public async ValueTask<UserForResultDto> RetrieveAsync(long id)
         {
-            var entity = await userRepository.GetAsync(x => x.Id == id);
+            var entity = await userRepository.SelectAsync(x => x.Id == id);
             if (entity is null)
                 throw new CustomException(404, "User not found");
 
-            return entity;
+            return this.mapper.Map<UserForResultDto>(entity);
         }
     }
 }

@@ -21,9 +21,9 @@ namespace FastFood.Service.Services
             this.mapper = mapper;
         }
 
-        public async ValueTask<Product> AddAsync(ProductForCreationDto model)
+        public async ValueTask<ProductForResultDto> AddAsync(ProductForCreationDto model)
         {
-            var entity = await productRepository.GetAsync(x => x.Name == model.Name);
+            var entity = await productRepository.SelectAsync(x => x.Name == model.Name);
             if (entity is not null)
                 throw new CustomException(405, "Product already exist");
 
@@ -31,10 +31,10 @@ namespace FastFood.Service.Services
 
             try
             {
-                var result = await this.productRepository.CreateAsync(mappedProduct);
+                var result = await this.productRepository.InsertAsync(mappedProduct);
                 await this.productRepository.SaveChangesAsync();
 
-                return this.mapper.Map<Product>(result);
+                return this.mapper.Map<ProductForResultDto>(result);
             }
 
             catch (Exception)
@@ -45,7 +45,7 @@ namespace FastFood.Service.Services
 
         public async ValueTask<bool> DeleteAsync(long id)
         {
-            var entity = await productRepository.GetAsync(x => x.Id == id);
+            var entity = await productRepository.SelectAsync(x => x.Id == id);
             if (entity is not null)
                 throw new CustomException(404, "Product not found");
 
@@ -54,32 +54,33 @@ namespace FastFood.Service.Services
             return model;
         }
 
-        public async ValueTask<Product> ModifyAsync(long id, ProductForCreationDto model)
+        public async ValueTask<ProductForResultDto> ModifyAsync(long id,ProductForUpdateDto model)
         {
-            var entity = await productRepository.GetAsync(x=>x.Id == id);
+            var entity = await productRepository.SelectAsync(x=>x.Id == id);
             if (entity is null)
                 throw new CustomException(404, "Product not found");
 
             var mapped = mapper.Map(model, entity);
             mapped.Update();
 
-            await productRepository.UpdateAsync(mapped, id);
+            await productRepository.UpdateAsync(mapped);
             await productRepository.SaveChangesAsync();
-            return mapped;
+            return mapper.Map<ProductForResultDto>(mapped);
         }
 
-        public IEnumerable<Product> SelectAllAsync(PaginationParams @params)
+        public IEnumerable<ProductForResultDto> RetrieveAll(PaginationParams @params)
         {
-            var products =
-            this.productRepository.GetAllAsync().ToPagedList(@params);
+            var products = this.productRepository.SelectAllAsync(p => !p.IsDeleted)
+                .ToPagedList(@params)
+                .ToList();
 
-            return products.ToList();
+            return mapper.Map<IEnumerable<ProductForResultDto>>(products);
         }
 
-        public async ValueTask<Product> SelectAsync(long id)
+        public async ValueTask<ProductForResultDto> RetrieveAsync(long id)
         {
-            var entity = await productRepository.GetAsync(x => x.Id == id);
-            return entity;
+            var entity = await productRepository.SelectAsync(x => x.Id == id);
+            return mapper.Map<ProductForResultDto>(entity);
         }
     }
 }

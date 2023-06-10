@@ -13,15 +13,19 @@ namespace FastFood.Service.Mappers
         public MappingProfile()
         {
             CreateMap<OrderForCreationDto,Order>().ReverseMap();
-            CreateMap<OrderProductForCreationDto, OrderProduct>().ReverseMap();
             CreateMap<PaymentForCreationDto,Payment>().ReverseMap();
+            CreateMap<OrderProductForCreationDto, OrderProduct>().ReverseMap();
 
-            CreateMap<CategoryForCreationDto,ProductCategory>().ReverseMap();
-            CreateMap<ProductForCreationDto, Product>().ReverseMap();
+            CreateMap<ProductForResultDto,Product>().ReverseMap();
             CreateMap<ProductForViewModel,Product>().ReverseMap();
+            CreateMap<ProductForUpdateDto, Product>().ReverseMap();
+            CreateMap<ProductForCreationDto, Product>().ReverseMap();
+            CreateMap<CategoryForCreationDto,ProductCategory>().ReverseMap();
 
-            CreateMap<AddressForCreationDto,Address>().ReverseMap();
+            CreateMap<UserForResultDto,User>().ReverseMap();
+            CreateMap<UserForUpdateDto,UserForResultDto>().ReverseMap();
             CreateMap<UserForCreationDto,User>().ReverseMap();
+            CreateMap<AddressForCreationDto,Address>().ReverseMap();
         }
     }
 }

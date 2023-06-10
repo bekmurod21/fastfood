@@ -1,9 +1,9 @@
-﻿using FastFood.Domain.Entities.Commons;
-using FastFood.Domain.Entities.Products;
+﻿using Microsoft.EntityFrameworkCore;
 using FastFood.Domain.Entities.Users;
-using Microsoft.EntityFrameworkCore;
-namespace FastFood.Data.Contexts;
+using FastFood.Domain.Entities.Commons;
+using FastFood.Domain.Entities.Products;
 
+namespace FastFood.Data.Contexts;
 public class AppDbContext:DbContext
 {
     public AppDbContext(DbContextOptions<AppDbContext> options):base(options)

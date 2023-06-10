@@ -35,7 +35,7 @@ namespace FastFood.WebApi.Controllers
         [HttpGet]
         //[Authorize(Policy = "AdminPolicy")]
         public IActionResult SelectAllAsync([FromQuery] PaginationParams @params) =>
-            Ok(this.userService.SelectAll(@params));
+            Ok(this.userService.RetrieveAll(@params));
 
         /// <summary>
         /// Get by Id
@@ -44,7 +44,7 @@ namespace FastFood.WebApi.Controllers
         /// <returns></returns>
         [HttpGet("{id}")]
         public async ValueTask<IActionResult> SelectByIdAsync(long id) =>
-            Ok(await this.userService.SelectAsync(id));
+            Ok(await this.userService.RetrieveAsync(id));
 
         /// <summary>
         /// Update by id
@@ -53,7 +53,7 @@ namespace FastFood.WebApi.Controllers
         /// <param name="user"></param>
         /// <returns></returns>
         [HttpPut("{id}")]
-        public async ValueTask<IActionResult> UpdateByIdAsync(long id,[FromBody] UserForCreationDto user)=>
+        public async ValueTask<IActionResult> UpdateByIdAsync(long id,[FromBody] UserForUpdateDto user)=>
             Ok(await this.userService.ModifyAsync(id,user));
 
         /// <summary>

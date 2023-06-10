@@ -1,6 +1,12 @@
-﻿namespace FastFood.Service.DTOs.OrderDto
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FastFood.Service.DTOs.OrderDto
 {
-    public class OrderForCreationDto
+    public class OrderForResultDto
     {
         public decimal TotalAmount { get; set; }
         public bool IsPaid { get; set; }
@@ -9,5 +15,4 @@
 
         public ICollection<OrderProductForCreationDto> OrderProducts { get; set; }
     }
-   
 }
