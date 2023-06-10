@@ -40,8 +40,8 @@ namespace FastFood.WebApi.Controllers
         /// <param name="params"></param>
         /// <returns></returns>
         [HttpGet]
-        public async ValueTask<IActionResult> SelectAllAsync([FromQuery] PaginationParams @params)=>
-            Ok(this.service.SelectAllAsync(@params));
+        public  IActionResult SelectAll([FromQuery] PaginationParams @params)=>
+            Ok(this.service.RetrieveAll(@params));
 
         /// <summary>
         /// Get by id product
@@ -50,10 +50,10 @@ namespace FastFood.WebApi.Controllers
         /// <returns></returns>
         [HttpGet("{id}")]
         public async ValueTask<IActionResult> SelectByIdAsync(long id) =>
-            Ok(this.service.SelectAsync(id));
+            Ok(this.service.RetrieveAsync(id));
 
         [HttpPut("{id}")]
-        public async ValueTask<IActionResult> ModifyById(long id,[FromBody] ProductForCreationDto product) =>
+        public async ValueTask<IActionResult> ModifyById(long id,[FromBody] ProductForUpdateDto product) =>
             Ok(await this.service.ModifyAsync(id, product));
     }
 }

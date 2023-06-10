@@ -7,9 +7,9 @@ namespace FastFood.Service.Interfaces;
 
 public interface IUserService
 {
-    ValueTask<User> AddAsync(UserForCreationDto model);
-    ValueTask<User> ModifyAsync(long id, UserForCreationDto model);
+    ValueTask<UserForResultDto> AddAsync(UserForCreationDto model);
+    ValueTask<UserForResultDto> ModifyAsync(long id,UserForUpdateDto model);
     ValueTask<bool> DeleteAsync(long id);
-    ValueTask<User> SelectAsync(long id);
-    ValueTask<IEnumerable<User>> SelectAll(PaginationParams @params);
+    ValueTask<UserForResultDto> RetrieveAsync(long id);
+    ValueTask<IEnumerable<UserForResultDto>> RetrieveAll(PaginationParams @params);
 }
