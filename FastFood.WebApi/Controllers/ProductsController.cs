@@ -32,7 +32,7 @@ namespace FastFood.WebApi.Controllers
         /// <returns></returns>
         [HttpDelete("{id}")]
         public async ValueTask<IActionResult> DeleteByIdAsync(long id)=>
-            Ok(await this.service.DeleteAsync(id));
+            Ok(await this.service.RemoveAsync(id));
 
         /// <summary>
         /// Get all product

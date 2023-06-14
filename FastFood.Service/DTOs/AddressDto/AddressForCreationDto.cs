@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace FastFood.Service.DTOs.UserDto;
+namespace FastFood.Service.DTOs.AddressDto;
 
 public class AddressForCreationDto
 {

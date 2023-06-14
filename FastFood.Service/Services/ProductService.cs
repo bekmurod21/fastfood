@@ -43,7 +43,7 @@ namespace FastFood.Service.Services
             }
         }
 
-        public async ValueTask<bool> DeleteAsync(long id)
+        public async ValueTask<bool> RemoveAsync(long id)
         {
             var entity = await productRepository.SelectAsync(x => x.Id == id);
             if (entity is not null)
