@@ -1,5 +1,4 @@
 ﻿using FastFood.Domain.Commons;
-using FastFood.Domain.Entities.Commons;
 using FastFood.Domain.Entities.Orders;
 using FastFood.Domain.Entities.Users;
 using FastFood.Domain.Enums;
