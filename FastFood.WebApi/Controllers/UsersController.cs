@@ -63,6 +63,6 @@ namespace FastFood.WebApi.Controllers
         /// <returns></returns>
         [HttpDelete("{id}")]
         public async ValueTask<IActionResult> DeleteByIdAsync(long id) =>
-            Ok(await this.userService.DeleteAsync(id));
+            Ok(await this.userService.RemoveAsync(id));
     }
 }

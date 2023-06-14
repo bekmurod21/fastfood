@@ -1,8 +1,11 @@
 ﻿using AutoMapper;
 using FastFood.Domain.Entities.Orders;
+using FastFood.Domain.Entities.Payment;
 using FastFood.Domain.Entities.Products;
 using FastFood.Domain.Entities.Users;
+using FastFood.Service.DTOs.AddressDto;
 using FastFood.Service.DTOs.OrderDto;
+using FastFood.Service.DTOs.PaymentDto;
 using FastFood.Service.DTOs.ProductDto;
 using FastFood.Service.DTOs.UserDto;
 
@@ -14,6 +17,7 @@ namespace FastFood.Service.Mappers
         {
             CreateMap<OrderForCreationDto,Order>().ReverseMap();
             CreateMap<PaymentForCreationDto,Payment>().ReverseMap();
+            CreateMap<PaymentForResultDto,Payment>().ReverseMap();
             CreateMap<OrderProductForCreationDto, OrderProduct>().ReverseMap();
 
             CreateMap<ProductForResultDto,Product>().ReverseMap();

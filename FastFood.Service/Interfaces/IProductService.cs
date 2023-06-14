@@ -10,7 +10,7 @@ public interface IProductService
 {
     ValueTask<ProductForResultDto> AddAsync(ProductForCreationDto model);
     ValueTask<ProductForResultDto> ModifyAsync(long id,ProductForUpdateDto model);
-    ValueTask<bool> DeleteAsync(long id);
+    ValueTask<bool> RemoveAsync(long id);
     ValueTask<ProductForResultDto> RetrieveAsync(long id);
     IEnumerable<ProductForResultDto> RetrieveAll(PaginationParams @params);
 }

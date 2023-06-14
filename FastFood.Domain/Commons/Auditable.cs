@@ -12,5 +12,4 @@ public class Auditable
     public DateTime? UpdatedAt { get; set;}
     public DateTime DeletedAt { get; set; }
     public long? CreatedBy { get; set; }
-    public ItemState State { get; set; }
 }
