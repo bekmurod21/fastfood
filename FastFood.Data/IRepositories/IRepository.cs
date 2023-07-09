@@ -7,10 +7,9 @@ namespace FastFood.Data.IRepositories
     {
         ValueTask<TResult> InsertAsync(TResult value);
         ValueTask<TResult> UpdateAsync(TResult value);
-        ValueTask<bool> DeleteAsync(Expression<Func<TResult,bool>> expression);
-        bool DeleteManyAsync(Expression<Func<TResult, bool>> expression);
-        ValueTask<TResult> SelectAsync(Expression<Func<TResult,bool>> expression, string[] includes = null);
-        IQueryable<TResult> SelectAllAsync(Expression<Func<TResult,bool>> expression, string[] includes = null);
-        ValueTask SaveChangesAsync();
+        ValueTask<bool> DeleteAsync(Expression<Func<TResult, bool>> expression);
+        ValueTask<bool> DeleteManyAsync(Expression<Func<TResult, bool>> expression);
+        ValueTask<TResult> SelectAsync(Expression<Func<TResult, bool>> expression, string[] includes = null);
+        IQueryable<TResult> SelectAllAsync(Expression<Func<TResult, bool>> expression = null, string[] includes = null);
     }
 }

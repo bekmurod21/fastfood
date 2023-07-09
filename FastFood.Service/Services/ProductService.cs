@@ -1,13 +1,12 @@
 ﻿using AutoMapper;
+using FastFood.Service.Helpers;
 using FastFood.Data.IRepositories;
-using FastFood.Domain.Configurations;
-using FastFood.Domain.Entities.Products;
-using FastFood.Domain.Entities.Users;
-using FastFood.Service.DTOs.ProductDto;
 using FastFood.Service.Exceptions;
 using FastFood.Service.Extensions;
 using FastFood.Service.Interfaces;
-using System.Linq.Expressions;
+using FastFood.Domain.Configurations;
+using FastFood.Service.DTOs.ProductDto;
+using FastFood.Domain.Entities.Products;
 
 namespace FastFood.Service.Services
 {
@@ -28,11 +27,13 @@ namespace FastFood.Service.Services
                 throw new CustomException(405, "Product already exist");
 
             Product mappedProduct = this.mapper.Map<Product>(model);
+            mappedProduct.CreatedAt = DateTime.Now;
+            mappedProduct.CreatedBy = HttpContextHelper.UserId;
 
             try
             {
                 var result = await this.productRepository.InsertAsync(mappedProduct);
-                await this.productRepository.SaveChangesAsync();
+                
 
                 return this.mapper.Map<ProductForResultDto>(result);
             }
@@ -46,11 +47,13 @@ namespace FastFood.Service.Services
         public async ValueTask<bool> RemoveAsync(long id)
         {
             var entity = await productRepository.SelectAsync(x => x.Id == id);
-            if (entity is not null)
+            if (entity is null)
                 throw new CustomException(404, "Product not found");
 
+            entity.UpdatedAt = DateTime.UtcNow;
+            entity.UpdatedBy = HttpContextHelper.UserId;
             var model = await productRepository.DeleteAsync(x => x == entity);
-            await productRepository.SaveChangesAsync();
+            
             return model;
         }
 
@@ -61,10 +64,11 @@ namespace FastFood.Service.Services
                 throw new CustomException(404, "Product not found");
 
             var mapped = mapper.Map(model, entity);
+            mapped.UpdatedAt = DateTime.UtcNow;
+            mapped.UpdatedBy = HttpContextHelper.UserId;
             mapped.Update();
 
             await productRepository.UpdateAsync(mapped);
-            await productRepository.SaveChangesAsync();
             return mapper.Map<ProductForResultDto>(mapped);
         }
 
