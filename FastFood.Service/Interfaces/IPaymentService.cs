@@ -1,5 +1,5 @@
-﻿using FastFood.Domain.Configurations;
-using FastFood.Domain.Enums;
+﻿using FastFood.Domain.Enums;
+using FastFood.Domain.Configurations;
 using FastFood.Service.DTOs.PaymentDto;
 
 namespace FastFood.Service.Interfaces;

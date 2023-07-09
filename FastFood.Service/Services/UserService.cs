@@ -1,14 +1,12 @@
 ﻿using AutoMapper;
-using FastFood.Data.IRepositories;
-using FastFood.Domain.Configurations;
-using FastFood.Domain.Entities.Users;
-using FastFood.Service.DTOs.UserDto;
-using FastFood.Service.Exceptions;
-using FastFood.Service.Extensions;
-using FastFood.Service.Interfaces;
-using System.Linq.Expressions;
-using MailKit.Net.Imap;
 using FastFood.Service.Helpers;
+using FastFood.Data.IRepositories;
+using FastFood.Service.Extensions;
+using FastFood.Service.Exceptions;
+using FastFood.Service.Interfaces;
+using FastFood.Service.DTOs.UserDto;
+using FastFood.Domain.Entities.Users;
+using FastFood.Domain.Configurations;
 
 namespace FastFood.Service.Services
 {
@@ -26,7 +24,7 @@ namespace FastFood.Service.Services
         {
             User user = await this.userRepository.SelectAsync(u => u.UserName.ToLower() == model.UserName.ToLower());
 
-            if (user is not null)
+            if (user is not null||!user.IsDeleted)
                 throw new CustomException(403, "User already exist with this username");
 
             User mappedUser = mapper.Map<User>(model);
@@ -34,7 +32,6 @@ namespace FastFood.Service.Services
             try
             {
                 var result = await this.userRepository.InsertAsync(mappedUser);
-                await this.userRepository.SaveChangesAsync();
 
                 return this.mapper.Map<UserForResultDto>(result);
             }
@@ -51,11 +48,10 @@ namespace FastFood.Service.Services
             if(entity is null || entity.IsDeleted)
                 throw new CustomException(404, "User not found");
 
+            entity.DeletedAt = DateTime.UtcNow;
             entity.DeletedBy = HttpContextHelper.UserId;
-
             await this.userRepository.DeleteAsync(u => u.Id == id);
 
-            await this.userRepository.SaveChangesAsync();
 
             return true;
         }
@@ -65,16 +61,15 @@ namespace FastFood.Service.Services
         public async ValueTask<UserForResultDto> ModifyAsync(long id, UserForUpdateDto model)
         {
             var entity = await userRepository.SelectAsync(x => x.Id == id);
-            if (entity is null)
+            if (entity is null||entity.IsDeleted)
                 throw new CustomException(404, "User not found");
 
-            entity.UpdatedAt = DateTime.UtcNow;
             var mappedUser = this.mapper.Map(model,entity);
+            mappedUser.UpdatedAt = DateTime.UtcNow;
+            mappedUser.UpdatedBy = HttpContextHelper.UserId;
             mappedUser.Update();
 
             await userRepository.UpdateAsync(mappedUser);
-            await userRepository.SaveChangesAsync();
-
             return this.mapper.Map<UserForResultDto>(mappedUser);
         }
 

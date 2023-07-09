@@ -16,8 +16,12 @@ namespace FastFood.Data.Repositories
             dbSet = dbContext.Set<TResult>();
         }
 
-        public async ValueTask<TResult> InsertAsync(TResult value)=>
-            (await dbSet.AddAsync(value)).Entity;
+        public async ValueTask<TResult> InsertAsync(TResult value)
+        {
+            var entity = (await dbSet.AddAsync(value)).Entity;
+            await dbContext.SaveChangesAsync();
+            return entity;
+        }
 
         public async ValueTask<bool> DeleteAsync(Expression<Func<TResult, bool>> expression)
         {
@@ -27,9 +31,10 @@ namespace FastFood.Data.Repositories
                 return false;
             }
             entity.IsDeleted = true;
+            await dbContext.SaveChangesAsync();
             return true;
         }
-        public IQueryable<TResult> SelectAllAsync(Expression<Func<TResult,bool>> expression, string[] includes = null)
+        public IQueryable<TResult> SelectAllAsync(Expression<Func<TResult,bool>> expression = null, string[] includes = null)
         {
             IQueryable<TResult> query = expression is null ? this.dbSet : this.dbSet.Where(expression);
 
@@ -47,16 +52,15 @@ namespace FastFood.Data.Repositories
         public async ValueTask<TResult> SelectAsync(Expression<Func<TResult, bool>> expression, string[] includes = null)
         => await this.SelectAllAsync(expression, includes).FirstOrDefaultAsync(t => !t.IsDeleted);
 
-        public async ValueTask SaveChangesAsync()
-        =>  dbContext.SaveChanges();
-        
 
         public async ValueTask<TResult> UpdateAsync(TResult value)
         {
-            return this.dbSet.Update(value).Entity;
+            var entity = this.dbSet.Update(value).Entity;
+            await dbContext.SaveChangesAsync();
+            return entity;
         }
 
-        public bool DeleteManyAsync(Expression<Func<TResult, bool>> expression)
+        public async ValueTask<bool> DeleteManyAsync(Expression<Func<TResult, bool>> expression)
         {
             var entities = this.dbSet.Where(expression);
             if(entities.Any())
@@ -65,6 +69,7 @@ namespace FastFood.Data.Repositories
                     entity.IsDeleted = true;
                 return true;
             }
+            await dbContext.SaveChangesAsync();
             return false;
         }
     }

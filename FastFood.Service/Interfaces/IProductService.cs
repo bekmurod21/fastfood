@@ -1,8 +1,5 @@
 ﻿using FastFood.Domain.Configurations;
-using FastFood.Domain.Entities.Products;
-using FastFood.Domain.Entities.Users;
 using FastFood.Service.DTOs.ProductDto;
-using System.Linq.Expressions;
 
 namespace FastFood.Service.Interfaces;
 
