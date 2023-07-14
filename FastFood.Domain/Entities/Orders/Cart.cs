@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FastFood.Domain.Commons;
 
 namespace FastFood.Domain.Entities.Orders
 {
-    internal class Cart
+    public class Cart:Auditable
     {
+        public long UserId { get; set; }
+        public ICollection<CartItem> Items { get; set; }
     }
 }
