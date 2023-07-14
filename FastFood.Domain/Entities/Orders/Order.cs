@@ -13,6 +13,10 @@ namespace FastFood.Domain.Entities.Orders
         public long AddressId { get; set; }
         public Address Address { get; set; }
 
+        public decimal TotalAmount { get; set; }
+
         public OrderStatus Status { get; set; }
+        [JsonIgnore]
+        public ICollection<OrderItem> OrderItems { get; set; }
     }
 }

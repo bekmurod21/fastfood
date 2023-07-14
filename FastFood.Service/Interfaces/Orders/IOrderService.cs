@@ -2,7 +2,7 @@
 using FastFood.Domain.Configurations;
 using FastFood.Service.DTOs.OrderDto;
 
-namespace FastFood.Service.Interfaces;
+namespace FastFood.Service.Interfaces.Orders;
 
 public interface IOrderService
 {

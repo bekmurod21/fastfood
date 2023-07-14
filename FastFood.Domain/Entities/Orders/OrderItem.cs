@@ -1,12 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FastFood.Domain.Commons;
+using FastFood.Domain.Entities.Products;
 
 namespace FastFood.Domain.Entities.Orders
 {
-    internal class OrderItem
+    public class OrderItem:Auditable
     {
+        public int Amount { get; set; }
+        public decimal AmountTotal { get; set; }
+
+        public long OrderId { get; set; }
+        public Order Order { get; set; }
+
+        public long ProductId { get; set; }
+        public Product Product { get; set; }
     }
 }

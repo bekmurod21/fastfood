@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FastFood.Service.DTOs.CartDto
+﻿namespace FastFood.Service.DTOs.CartDto
 {
-    internal class CartItemForCreationDto
+    public class CartItemForCreationDto
     {
+        public long ProductId { get; set; }
+        public int Amount { get; set; }
     }
 }
