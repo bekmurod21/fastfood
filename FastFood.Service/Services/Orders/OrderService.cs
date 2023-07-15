@@ -10,6 +10,8 @@ using FastFood.Domain.Entities.Orders;
 using FastFood.Domain.Entities.Users;
 using FastFood.Service.Exceptions;
 using Microsoft.EntityFrameworkCore;
+using FastFood.Service.Extensions;
+using System.Net.Http.Headers;
 
 namespace FastFood.Service.Services.Orders;
 
@@ -81,28 +83,69 @@ public class OrderService : IOrderService
 
     }
 
-    public ValueTask<bool> RemoveAsync(long id)
+    public async ValueTask<bool> RemoveAsync(long id)
     {
-        throw new NotImplementedException();
+        var isDeleted = await orderRepository.DeleteAsync(order => order.Id == id);
+        if (!isDeleted)
+            throw new CustomException(404, "Order is not found");
+
+        return isDeleted;
     }
 
-    public ValueTask<IEnumerable<OrderForResultDto>> RetrieveAllAsync(PaginationParams @params, OrderStatus? status = null)
+    public async ValueTask<IEnumerable<OrderForResultDto>> RetrieveAllAsync(PaginationParams @params, OrderStatus? status = null)
     {
-        throw new NotImplementedException();
+        var orders = orderRepository.SelectAllAsync(order => !order.IsDeleted,
+            new string[] { "User", "Address", "OrderItem" }).AsQueryable();
+
+        if(status != null)
+            orders = orders.Where(order => order.Status == status);
+
+        if (!orders.Any())
+            throw new CustomException(400, "no Order found");
+
+        var pagedOrder = orders.ToPagedList(@params).ToList();
+        return mapper.Map<IEnumerable<OrderForResultDto>>(pagedOrder);
     }
 
-    public ValueTask<IEnumerable<OrderForResultDto>> RetrieveAllByClientIdAsync(long clientId)
+    public async ValueTask<IEnumerable<OrderForResultDto>> RetrieveAllByClientIdAsync(long clientId)
     {
-        throw new NotImplementedException();
+        var orders = await orderRepository.SelectAllAsync(order => !order.IsDeleted && order.UserId == clientId,
+            new string[] {"User","Address","OrderItem"}).ToListAsync();
+
+        if (!orders.Any())
+            throw new CustomException(400, "No order found");
+        return mapper.Map<IEnumerable<OrderForResultDto>>(orders);
     }
 
-    public ValueTask<IEnumerable<OrderForResultDto>> RetrieveAllByPhoneAsync(PaginationParams @params, string phone, OrderStatus? status = null)
+    public async ValueTask<IEnumerable<OrderForResultDto>> RetrieveAllByPhoneAsync(PaginationParams @params, string phone, OrderStatus? status = null)
     {
-        throw new NotImplementedException();
+        var user = await userRepository.SelectAsync(user => !user.IsDeleted && user.Phone == phone,
+           new string[] { "Orders.OrderItems" });
+        if (user is null)
+            throw new CustomException(404, "User is not found");
+
+        var ordersQuery = orderRepository
+            .SelectAllAsync(order => !order.IsDeleted && order.UserId == user.Id);
+        if (status is not null)
+            ordersQuery = ordersQuery.Where(order => order.Status == status);
+
+        ordersQuery = (IQueryable<Order>)ordersQuery.ToPagedList(@params);
+
+        var orders = await ordersQuery.ToListAsync();
+
+        // checking something exists or not
+        if (!orders.Any())
+            throw new CustomException(400, "No orders found.");
+
+        return mapper.Map<IEnumerable<OrderForResultDto>>(orders);
     }
 
-    public ValueTask<OrderForResultDto> RetrieveAsync(long id)
+    public async ValueTask<OrderForResultDto> RetrieveAsync(long id)
     {
-        throw new NotImplementedException();
+        var order = await orderRepository.SelectAsync(order => !order.IsDeleted && order.Id == id,
+            new string[] {"User","Address","OrderItem"});
+        if (order == null)
+            throw new CustomException(404, "Order not found");
+        return mapper.Map<OrderForResultDto>(order);
     }
 }

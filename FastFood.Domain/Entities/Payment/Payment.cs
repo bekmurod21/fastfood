@@ -1,7 +1,8 @@
-﻿using FastFood.Domain.Commons;
-using FastFood.Domain.Entities.Orders;
+﻿using FastFood.Domain.Enums;
+using FastFood.Domain.Commons;
 using FastFood.Domain.Entities.Users;
-using FastFood.Domain.Enums;
+using FastFood.Domain.Entities.Orders;
+using FastFood.Domain.Entities.Attachments;
 
 namespace FastFood.Domain.Entities.Payment
 {
@@ -17,5 +18,8 @@ namespace FastFood.Domain.Entities.Payment
 
         public long OrderId { get; set; }
         public Order Order { get; set; }
+
+        public long AttachmentId { get; set; }
+        public Attachment Attachment { get; set; }
     }
 }
