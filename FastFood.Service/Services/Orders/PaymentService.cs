@@ -1,18 +1,17 @@
 ﻿using AutoMapper;
+using FastFood.Domain.Enums;
+using FastFood.Service.Helpers;
 using FastFood.Data.IRepositories;
+using FastFood.Service.Exceptions;
+using FastFood.Service.Interfaces;
+using FastFood.Service.Extensions;
 using FastFood.Domain.Configurations;
 using FastFood.Domain.Entities.Orders;
 using FastFood.Domain.Entities.Payment;
-using FastFood.Domain.Enums;
 using FastFood.Service.DTOs.Attachment;
 using FastFood.Service.DTOs.PaymentDto;
-using FastFood.Service.Exceptions;
-using FastFood.Service.Extensions;
-using FastFood.Service.Helpers;
-using FastFood.Service.Interfaces;
-using FastFood.Service.Interfaces.Attachments;
 using FastFood.Service.Interfaces.Orders;
-using System.Net.Mail;
+using FastFood.Service.Interfaces.Attachments;
 
 namespace FastFood.Service.Services.Orders
 {
