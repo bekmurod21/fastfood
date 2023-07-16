@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{19BF67A7-B9E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastFood.Domain", "FastFood.Domain\FastFood.Domain.csproj", "{951C9178-02A9-45CC-A34E-DBAC54AF10F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{F25DB9B8-8D88-4414-9534-4CBC0CF3D287}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastFood.WebApi", "WebApplication1\FastFood.WebApi.csproj", "{F25DB9B8-8D88-4414-9534-4CBC0CF3D287}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
