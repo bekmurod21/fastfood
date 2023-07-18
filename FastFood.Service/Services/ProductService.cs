@@ -72,7 +72,7 @@ namespace FastFood.Service.Services
             return mapper.Map<ProductForResultDto>(mapped);
         }
 
-        public IEnumerable<ProductForResultDto> RetrieveAll(PaginationParams @params)
+        public async Task<IEnumerable<ProductForResultDto>> RetrieveAllAsync(PaginationParams @params)
         {
             var products = this.productRepository.SelectAllAsync(p => !p.IsDeleted)
                 .ToPagedList(@params)
