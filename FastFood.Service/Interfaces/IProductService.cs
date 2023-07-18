@@ -9,5 +9,5 @@ public interface IProductService
     ValueTask<ProductForResultDto> ModifyAsync(long id,ProductForUpdateDto model);
     ValueTask<bool> RemoveAsync(long id);
     ValueTask<ProductForResultDto> RetrieveAsync(long id);
-    IEnumerable<ProductForResultDto> RetrieveAll(PaginationParams @params);
+    Task<IEnumerable<ProductForResultDto>> RetrieveAllAsync(PaginationParams @params);
 }
