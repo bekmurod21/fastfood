@@ -1,41 +1,39 @@
-﻿using FastFood.WebApi.Models;
+﻿using FastFood.Domain.Enums;
+using FastFood.WebApi.Models;
 using Microsoft.AspNetCore.Mvc;
-using FastFood.Service.Interfaces;
 using FastFood.Domain.Configurations;
-using FastFood.Service.DTOs.ProductDto;
+using FastFood.Service.DTOs.Attachment;
+using FastFood.Service.DTOs.PaymentDto;
+using FastFood.Service.Interfaces.Orders;
 
-namespace FastFood.WebApi.Controllers
+namespace FastFood.WebApi.Controllers.Orders
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductsController : ControllerBase
+    public class PaymentsController : ControllerBase
     {
-        private readonly IProductService service;
+        private readonly IPaymentService service;
 
-        public ProductsController(IProductService service)
+        public PaymentsController(IPaymentService service)
         {
             this.service = service;
         }
         [HttpPost]
-        public async ValueTask<IActionResult> PostAsync(ProductForCreationDto dto)
-        {
-            return Ok(new Response
-            {
-                Code = 200,
-                Message = "Success",
-                Data = this.service.AddAsync(dto)
-            });
-        }
+        public async ValueTask<IActionResult> PostAsyn([FromForm] SingleFile file,[FromForm]PaymentForCreationDto dto) =>
+           Ok(new Response
+           {
+               Code = 200,
+               Message = "Seccess",
+              // Data = await this.service.AddAsync(dto,await file.File.)
+           });
         [HttpPut("id")]
-        public async ValueTask<IActionResult> PutAsync(long id,ProductForUpdateDto dto)
-        {
-            return Ok(new Response
+        public async ValueTask<IActionResult> PutAsync(long id, PaymentForCreationDto dto) =>
+            Ok(new Response
             {
                 Code = 200,
                 Message = "Success",
                 Data = await this.service.ModifyAsync(id, dto)
             });
-        }
         [HttpDelete("id")]
         public async ValueTask<IActionResult> DeleteAsync(long id) =>
             Ok(new Response
@@ -45,7 +43,7 @@ namespace FastFood.WebApi.Controllers
                 Data = await this.service.RemoveAsync(id)
             });
         [HttpGet("id")]
-        public async ValueTask<IActionResult> GetByIdAsync(long id) =>
+        public async ValueTask<IActionResult> GetById(long id) =>
             Ok(new Response
             {
                 Code = 200,
@@ -59,6 +57,13 @@ namespace FastFood.WebApi.Controllers
                 Code = 200,
                 Message = "Success",
                 Data = await this.service.RetrieveAllAsync(@params)
+            });
+        public async ValueTask<IActionResult> ChangeStatusAsync(long id, PaymentStatus status) =>
+            Ok(new Response 
+            {
+                Code = 200,
+                Message = "Success",
+                Data = await this.service.ChangeStatusAsync(id, status) 
             });
     }
 }

@@ -1,9 +1,8 @@
-﻿using FastFood.Domain.Configurations;
-using FastFood.Service.DTOs.UserDto;
-using FastFood.Service.Interfaces;
-using FastFood.WebApi.Models;
-using Microsoft.AspNetCore.Http;
+﻿using FastFood.WebApi.Models;
 using Microsoft.AspNetCore.Mvc;
+using FastFood.Service.Interfaces;
+using FastFood.Service.DTOs.UserDto;
+using FastFood.Domain.Configurations;
 
 namespace FastFood.WebApi.Controllers
 {
