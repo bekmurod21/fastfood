@@ -1,38 +1,28 @@
 ﻿using FastFood.WebApi.Models;
 using Microsoft.AspNetCore.Mvc;
-using FastFood.Service.Interfaces;
 using FastFood.Domain.Configurations;
-using FastFood.Service.DTOs.AddressDto;
+using FastFood.Service.DTOs.OrderDto;
+using FastFood.Service.Interfaces.Orders;
 
-namespace FastFood.WebApi.Controllers
+namespace FastFood.WebApi.Controllers.Orders
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AddressesController : ControllerBase
+    public class OrdersController : ControllerBase
     {
-        private readonly IAddressService service;
+        private readonly IOrderService service;
 
-        public AddressesController(IAddressService service)
+        public OrdersController(IOrderService service)
         {
             this.service = service;
         }
-        public async ValueTask<IActionResult> PostAsync(AddressForCreationDto dto)
+        public async ValueTask<IActionResult> PostAsync(OrderForCreationDto dto)
         {
             return Ok(new Response
             {
                 Code = 200,
                 Message = "Success",
-                Data = this.service.AddAsync(dto)
-            });
-        }
-        [HttpPut("id")]
-        public async ValueTask<IActionResult> PutAsync(long id, AddressForCreationDto dto)
-        {
-            return Ok(new Response
-            {
-                Code = 200,
-                Message = "Success",
-                Data = await this.service.ModifyAsync(id, dto)
+                Data = service.AddAsync(dto)
             });
         }
         [HttpDelete("id")]
@@ -41,7 +31,7 @@ namespace FastFood.WebApi.Controllers
             {
                 Code = 200,
                 Message = "Success",
-                Data = await this.service.RemoveAsync(id)
+                Data = await service.RemoveAsync(id)
             });
         [HttpGet("id")]
         public async ValueTask<IActionResult> GetByIdAsync(long id) =>
@@ -49,7 +39,7 @@ namespace FastFood.WebApi.Controllers
             {
                 Code = 200,
                 Message = "Success",
-                Data = await this.service.RetrieveAsync(id)
+                Data = await service.RetrieveAsync(id)
             });
         [HttpGet]
         public async ValueTask<IActionResult> GetAllAsync([FromQuery] PaginationParams @params) =>
@@ -57,7 +47,7 @@ namespace FastFood.WebApi.Controllers
             {
                 Code = 200,
                 Message = "Success",
-                Data = await this.service.RetrieveAllAsync(@params)
+                Data = await service.RetrieveAllAsync(@params)
             });
     }
 }
