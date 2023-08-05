@@ -1,13 +1,15 @@
 ﻿using FastFood.Service.DTOs.UserDto;
 using FastFood.Domain.Configurations;
+using FastFood.Domain.Entities.Users;
 
-namespace FastFood.Service.Interfaces;
+namespace FastFood.Service.Interfaces.Users;
 
 public interface IUserService
 {
     ValueTask<UserForResultDto> AddAsync(UserForCreationDto model);
-    ValueTask<UserForResultDto> ModifyAsync(long id,UserForUpdateDto model);
+    ValueTask<UserForResultDto> ModifyAsync(long id, UserForUpdateDto model);
     ValueTask<bool> RemoveAsync(long id);
     ValueTask<UserForResultDto> RetrieveAsync(long id);
     ValueTask<IEnumerable<UserForResultDto>> RetrieveAll(PaginationParams @params);
+    ValueTask<User> RetrieveByEmailAsync(string email);
 }

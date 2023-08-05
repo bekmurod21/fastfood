@@ -1,5 +1,7 @@
 using FastFood.Data.Contexts;
+using FastFood.Service.Interfaces.Users;
 using FastFood.Service.Mappers;
+using FastFood.Service.Services.Users;
 using FastFood.WebApi.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
@@ -11,7 +13,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
     b => b.MigrationsAssembly("FastFood.Data")));

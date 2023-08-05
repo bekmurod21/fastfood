@@ -1,7 +1,7 @@
 ﻿using FastFood.Data.IRepositories;
 using FastFood.Data.Repositories;
-using FastFood.Service.Interfaces;
-using FastFood.Service.Services;
+using FastFood.Service.Interfaces.Users;
+using FastFood.Service.Services.Users;
 
 namespace FastFood.WebApi.Extensions
 {

@@ -1,6 +1,7 @@
 ﻿using FastFood.Domain.Enums;
 using FastFood.Domain.Commons;
 using FastFood.Domain.Entities.Orders;
+using FastFood.Domain.Entities.Authorizations;
 
 namespace FastFood.Domain.Entities.Users
 {
@@ -13,7 +14,8 @@ namespace FastFood.Domain.Entities.Users
         public string Email { get; set; }
         public string Password { get; set; }
         public Gender Gender { get; set; }
-        public ICollection<Role> Roles { get; set;}
+        public long RoleId { get; set; }
+        public Role Roles { get; set;}
         public ICollection<Order> Orders { get; set;}
     }
 }

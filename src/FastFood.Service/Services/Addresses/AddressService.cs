@@ -3,13 +3,13 @@ using FastFood.Service.Helpers;
 using FastFood.Data.IRepositories;
 using FastFood.Service.Exceptions;
 using FastFood.Service.Extensions;
-using FastFood.Service.Interfaces;
 using FastFood.Domain.Entities.Users;
 using FastFood.Domain.Configurations;
 using FastFood.Service.DTOs.AddressDto;
 using Microsoft.EntityFrameworkCore;
+using FastFood.Service.Interfaces.Addresses;
 
-namespace FastFood.Service.Services
+namespace FastFood.Service.Services.Addresses
 {
     public class AddressService : IAddressService
     {
@@ -34,7 +34,7 @@ namespace FastFood.Service.Services
 
         public async ValueTask<AddressForResultDto> ModifyAsync(long id, AddressForCreationDto dto)
         {
-            var address = await addressRepository.SelectAsync(a=>a.Id==id);
+            var address = await addressRepository.SelectAsync(a => a.Id == id);
             if (address is null)
                 throw new CustomException(404, "Address not found");
 
@@ -52,16 +52,16 @@ namespace FastFood.Service.Services
                 throw new CustomException(404, "Address is found");
             address.DeletedBy = HttpContextHelper.UserId;
             address.DeletedAt = DateTime.UtcNow;
-            return await addressRepository.DeleteAsync(a=>a.Id==id);
+            return await addressRepository.DeleteAsync(a => a.Id == id);
         }
 
         public async ValueTask<IEnumerable<AddressForResultDto>> RetrieveAllAsync(PaginationParams @params)
         {
-            var addresses = await this.addressRepository.SelectAllAsync(a => !a.IsDeleted)
+            var addresses = await addressRepository.SelectAllAsync(a => !a.IsDeleted)
                 .ToPagedList(@params)
                 .ToListAsync();
 
-            return this.mapper.Map<IEnumerable<AddressForResultDto>>(addresses);
+            return mapper.Map<IEnumerable<AddressForResultDto>>(addresses);
         }
 
         public async ValueTask<AddressForResultDto> RetrieveAsync(long id)
@@ -70,7 +70,7 @@ namespace FastFood.Service.Services
             if (entity is null)
                 throw new CustomException(404, "Address not found");
 
-            return this.mapper.Map<AddressForResultDto>(entity);
+            return mapper.Map<AddressForResultDto>(entity);
         }
     }
 }

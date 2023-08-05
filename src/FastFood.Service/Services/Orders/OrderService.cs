@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using FastFood.Domain.Enums;
 using FastFood.Service.Helpers;
-using FastFood.Service.Interfaces;
 using FastFood.Service.Exceptions;
 using FastFood.Data.IRepositories;
 using FastFood.Service.Extensions;
@@ -11,6 +10,7 @@ using FastFood.Service.DTOs.OrderDto;
 using FastFood.Domain.Entities.Users;
 using FastFood.Domain.Entities.Orders;
 using FastFood.Service.Interfaces.Orders;
+using FastFood.Service.Interfaces.Addresses;
 
 namespace FastFood.Service.Services.Orders;
 
