@@ -3,7 +3,7 @@ using FastFood.Service.DTOs.UserDto;
 using FastFood.Domain.Entities.Users;
 using FastFood.Service.DTOs.OrderDto;
 using FastFood.Domain.Entities.Orders;
-using FastFood.Domain.Entities.Payment;
+using FastFood.Domain.Entities.Payments;
 using FastFood.Service.DTOs.AddressDto;
 using FastFood.Service.DTOs.PaymentDto;
 using FastFood.Service.DTOs.ProductDto;

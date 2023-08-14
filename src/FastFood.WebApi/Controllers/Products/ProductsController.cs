@@ -6,9 +6,7 @@ using FastFood.Service.Interfaces.Products;
 
 namespace FastFood.WebApi.Controllers.Products
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ProductsController : ControllerBase
+    public class ProductsController : RestfulSense
     {
         private readonly IProductService service;
 
@@ -26,7 +24,7 @@ namespace FastFood.WebApi.Controllers.Products
                 Data = await service.AddAsync(dto)
             });
         }
-        [HttpPut("id")]
+        [HttpPut]
         public async ValueTask<IActionResult> PutAsync(long id, ProductForUpdateDto dto)
         {
             return Ok(new Response
@@ -36,7 +34,7 @@ namespace FastFood.WebApi.Controllers.Products
                 Data = await service.ModifyAsync(id, dto)
             });
         }
-        [HttpDelete("id")]
+        [HttpDelete]
         public async ValueTask<IActionResult> DeleteAsync(long id) =>
             Ok(new Response
             {
@@ -44,7 +42,7 @@ namespace FastFood.WebApi.Controllers.Products
                 Message = "Success",
                 Data = await service.RemoveAsync(id)
             });
-        [HttpGet("id")]
+        [HttpGet("{id}")]
         public async ValueTask<IActionResult> GetByIdAsync(long id) =>
             Ok(new Response
             {

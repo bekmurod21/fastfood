@@ -8,7 +8,7 @@ namespace FastFood.WebApi.Extensions
         {
             using var scope = app.Services.CreateScope();
 
-            HttpContextHelper.Accessor = scope.ServiceProvider.GetRequiredService<HttpContextAccessor>();
+            HttpContextHelper.Accessor = scope.ServiceProvider.GetRequiredService<IHttpContextAccessor>();
         }
     }
 }

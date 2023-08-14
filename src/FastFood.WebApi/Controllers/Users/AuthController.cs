@@ -6,9 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FastFood.WebApi.Controllers.Users
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class AuthController : ControllerBase
+    public class AuthController : RestfulSense
     {
         private readonly IAuthService authService;
 

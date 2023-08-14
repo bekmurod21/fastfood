@@ -12,18 +12,17 @@ namespace FastFood.Service.Services.Orders
 {
     public class OrderActionService : IOrderActionService
     {
-        private readonly ICartService cartService;
         private readonly IOrderService orderService;
         private readonly IAddressService addressService;
         private readonly IRepository<OrderAction> actionRepository;
         private readonly IRepository<OrderItem> orderItemRepository;
 
-        public OrderActionService(IRepository<OrderItem> orderItemRepository, ICartService cartService, IAddressService addressService, IRepository<OrderAction> actionRepository)
+        public OrderActionService(IRepository<OrderItem> orderItemRepository, IAddressService addressService, IRepository<OrderAction> actionRepository, IOrderService orderService)
         {
             this.orderItemRepository = orderItemRepository;
-            this.cartService = cartService;
             this.addressService = addressService;
             this.actionRepository = actionRepository;
+            this.orderService = orderService;
         }
 
         public async ValueTask<OrderForResultDto> CancelledAsync(long orderId)
@@ -36,7 +35,6 @@ namespace FastFood.Service.Services.Orders
 
             order.Id = orderId;
             order.Status = OrderStatus.Cancelled;
-
             await this.actionRepository.InsertAsync(new OrderAction() { OrderId = orderId, Status = OrderStatus.Cancelled });
             return order;
         }
@@ -46,8 +44,6 @@ namespace FastFood.Service.Services.Orders
             var order = await this.orderService.RetrieveAsync(orderId);
             if (order is null)
                 throw new CustomException(404, "Order is not found");
-
-            var orderItems = await this.orderItemRepository.SelectAllAsync(o => o.OrderId == orderId).ToListAsync();
 
             order.Id = orderId;
             order.Status = OrderStatus.Shipped;
@@ -63,9 +59,6 @@ namespace FastFood.Service.Services.Orders
             if (order is null)
                 throw new CustomException(404, "Order is not found");
 
-            var orderItems = await this.orderItemRepository.SelectAllAsync(o => o.OrderId == orderId).ToListAsync();
-
-            order.Id = orderId;
             order.Status = OrderStatus.Pending;
 
             await this.actionRepository.InsertAsync(new OrderAction() { OrderId = orderId, Status = OrderStatus.Pending });
@@ -78,9 +71,6 @@ namespace FastFood.Service.Services.Orders
             if (order is null)
                 throw new CustomException(404, "Order is not found");
 
-            var orderItems = await this.orderItemRepository.SelectAllAsync(o => o.OrderId == orderId).ToListAsync();
-
-            order.Id = orderId;
             order.Status = OrderStatus.Process;
 
             await this.actionRepository.InsertAsync(new OrderAction() { OrderId = orderId, Status = OrderStatus.Process});

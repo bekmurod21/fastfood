@@ -6,7 +6,7 @@ using FastFood.Service.Exceptions;
 using FastFood.Service.Extensions;
 using FastFood.Domain.Configurations;
 using FastFood.Domain.Entities.Orders;
-using FastFood.Domain.Entities.Payment;
+using FastFood.Domain.Entities.Payments;
 using FastFood.Service.DTOs.Attachment;
 using FastFood.Service.DTOs.PaymentDto;
 using FastFood.Service.Interfaces.Orders;

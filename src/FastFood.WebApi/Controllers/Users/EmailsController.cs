@@ -5,9 +5,7 @@ using System.Net.Mail;
 
 namespace FastFood.WebApi.Controllers.Users
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class EmailsController : ControllerBase
+    public class EmailsController : RestfulSense
     {
         private readonly IEmailService service;
 

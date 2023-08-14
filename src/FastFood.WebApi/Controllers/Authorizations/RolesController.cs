@@ -5,11 +5,9 @@ using FastFood.WebApi.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FastFood.WebApi.Controllers.Authorizations
-{
-    [Route("api/[controller]")]
-    [ApiController]
-    public class RolesController : ControllerBase
+namespace FastFood.WebApi.Controllers.Authorizations;
+
+    public class RolesController : RestfulSense
     {
         private readonly IRoleService roleService;
 
@@ -71,4 +69,4 @@ namespace FastFood.WebApi.Controllers.Authorizations
                 Data = await this.roleService.AssignRoleForUserAsync(userId, roleId)
             });
     }
-}
+

@@ -19,11 +19,12 @@ namespace FastFood.Service.Services.Authorizations
         private readonly IRepository<User> userRepository;
         private readonly IRepository<Role> roleRepository;
         private readonly AppDbContext dbContext;
-        public RoleService(IMapper mapper, IRepository<Role> roleRepository, IRepository<User> userRepository)
+        public RoleService(IMapper mapper, IRepository<Role> roleRepository, IRepository<User> userRepository, AppDbContext dbContext)
         {
             this.mapper = mapper;
             this.roleRepository = roleRepository;
             this.userRepository = userRepository;
+            this.dbContext = dbContext;
         }
 
         public async Task<RoleForResultDto> AddAsync(RoleForCreationDto dto)

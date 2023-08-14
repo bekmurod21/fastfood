@@ -7,9 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FastFood.WebApi.Controllers.Authorizations
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class RolePermissionsController : ControllerBase
+    public class RolePermissionsController : RestfulSense
     {
         private readonly IRolePermissionService rolePermissionService;
 

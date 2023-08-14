@@ -6,9 +6,7 @@ using FastFood.Service.Interfaces.Users;
 
 namespace FastFood.WebApi.Controllers.Users
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class UsersController : ControllerBase
+    public class UsersController : RestfulSense
     {
         private readonly IUserService service;
 
@@ -25,7 +23,7 @@ namespace FastFood.WebApi.Controllers.Users
                 Message = "Seccess",
                 Data = await service.AddAsync(dto)
             });
-        [HttpPut("id")]
+        [HttpPut]
         public async ValueTask<IActionResult> PutAsync(long id, UserForUpdateDto dto) =>
             Ok(new Response
             {
@@ -33,7 +31,7 @@ namespace FastFood.WebApi.Controllers.Users
                 Message = "Success",
                 Data = await service.ModifyAsync(id, dto)
             });
-        [HttpDelete("id")]
+        [HttpDelete]
         public async ValueTask<IActionResult> DeleteAsync(long id) =>
             Ok(new Response
             {
@@ -41,7 +39,7 @@ namespace FastFood.WebApi.Controllers.Users
                 Message = "Success",
                 Data = await service.RemoveAsync(id)
             });
-        [HttpGet("id")]
+        [HttpGet("{id}")]
         public async ValueTask<IActionResult> GetById(long id) =>
             Ok(new Response
             {

@@ -9,9 +9,7 @@ using FastFood.WebApi.Extensions;
 
 namespace FastFood.WebApi.Controllers.Orders
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class PaymentsController : ControllerBase
+    public class PaymentsController : RestfulSense
     {
         private readonly IPaymentService service;
 
@@ -27,7 +25,7 @@ namespace FastFood.WebApi.Controllers.Orders
                Message = "Seccess",
                Data = await this.service.AddAsync(dto, await file.File.ToAttachmentAsync())
            });
-        [HttpPut("id")]
+        [HttpPut("{id}")]
         public async ValueTask<IActionResult> PutAsync(long id, PaymentForCreationDto dto) =>
             Ok(new Response
             {
@@ -35,7 +33,7 @@ namespace FastFood.WebApi.Controllers.Orders
                 Message = "Success",
                 Data = await this.service.ModifyAsync(id, dto)
             });
-        [HttpDelete("id")]
+        [HttpDelete("{id}")]
         public async ValueTask<IActionResult> DeleteAsync(long id) =>
             Ok(new Response
             {
@@ -43,7 +41,7 @@ namespace FastFood.WebApi.Controllers.Orders
                 Message = "Success",
                 Data = await this.service.RemoveAsync(id)
             });
-        [HttpGet("id")]
+        [HttpGet("{id}")]
         public async ValueTask<IActionResult> GetById(long id) =>
             Ok(new Response
             {
@@ -59,12 +57,13 @@ namespace FastFood.WebApi.Controllers.Orders
                 Message = "Success",
                 Data = await this.service.RetrieveAllAsync(@params)
             });
+        [HttpPut]
         public async ValueTask<IActionResult> ChangeStatusAsync(long id, PaymentStatus status) =>
-            Ok(new Response 
+            Ok(new Response
             {
                 Code = 200,
                 Message = "Success",
-                Data = await this.service.ChangeStatusAsync(id, status) 
+                Data = await this.service.ChangeStatusAsync(id, status)
             });
-    }
+    } 
 }

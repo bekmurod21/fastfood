@@ -5,9 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FastFood.WebApi.Controllers.Orders
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class OrderActionsController : ControllerBase
+    public class OrderActionsController : RestfulSense
     {
         private readonly IOrderActionService orderActionService;
         public OrderActionsController(IOrderActionService orderActionService)

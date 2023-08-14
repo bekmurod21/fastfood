@@ -6,9 +6,8 @@ using FastFood.Service.Interfaces.Products;
 
 namespace FastFood.WebApi.Controllers.Products
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ProductCategoriesController : ControllerBase
+
+    public class ProductCategoriesController : RestfulSense
     {
         private readonly IProductCategoryService productCategoryService;
         public ProductCategoriesController(IProductCategoryService productCategory)

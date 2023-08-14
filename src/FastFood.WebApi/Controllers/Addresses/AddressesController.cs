@@ -6,9 +6,7 @@ using FastFood.Service.Interfaces.Addresses;
 
 namespace FastFood.WebApi.Controllers.Addresses
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class AddressesController : ControllerBase
+    public class AddressesController : RestfulSense
     {
         private readonly IAddressService service;
 
@@ -16,6 +14,7 @@ namespace FastFood.WebApi.Controllers.Addresses
         {
             this.service = service;
         }
+        [HttpPost]
         public async ValueTask<IActionResult> PostAsync(AddressForCreationDto dto)
         {
             return Ok(new Response
@@ -25,7 +24,7 @@ namespace FastFood.WebApi.Controllers.Addresses
                 Data = await service.AddAsync(dto)
             });
         }
-        [HttpPut("id")]
+        [HttpPut]
         public async ValueTask<IActionResult> PutAsync(long id, AddressForCreationDto dto)
         {
             return Ok(new Response
@@ -35,7 +34,7 @@ namespace FastFood.WebApi.Controllers.Addresses
                 Data = await service.ModifyAsync(id, dto)
             });
         }
-        [HttpDelete("id")]
+        [HttpDelete]
         public async ValueTask<IActionResult> DeleteAsync(long id) =>
             Ok(new Response
             {
