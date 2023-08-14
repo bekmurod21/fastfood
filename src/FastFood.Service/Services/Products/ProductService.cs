@@ -3,13 +3,13 @@ using FastFood.Service.Helpers;
 using FastFood.Data.IRepositories;
 using FastFood.Service.Exceptions;
 using FastFood.Service.Extensions;
-using FastFood.Service.Interfaces;
 using FastFood.Domain.Configurations;
 using FastFood.Service.DTOs.ProductDto;
 using FastFood.Domain.Entities.Products;
 using Microsoft.EntityFrameworkCore;
+using FastFood.Service.Interfaces.Products;
 
-namespace FastFood.Service.Services
+namespace FastFood.Service.Services.Products
 {
     public class ProductService : IProductService
     {
@@ -27,16 +27,16 @@ namespace FastFood.Service.Services
             if (entity is not null)
                 throw new CustomException(405, "Product already exist");
 
-            Product mappedProduct = this.mapper.Map<Product>(model);
+            Product mappedProduct = mapper.Map<Product>(model);
             mappedProduct.CreatedAt = DateTime.Now;
             mappedProduct.CreatedBy = HttpContextHelper.UserId;
 
             try
             {
-                var result = await this.productRepository.InsertAsync(mappedProduct);
-                
+                var result = await productRepository.InsertAsync(mappedProduct);
 
-                return this.mapper.Map<ProductForResultDto>(result);
+
+                return mapper.Map<ProductForResultDto>(result);
             }
 
             catch (Exception)
@@ -54,13 +54,13 @@ namespace FastFood.Service.Services
             entity.UpdatedAt = DateTime.UtcNow;
             entity.UpdatedBy = HttpContextHelper.UserId;
             var model = await productRepository.DeleteAsync(x => x == entity);
-            
+
             return model;
         }
 
-        public async ValueTask<ProductForResultDto> ModifyAsync(long id,ProductForUpdateDto model)
+        public async ValueTask<ProductForResultDto> ModifyAsync(long id, ProductForUpdateDto model)
         {
-            var entity = await productRepository.SelectAsync(x=>x.Id == id);
+            var entity = await productRepository.SelectAsync(x => x.Id == id);
             if (entity is null)
                 throw new CustomException(404, "Product not found");
 
@@ -75,7 +75,7 @@ namespace FastFood.Service.Services
 
         public async Task<IEnumerable<ProductForResultDto>> RetrieveAllAsync(PaginationParams @params)
         {
-            var products = await this.productRepository.SelectAllAsync(p => !p.IsDeleted)
+            var products = await productRepository.SelectAllAsync(p => !p.IsDeleted)
                 .ToPagedList(@params)
                 .ToListAsync();
 

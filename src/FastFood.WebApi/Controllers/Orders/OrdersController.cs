@@ -6,9 +6,7 @@ using FastFood.Service.Interfaces.Orders;
 
 namespace FastFood.WebApi.Controllers.Orders
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class OrdersController : ControllerBase
+    public class OrdersController : RestfulSense
     {
         private readonly IOrderService service;
 
@@ -16,6 +14,7 @@ namespace FastFood.WebApi.Controllers.Orders
         {
             this.service = service;
         }
+        [HttpPost]
         public async ValueTask<IActionResult> PostAsync(OrderForCreationDto dto)
         {
             return Ok(new Response
@@ -25,7 +24,7 @@ namespace FastFood.WebApi.Controllers.Orders
                 Data = await this.service.AddAsync(dto)
             });
         }
-        [HttpDelete("id")]
+        [HttpDelete]
         public async ValueTask<IActionResult> DeleteAsync(long id) =>
             Ok(new Response
             {

@@ -37,14 +37,14 @@ namespace FastFood.Service.Services.Authorizations
 
         public async Task<PermissionForResultDto> ModifyAsync(PermissionForUpdateDto dto)
         {
-            var permission = await this.repository.SelectAsync(u => u.Id == dto.Id && u.IsDeleted == false);
+            var permission = await this.repository.SelectAsync(p => p.Id == dto.Id && p.IsDeleted == false);
             if (permission is null)
                 throw new CustomException(404, "Permission is not found ");
 
             var result = this.mapper.Map(dto, permission);
             result.UpdatedAt = DateTime.UtcNow;
-            await this.repository.UpdateAsync(result);
-            return this.mapper.Map<PermissionForResultDto>(result);
+            
+            return this.mapper.Map<PermissionForResultDto>(await this.repository.UpdateAsync(result));
         }
 
         public async Task<bool> RemoveAsync(long id)
