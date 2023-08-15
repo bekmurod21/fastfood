@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FastFood.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230809103728_Initmig")]
-    partial class Initmig
+    [Migration("20230815193903_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -136,6 +136,56 @@ namespace FastFood.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Roles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            CreatedAt = new DateTime(2023, 8, 15, 19, 39, 2, 927, DateTimeKind.Utc).AddTicks(7087),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "User"
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            CreatedAt = new DateTime(2023, 8, 15, 19, 39, 2, 927, DateTimeKind.Utc).AddTicks(7089),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Admin"
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            CreatedAt = new DateTime(2023, 8, 15, 19, 39, 2, 927, DateTimeKind.Utc).AddTicks(7125),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Merchant"
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            CreatedAt = new DateTime(2023, 8, 15, 19, 39, 2, 927, DateTimeKind.Utc).AddTicks(7126),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Driver"
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            CreatedAt = new DateTime(2023, 8, 15, 19, 39, 2, 927, DateTimeKind.Utc).AddTicks(7127),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Picker"
+                        },
+                        new
+                        {
+                            Id = 6L,
+                            CreatedAt = new DateTime(2023, 8, 15, 19, 39, 2, 927, DateTimeKind.Utc).AddTicks(7128),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Packer"
+                        });
                 });
 
             modelBuilder.Entity("FastFood.Domain.Entities.Authorizations.RolePermission", b =>
@@ -270,6 +320,92 @@ namespace FastFood.Data.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("CartItems");
+                });
+
+            modelBuilder.Entity("FastFood.Domain.Entities.Orders.Feedbacks.Feedback", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("DeletedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<long?>("DeletedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Message")
+                        .HasColumnType("text");
+
+                    b.Property<long>("OrderId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<long?>("UpdatedBy")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("Feedbacks");
+                });
+
+            modelBuilder.Entity("FastFood.Domain.Entities.Orders.Feedbacks.FeedbackAttachment", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
+
+                    b.Property<long>("AttachmentId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<long?>("CreatedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("DeletedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<long?>("DeletedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("FeedbackId")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<long?>("UpdatedBy")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AttachmentId");
+
+                    b.HasIndex("FeedbackId");
+
+                    b.ToTable("FeedbackAttachments");
                 });
 
             modelBuilder.Entity("FastFood.Domain.Entities.Orders.Order", b =>
@@ -766,6 +902,36 @@ namespace FastFood.Data.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("FastFood.Domain.Entities.Orders.Feedbacks.Feedback", b =>
+                {
+                    b.HasOne("FastFood.Domain.Entities.Orders.Order", "Order")
+                        .WithMany("Feedback")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+                });
+
+            modelBuilder.Entity("FastFood.Domain.Entities.Orders.Feedbacks.FeedbackAttachment", b =>
+                {
+                    b.HasOne("FastFood.Domain.Entities.Attachments.Attachment", "Attachment")
+                        .WithMany()
+                        .HasForeignKey("AttachmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FastFood.Domain.Entities.Orders.Feedbacks.Feedback", "Feedback")
+                        .WithMany("FeedbackAttachments")
+                        .HasForeignKey("FeedbackId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Attachment");
+
+                    b.Navigation("Feedback");
+                });
+
             modelBuilder.Entity("FastFood.Domain.Entities.Orders.Order", b =>
                 {
                     b.HasOne("FastFood.Domain.Entities.Users.Address", "Address")
@@ -873,8 +1039,15 @@ namespace FastFood.Data.Migrations
                     b.Navigation("Items");
                 });
 
+            modelBuilder.Entity("FastFood.Domain.Entities.Orders.Feedbacks.Feedback", b =>
+                {
+                    b.Navigation("FeedbackAttachments");
+                });
+
             modelBuilder.Entity("FastFood.Domain.Entities.Orders.Order", b =>
                 {
+                    b.Navigation("Feedback");
+
                     b.Navigation("OrderActions");
 
                     b.Navigation("OrderItems");

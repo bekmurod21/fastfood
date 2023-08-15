@@ -11,7 +11,7 @@ namespace FastFood.Domain.Entities.Orders.Feedbacks
 
         public FeedbackStatus FeedbackStatus = FeedbackStatus.NotSeen;
 
-        ICollection<FeedbackAttachment> FeedbackAttachment { get; set; }
+        public ICollection<FeedbackAttachment> FeedbackAttachments { get; set; }
 
     }
 }

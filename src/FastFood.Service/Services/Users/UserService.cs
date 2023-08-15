@@ -8,31 +8,51 @@ using FastFood.Domain.Entities.Users;
 using FastFood.Domain.Configurations;
 using Microsoft.EntityFrameworkCore;
 using FastFood.Service.Interfaces.Users;
+using FastFood.Domain.Entities.Authorizations;
+using FastFood.Domain.Entities.Orders;
+using FastFood.Data.Contexts;
 
 namespace FastFood.Service.Services.Users
 {
     public class UserService : IUserService
     {
-        private readonly IRepository<User> userRepository;
         private readonly IMapper mapper;
+        private readonly IRepository<User> userRepository;
+        private readonly IRepository<Cart> cartRepository;
+        private readonly IRepository<Role> roleRepository;
+        private readonly AppDbContext dbContext;
         public UserService(IMapper mapper,
-        IRepository<User> userRepository)
+        IRepository<User> userRepository,
+        IRepository<Cart> cartRepository,
+        IRepository<Role> roleRepository,
+        AppDbContext dbContext)
         {
             this.mapper = mapper;
             this.userRepository = userRepository;
+            this.cartRepository = cartRepository;
+            this.roleRepository = roleRepository;
+            this.dbContext = dbContext;
         }
         public async ValueTask<UserForResultDto> AddAsync(UserForCreationDto model)
         {
-            User user = await userRepository.SelectAsync(u => u.UserName.ToLower() == model.UserName.ToLower());
-
-            if (user is not null || !user.IsDeleted)
+            User user = await userRepository.SelectAsync(u => u.Phone == model.Phone);
+            if (user is not null && !user.IsDeleted)
                 throw new CustomException(403, "User already exist with this username");
 
+            var userRole = await this.roleRepository.SelectAsync(t => t.Name.ToLower() == "user");
             User mappedUser = mapper.Map<User>(model);
+            mappedUser.RoleId = userRole.Id;
+            mappedUser.CreatedAt = DateTime.UtcNow;
+            mappedUser.Password = PasswordHelper.Hash(model.Password);
+
 
             try
             {
                 var result = await userRepository.InsertAsync(mappedUser);
+
+                var newCart = new Cart();
+                newCart.UserId = result.Id;
+                await cartRepository.InsertAsync(newCart);
 
                 return mapper.Map<UserForResultDto>(result);
             }
@@ -49,10 +69,15 @@ namespace FastFood.Service.Services.Users
             if (entity is null || entity.IsDeleted)
                 throw new CustomException(404, "User not found");
 
-            entity.DeletedAt = DateTime.UtcNow;
+            var accessor = HttpContextHelper.Accessor;
             entity.DeletedBy = HttpContextHelper.UserId;
+
+            entity.DeletedAt = DateTime.UtcNow;
             await userRepository.DeleteAsync(u => u.Id == id);
 
+            var cart = await this.cartRepository.SelectAsync(c => c.Id == entity.Id);
+            if (cart is not null)
+                await cartRepository.DeleteAsync(c => c.Id == cart.Id);
 
             return true;
         }
@@ -66,8 +91,6 @@ namespace FastFood.Service.Services.Users
                 throw new CustomException(404, "User not found");
 
             var mappedUser = mapper.Map(model, entity);
-            mappedUser.UpdatedAt = DateTime.UtcNow;
-            mappedUser.UpdatedBy = HttpContextHelper.UserId;
             mappedUser.Update();
 
             await userRepository.UpdateAsync(mappedUser);
@@ -86,7 +109,7 @@ namespace FastFood.Service.Services.Users
         public async ValueTask<UserForResultDto> RetrieveAsync(long id)
         {
             var entity = await userRepository.SelectAsync(x => x.Id == id);
-            if (entity is null)
+            if (entity is null||entity.IsDeleted)
                 throw new CustomException(404, "User not found");
 
             return mapper.Map<UserForResultDto>(entity);
@@ -99,6 +122,23 @@ namespace FastFood.Service.Services.Users
                 throw new CustomException(404, "User is not found");
 
             return entity;
+        }
+        public async Task<UserForResultDto> ChangePasswordAsync(UserForChangePasswordDto dto)
+        {
+            var user = await this.userRepository.SelectAsync(u => u.Email == dto.Email);
+            if (user is null || user.IsDeleted == true)
+                throw new CustomException(404, "User is not found");
+
+            if (!PasswordHelper.Verify(dto.OldPassword, user.Password))
+                throw new CustomException(400, "Old password is incorrect");
+
+            if (dto.NewPassword != dto.ConfirmPassword)
+                throw new CustomException(400, "New password doesn't equal confirm password");
+
+            user.Password = PasswordHelper.Hash(dto.NewPassword);
+            user.Update();
+            await dbContext.SaveChangesAsync();
+            return mapper.Map<UserForResultDto>(user);
         }
     }
 }

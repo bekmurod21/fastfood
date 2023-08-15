@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace FastFood.Data.Migrations
 {
-    public partial class Initmig : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -371,6 +371,33 @@ namespace FastFood.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Feedbacks",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Message = table.Column<string>(type: "text", nullable: true),
+                    OrderId = table.Column<long>(type: "bigint", nullable: false),
+                    UpdatedBy = table.Column<long>(type: "bigint", nullable: true),
+                    DeletedBy = table.Column<long>(type: "bigint", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    DeletedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    CreatedBy = table.Column<long>(type: "bigint", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Feedbacks", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Feedbacks_Orderes_OrderId",
+                        column: x => x.OrderId,
+                        principalTable: "Orderes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "OrderAction",
                 columns: table => new
                 {
@@ -430,6 +457,52 @@ namespace FastFood.Data.Migrations
                         principalColumn: "Id");
                 });
 
+            migrationBuilder.CreateTable(
+                name: "FeedbackAttachments",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    FeedbackId = table.Column<long>(type: "bigint", nullable: false),
+                    AttachmentId = table.Column<long>(type: "bigint", nullable: false),
+                    UpdatedBy = table.Column<long>(type: "bigint", nullable: true),
+                    DeletedBy = table.Column<long>(type: "bigint", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    DeletedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    CreatedBy = table.Column<long>(type: "bigint", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FeedbackAttachments", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_FeedbackAttachments_Attachments_AttachmentId",
+                        column: x => x.AttachmentId,
+                        principalTable: "Attachments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_FeedbackAttachments_Feedbacks_FeedbackId",
+                        column: x => x.FeedbackId,
+                        principalTable: "Feedbacks",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Roles",
+                columns: new[] { "Id", "CreatedAt", "CreatedBy", "DeletedAt", "DeletedBy", "IsDeleted", "Name", "UpdatedAt", "UpdatedBy" },
+                values: new object[,]
+                {
+                    { 1L, new DateTime(2023, 8, 15, 19, 39, 2, 927, DateTimeKind.Utc).AddTicks(7087), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "User", null, null },
+                    { 2L, new DateTime(2023, 8, 15, 19, 39, 2, 927, DateTimeKind.Utc).AddTicks(7089), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "Admin", null, null },
+                    { 3L, new DateTime(2023, 8, 15, 19, 39, 2, 927, DateTimeKind.Utc).AddTicks(7125), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "Merchant", null, null },
+                    { 4L, new DateTime(2023, 8, 15, 19, 39, 2, 927, DateTimeKind.Utc).AddTicks(7126), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "Driver", null, null },
+                    { 5L, new DateTime(2023, 8, 15, 19, 39, 2, 927, DateTimeKind.Utc).AddTicks(7127), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "Picker", null, null },
+                    { 6L, new DateTime(2023, 8, 15, 19, 39, 2, 927, DateTimeKind.Utc).AddTicks(7128), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "Packer", null, null }
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_CartItems_CartId",
                 table: "CartItems",
@@ -439,6 +512,21 @@ namespace FastFood.Data.Migrations
                 name: "IX_CartItems_ProductId",
                 table: "CartItems",
                 column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FeedbackAttachments_AttachmentId",
+                table: "FeedbackAttachments",
+                column: "AttachmentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FeedbackAttachments_FeedbackId",
+                table: "FeedbackAttachments",
+                column: "FeedbackId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Feedbacks_OrderId",
+                table: "Feedbacks",
+                column: "OrderId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OrderAction_OrderId",
@@ -513,6 +601,9 @@ namespace FastFood.Data.Migrations
                 name: "CartItems");
 
             migrationBuilder.DropTable(
+                name: "FeedbackAttachments");
+
+            migrationBuilder.DropTable(
                 name: "OrderAction");
 
             migrationBuilder.DropTable(
@@ -528,7 +619,7 @@ namespace FastFood.Data.Migrations
                 name: "Carts");
 
             migrationBuilder.DropTable(
-                name: "Orderes");
+                name: "Feedbacks");
 
             migrationBuilder.DropTable(
                 name: "Products");
@@ -537,13 +628,16 @@ namespace FastFood.Data.Migrations
                 name: "Permissions");
 
             migrationBuilder.DropTable(
+                name: "Orderes");
+
+            migrationBuilder.DropTable(
+                name: "ProductCategory");
+
+            migrationBuilder.DropTable(
                 name: "Addresses");
 
             migrationBuilder.DropTable(
                 name: "Payments");
-
-            migrationBuilder.DropTable(
-                name: "ProductCategory");
 
             migrationBuilder.DropTable(
                 name: "Attachments");
