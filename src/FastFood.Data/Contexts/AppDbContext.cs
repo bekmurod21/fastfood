@@ -5,6 +5,7 @@ using FastFood.Domain.Entities.Payments;
 using FastFood.Domain.Entities.Products;
 using FastFood.Domain.Entities.Authorizations;
 using FastFood.Domain.Entities.Attachments;
+using FastFood.Domain.Entities.Orders.Feedbacks;
 
 namespace FastFood.Data.Contexts;
 public class AppDbContext:DbContext
@@ -22,15 +23,17 @@ public class AppDbContext:DbContext
     public virtual DbSet<Address> Addresses { get;set; }
     public virtual DbSet<Product> Products { get; set; }
     public virtual DbSet<CartItem> CartItems { get; set; }
+    public virtual DbSet<Feedback> Feedbacks { get; set; }
     public virtual DbSet<OrderItem> OrderItems { get;set; }
     public virtual DbSet<Permission> Permissions { get; set; }
     public virtual DbSet<Attachment> Attachments { get; set; }
     public virtual DbSet<OrderProduct> OrderProducts { get; set; }
     public virtual DbSet<RolePermission> RolePermissions { get; set; }
-    
+    public virtual DbSet<FeedbackAttachment> FeedbackAttachments { get; set; }
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        #region Fluent Api realitions
         modelBuilder.Entity<Payment>()
             .HasOne(payment => payment.User)
             .WithMany(user => user.Payments)
@@ -77,6 +80,19 @@ public class AppDbContext:DbContext
             .WithMany(order => order.OrderActions)
             .HasForeignKey(action => action.OrderId)
             .OnDelete(DeleteBehavior.NoAction);
+        #endregion
+
+        #region Seed data
+        modelBuilder.Entity<Role>().HasData(
+               new Role() { Id = 1, Name = "User", CreatedAt = DateTime.UtcNow, IsDeleted = false, UpdatedBy = null, DeletedBy = null, UpdatedAt = null },
+               new Role() { Id = 2, Name = "Admin", CreatedAt = DateTime.UtcNow, IsDeleted = false, UpdatedBy = null, DeletedBy = null, UpdatedAt = null },
+               new Role() { Id = 3, Name = "Merchant", CreatedAt = DateTime.UtcNow, IsDeleted = false, UpdatedBy = null, DeletedBy = null, UpdatedAt = null },
+               new Role() { Id = 4, Name = "Driver", CreatedAt = DateTime.UtcNow, IsDeleted = false, UpdatedBy = null, DeletedBy = null, UpdatedAt = null },
+               new Role() { Id = 5, Name = "Picker", CreatedAt = DateTime.UtcNow, IsDeleted = false, UpdatedBy = null, DeletedBy = null, UpdatedAt = null },
+               new Role() { Id = 6, Name = "Packer", CreatedAt = DateTime.UtcNow, IsDeleted = false, UpdatedBy = null, DeletedBy = null, UpdatedAt = null }
+               );
+
+        #endregion
 
     }
 }

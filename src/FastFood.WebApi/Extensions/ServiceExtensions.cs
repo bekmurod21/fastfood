@@ -17,6 +17,7 @@ using FastFood.Service.Interfaces.Attachments;
 using FastFood.Service.Services.Authorizations;
 using FastFood.Service.Interfaces.Authorizations;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using FastFood.Service.Services.Feedbacks;
 
 namespace FastFood.WebApi.Extensions
 {
@@ -43,6 +44,9 @@ namespace FastFood.WebApi.Extensions
             services.AddScoped<IOrderActionService, OrderActionService>();
             services.AddScoped<IOrderService, OrderService>();
             
+            services.AddScoped<IFeedbackAdminService,FeedbackAdminService>();
+            services.AddScoped<IFeedbackService, FeedbackService>();
+
             services.AddScoped<IPaymentService, PaymentService>();
             
             services.AddScoped<IProductCategoryService, ProductCategoryService>();

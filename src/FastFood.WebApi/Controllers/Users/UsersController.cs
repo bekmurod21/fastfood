@@ -14,7 +14,14 @@ namespace FastFood.WebApi.Controllers.Users
         {
             this.service = service;
         }
-
+        [HttpPut]
+        public async Task<IActionResult> ChangePasswordAsync(UserForChangePasswordDto dto) =>
+            Ok(new Response()
+            {
+                Code = 200,
+                Message = "Success",
+                Data = await this.service.ChangePasswordAsync(dto)
+            });
         [HttpPost]
         public async ValueTask<IActionResult> PostAsyn(UserForCreationDto dto) =>
             Ok(new Response
@@ -23,7 +30,7 @@ namespace FastFood.WebApi.Controllers.Users
                 Message = "Seccess",
                 Data = await service.AddAsync(dto)
             });
-        [HttpPut]
+        [HttpPut("id")]
         public async ValueTask<IActionResult> PutAsync(long id, UserForUpdateDto dto) =>
             Ok(new Response
             {
