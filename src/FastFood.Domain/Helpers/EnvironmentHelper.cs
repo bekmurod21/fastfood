@@ -1,4 +1,4 @@
-﻿namespace FastFood.Service.Helpers
+﻿namespace FastFood.Domain.Helpers
 {
     public class EnvironmentHelper
     {

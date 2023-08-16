@@ -139,7 +139,7 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 1L,
-                            CreatedAt = new DateTime(2023, 8, 15, 19, 39, 2, 927, DateTimeKind.Utc).AddTicks(7087),
+                            CreatedAt = new DateTime(2023, 8, 16, 15, 37, 0, 953, DateTimeKind.Utc).AddTicks(713),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "User"
@@ -147,7 +147,7 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 2L,
-                            CreatedAt = new DateTime(2023, 8, 15, 19, 39, 2, 927, DateTimeKind.Utc).AddTicks(7089),
+                            CreatedAt = new DateTime(2023, 8, 16, 15, 37, 0, 953, DateTimeKind.Utc).AddTicks(720),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "Admin"
@@ -155,31 +155,23 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 3L,
-                            CreatedAt = new DateTime(2023, 8, 15, 19, 39, 2, 927, DateTimeKind.Utc).AddTicks(7125),
-                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsDeleted = false,
-                            Name = "Merchant"
-                        },
-                        new
-                        {
-                            Id = 4L,
-                            CreatedAt = new DateTime(2023, 8, 15, 19, 39, 2, 927, DateTimeKind.Utc).AddTicks(7126),
+                            CreatedAt = new DateTime(2023, 8, 16, 15, 37, 0, 953, DateTimeKind.Utc).AddTicks(721),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "Driver"
                         },
                         new
                         {
-                            Id = 5L,
-                            CreatedAt = new DateTime(2023, 8, 15, 19, 39, 2, 927, DateTimeKind.Utc).AddTicks(7127),
+                            Id = 4L,
+                            CreatedAt = new DateTime(2023, 8, 16, 15, 37, 0, 953, DateTimeKind.Utc).AddTicks(721),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "Picker"
                         },
                         new
                         {
-                            Id = 6L,
-                            CreatedAt = new DateTime(2023, 8, 15, 19, 39, 2, 927, DateTimeKind.Utc).AddTicks(7128),
+                            Id = 5L,
+                            CreatedAt = new DateTime(2023, 8, 16, 15, 37, 0, 953, DateTimeKind.Utc).AddTicks(722),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "Packer"
@@ -710,6 +702,164 @@ namespace FastFood.Data.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            CategoryId = 2L,
+                            CreatedAt = new DateTime(2023, 8, 16, 15, 37, 2, 428, DateTimeKind.Utc).AddTicks(1859),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Best Food",
+                            IsDeleted = false,
+                            Name = "Beef Longer",
+                            Price = 26000m,
+                            Weight = 180.0
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            CategoryId = 2L,
+                            CreatedAt = new DateTime(2023, 8, 16, 15, 37, 2, 428, DateTimeKind.Utc).AddTicks(1860),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Bigger burger",
+                            IsDeleted = false,
+                            Name = "Bigger",
+                            Price = 25000m,
+                            Weight = 200.0
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            CategoryId = 2L,
+                            CreatedAt = new DateTime(2023, 8, 16, 15, 37, 2, 428, DateTimeKind.Utc).AddTicks(1862),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Cheese burger",
+                            IsDeleted = false,
+                            Name = "CHEESE BURGER",
+                            Price = 29000m,
+                            Weight = 190.0
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            CategoryId = 2L,
+                            CreatedAt = new DateTime(2023, 8, 16, 15, 37, 2, 428, DateTimeKind.Utc).AddTicks(1863),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "CHICKY BURGER",
+                            IsDeleted = false,
+                            Name = "CHICKY BURGER",
+                            Price = 18000m,
+                            Weight = 150.0
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            CategoryId = 2L,
+                            CreatedAt = new DateTime(2023, 8, 16, 15, 37, 2, 428, DateTimeKind.Utc).AddTicks(1864),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "chicky burger,cola,soup,free",
+                            IsDeleted = false,
+                            Name = "CHICKY BURGER SET",
+                            Price = 36000m,
+                            Weight = 300.0
+                        },
+                        new
+                        {
+                            Id = 6L,
+                            CategoryId = 2L,
+                            CreatedAt = new DateTime(2023, 8, 16, 15, 37, 2, 428, DateTimeKind.Utc).AddTicks(1865),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "long burger",
+                            IsDeleted = false,
+                            Name = "CHILI LONGER",
+                            Price = 26000m,
+                            Weight = 190.0
+                        },
+                        new
+                        {
+                            Id = 7L,
+                            CategoryId = 2L,
+                            CreatedAt = new DateTime(2023, 8, 16, 15, 37, 2, 428, DateTimeKind.Utc).AddTicks(1865),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Simple burger",
+                            IsDeleted = false,
+                            Name = "CLASSIC",
+                            Price = 19000m,
+                            Weight = 180.0
+                        },
+                        new
+                        {
+                            Id = 8L,
+                            CategoryId = 2L,
+                            CreatedAt = new DateTime(2023, 8, 16, 15, 37, 2, 428, DateTimeKind.Utc).AddTicks(1866),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "double burger",
+                            IsDeleted = false,
+                            Name = "DOUBLE CHEESE BURGER",
+                            Price = 44000m,
+                            Weight = 360.0
+                        },
+                        new
+                        {
+                            Id = 9L,
+                            CategoryId = 2L,
+                            CreatedAt = new DateTime(2023, 8, 16, 15, 37, 2, 428, DateTimeKind.Utc).AddTicks(1867),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "HAMBURGER",
+                            IsDeleted = false,
+                            Name = "HAMBURGER",
+                            Price = 26000m,
+                            Weight = 190.0
+                        },
+                        new
+                        {
+                            Id = 10L,
+                            CategoryId = 2L,
+                            CreatedAt = new DateTime(2023, 8, 16, 15, 37, 2, 428, DateTimeKind.Utc).AddTicks(2021),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "short burger",
+                            IsDeleted = false,
+                            Name = "JUNIOR BURGER",
+                            Price = 18000m,
+                            Weight = 150.0
+                        },
+                        new
+                        {
+                            Id = 11L,
+                            CategoryId = 2L,
+                            CreatedAt = new DateTime(2023, 8, 16, 15, 37, 2, 428, DateTimeKind.Utc).AddTicks(2022),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "junior burger,cola,KFC,free",
+                            IsDeleted = false,
+                            Name = "JUNIOR BURGER SET",
+                            Price = 33000m,
+                            Weight = 300.0
+                        },
+                        new
+                        {
+                            Id = 12L,
+                            CategoryId = 2L,
+                            CreatedAt = new DateTime(2023, 8, 16, 15, 37, 2, 428, DateTimeKind.Utc).AddTicks(2023),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "long burger",
+                            IsDeleted = false,
+                            Name = "Longer",
+                            Price = 22000m,
+                            Weight = 220.0
+                        },
+                        new
+                        {
+                            Id = 13L,
+                            CategoryId = 2L,
+                            CreatedAt = new DateTime(2023, 8, 16, 15, 37, 2, 428, DateTimeKind.Utc).AddTicks(2023),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "tasty burger",
+                            IsDeleted = false,
+                            Name = "ROAST BURGER",
+                            Price = 27000m,
+                            Weight = 200.0
+                        });
                 });
 
             modelBuilder.Entity("FastFood.Domain.Entities.Products.ProductCategory", b =>
@@ -748,6 +898,88 @@ namespace FastFood.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ProductCategory");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            CreatedAt = new DateTime(2023, 8, 16, 15, 37, 2, 428, DateTimeKind.Utc).AddTicks(1812),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "APPETIZERS"
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            CreatedAt = new DateTime(2023, 8, 16, 15, 37, 2, 428, DateTimeKind.Utc).AddTicks(1815),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Burgers"
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            CreatedAt = new DateTime(2023, 8, 16, 15, 37, 2, 428, DateTimeKind.Utc).AddTicks(1815),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Chicken"
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            CreatedAt = new DateTime(2023, 8, 16, 15, 37, 2, 428, DateTimeKind.Utc).AddTicks(1816),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Desserts"
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            CreatedAt = new DateTime(2023, 8, 16, 15, 37, 2, 428, DateTimeKind.Utc).AddTicks(1816),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Drinks"
+                        },
+                        new
+                        {
+                            Id = 6L,
+                            CreatedAt = new DateTime(2023, 8, 16, 15, 37, 2, 428, DateTimeKind.Utc).AddTicks(1817),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Kids Meal"
+                        },
+                        new
+                        {
+                            Id = 7L,
+                            CreatedAt = new DateTime(2023, 8, 16, 15, 37, 2, 428, DateTimeKind.Utc).AddTicks(1818),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Pizza"
+                        },
+                        new
+                        {
+                            Id = 8L,
+                            CreatedAt = new DateTime(2023, 8, 16, 15, 37, 2, 428, DateTimeKind.Utc).AddTicks(1818),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Spinner"
+                        },
+                        new
+                        {
+                            Id = 9L,
+                            CreatedAt = new DateTime(2023, 8, 16, 15, 37, 2, 428, DateTimeKind.Utc).AddTicks(1819),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Salad & other"
+                        },
+                        new
+                        {
+                            Id = 10L,
+                            CreatedAt = new DateTime(2023, 8, 16, 15, 37, 2, 428, DateTimeKind.Utc).AddTicks(1820),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Combo"
+                        });
                 });
 
             modelBuilder.Entity("FastFood.Domain.Entities.Users.Address", b =>
@@ -860,6 +1092,162 @@ namespace FastFood.Data.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            CreatedAt = new DateTime(2023, 8, 16, 15, 37, 1, 83, DateTimeKind.Utc).AddTicks(2312),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "dotnetgo@icloud.com",
+                            FirstName = "Mukhammadkarim",
+                            Gender = 1,
+                            IsDeleted = false,
+                            LastName = "Tukhtaboyev",
+                            Password = "$2a$11$6GEmFtJKljOIufEIW0XDWeP8/mJYApJlhn6EcjOX1A5JpeLWFNfF6",
+                            Phone = "+998 991239999",
+                            RoleId = 2L
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            CreatedAt = new DateTime(2023, 8, 16, 15, 37, 1, 224, DateTimeKind.Utc).AddTicks(611),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "wonderboy1w3@gmail.com",
+                            FirstName = "Jamshid",
+                            Gender = 1,
+                            IsDeleted = false,
+                            LastName = "Ma'ruf",
+                            Password = "$2a$11$t6TXesCtLx3lmJAF851fUeyxtBEIegjZ6wyfNdZtTyIHZ1GEmIRlu",
+                            Phone = "+998 991231999",
+                            RoleId = 3L
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            CreatedAt = new DateTime(2023, 8, 16, 15, 37, 1, 368, DateTimeKind.Utc).AddTicks(9515),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "kabeersolutions@gmail.com",
+                            FirstName = "Kabeer",
+                            Gender = 1,
+                            IsDeleted = false,
+                            LastName = "Solutions",
+                            Password = "$2a$11$5daqYfxsOyp.mtHrVNTNMOK9UlsC8zt/SNJv2UOPfQyJsW.IjRPPq",
+                            Phone = "+998 991232999",
+                            RoleId = 4L
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            CreatedAt = new DateTime(2023, 8, 16, 15, 37, 1, 502, DateTimeKind.Utc).AddTicks(5497),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "nurillaewmuzaffar@gmail.com",
+                            FirstName = "Muzaffar",
+                            Gender = 1,
+                            IsDeleted = false,
+                            LastName = "Nurillayev",
+                            Password = "$2a$11$6q25mh.9frepbjJhEUGfJOgrt082y.su2cfpQaiI8cr1YivBB/ynG",
+                            Phone = "+998 995030110",
+                            RoleId = 5L
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            CreatedAt = new DateTime(2023, 8, 16, 15, 37, 1, 637, DateTimeKind.Utc).AddTicks(3790),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "azimochilov@icloud.com",
+                            FirstName = "Azim",
+                            Gender = 1,
+                            IsDeleted = false,
+                            LastName = "Ochilov",
+                            Password = "$2a$11$82FBENQNZKFnvipy8KNY0eAgXz0xKFnvkH0dAOnBGMdHp5DE2X4lm",
+                            Phone = "+998 991233999",
+                            RoleId = 1L
+                        },
+                        new
+                        {
+                            Id = 6L,
+                            CreatedAt = new DateTime(2023, 8, 16, 15, 37, 1, 770, DateTimeKind.Utc).AddTicks(1877),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "abdulloh@icloud.com",
+                            FirstName = "Abdulloh",
+                            Gender = 1,
+                            IsDeleted = false,
+                            LastName = "Ahmadjonov",
+                            Password = "$2a$11$X8U7xfisf/BVDi19GHF4MeJZtSsNrjHndjXK7Ng0PULwmnyBkiAbC",
+                            Phone = "+998 991236999",
+                            RoleId = 1L
+                        },
+                        new
+                        {
+                            Id = 7L,
+                            CreatedAt = new DateTime(2023, 8, 16, 15, 37, 1, 900, DateTimeKind.Utc).AddTicks(9731),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "komron2052@gmail.com",
+                            FirstName = "Komron",
+                            Gender = 1,
+                            IsDeleted = false,
+                            LastName = "Rahmonov",
+                            Password = "$2a$11$FRc6SXDj6iz9twL9T34VSekvHDV/ER/aIijI2u3Cp8C/.v/NreCde",
+                            Phone = "+998 991234999",
+                            RoleId = 4L
+                        },
+                        new
+                        {
+                            Id = 8L,
+                            CreatedAt = new DateTime(2023, 8, 16, 15, 37, 2, 33, DateTimeKind.Utc).AddTicks(6812),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "nozimjon@gmail.com",
+                            FirstName = "Nozimjon",
+                            Gender = 1,
+                            IsDeleted = false,
+                            LastName = "Usmonaliyev",
+                            Password = "$2a$11$glftn4BTlAJQJ2xtpZU/ee9Xv6lsQYWE9HJI7jxOBrBFcn24Yunc.",
+                            Phone = "+998 991235999",
+                            RoleId = 1L
+                        },
+                        new
+                        {
+                            Id = 9L,
+                            CreatedAt = new DateTime(2023, 8, 16, 15, 37, 2, 163, DateTimeKind.Utc).AddTicks(7266),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "aljavhar@gmail.com",
+                            FirstName = "AlJavhar",
+                            Gender = 1,
+                            IsDeleted = false,
+                            LastName = "Boyaliyev",
+                            Password = "$2a$11$VqgwDEE86Xz3QPV8QQwIfu9Vif3N20u7f0Vfj5Ai30NQ9uNDEOsxy",
+                            Phone = "+998 902344545",
+                            RoleId = 4L
+                        },
+                        new
+                        {
+                            Id = 10L,
+                            CreatedAt = new DateTime(2023, 8, 16, 15, 37, 2, 294, DateTimeKind.Utc).AddTicks(5041),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "muhammad@gmail.com",
+                            FirstName = "Muhammad",
+                            Gender = 1,
+                            IsDeleted = false,
+                            LastName = "Rahimboyev",
+                            Password = "$2a$11$Zpfv.6ngyny5jK.bVWa6vONLMFeY0SkKzox5Jvw1KZYSPKkjt0zw2",
+                            Phone = "+998 937770202",
+                            RoleId = 5L
+                        },
+                        new
+                        {
+                            Id = 11L,
+                            CreatedAt = new DateTime(2023, 8, 16, 15, 37, 2, 294, DateTimeKind.Utc).AddTicks(5054),
+                            DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "boqiyev482@gmail.com",
+                            FirstName = "Bekmurod",
+                            Gender = 1,
+                            IsDeleted = false,
+                            LastName = "Boqiyev",
+                            Password = "$2a$11$FtRzO34VKQUwy3oojA5s.ezCtEii9ulhRzxGZUtlIRrgop0WiaHEW",
+                            Phone = "998 90 848 05 210",
+                            RoleId = 2L
+                        });
                 });
 
             modelBuilder.Entity("FastFood.Domain.Entities.Authorizations.RolePermission", b =>

@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
-using FastFood.Service.Helpers;
+using FastFood.Domain.Helpers;
 using FastFood.Data.IRepositories;
 using FastFood.Service.Exceptions;
 using FastFood.Service.Extensions;
+using Microsoft.EntityFrameworkCore;
 using FastFood.Domain.Entities.Users;
 using FastFood.Domain.Configurations;
 using FastFood.Service.DTOs.AddressDto;
-using Microsoft.EntityFrameworkCore;
 using FastFood.Service.Interfaces.Addresses;
 
 namespace FastFood.Service.Services.Addresses

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using FastFood.Domain.Enums;
-using FastFood.Service.Helpers;
+using FastFood.Domain.Helpers;
 using FastFood.Service.Exceptions;
 using FastFood.Data.IRepositories;
 using FastFood.Service.Extensions;

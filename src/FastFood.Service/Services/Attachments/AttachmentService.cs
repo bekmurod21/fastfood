@@ -1,9 +1,9 @@
-﻿using FastFood.Service.Helpers;
+﻿using FastFood.Domain.Helpers;
 using FastFood.Data.IRepositories;
 using FastFood.Service.Exceptions;
 using FastFood.Service.DTOs.Attachment;
-using FastFood.Service.Interfaces.Attachments;
 using FastFood.Domain.Entities.Attachments;
+using FastFood.Service.Interfaces.Attachments;
 
 namespace FastFood.Service.Services.Attachments
 {

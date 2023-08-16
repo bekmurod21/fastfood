@@ -1,16 +1,13 @@
+using Serilog;
+using FastFood.WebApi.Models;
 using FastFood.Data.Contexts;
-using FastFood.Service.Helpers;
-using FastFood.Service.Interfaces.Users;
+using FastFood.Domain.Helpers;
 using FastFood.Service.Mappers;
-using FastFood.Service.Services.Users;
 using FastFood.WebApi.Extensions;
 using FastFood.WebApi.Middlewares;
-using FastFood.WebApi.Models;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.EntityFrameworkCore;
-using Serilog;
 using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +17,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.ConfigureSwagger();
 
 builder.Services.AddHttpContextAccessor();
 

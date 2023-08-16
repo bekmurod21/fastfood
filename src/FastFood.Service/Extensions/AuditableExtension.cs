@@ -1,5 +1,5 @@
 ﻿using FastFood.Domain.Commons;
-using FastFood.Service.Helpers;
+using FastFood.Domain.Helpers;
 
 namespace FastFood.Service.Extensions
 {

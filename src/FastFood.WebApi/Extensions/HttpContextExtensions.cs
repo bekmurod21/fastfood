@@ -1,4 +1,4 @@
-﻿using FastFood.Service.Helpers;
+﻿using FastFood.Domain.Helpers;
 
 namespace FastFood.WebApi.Extensions
 {
