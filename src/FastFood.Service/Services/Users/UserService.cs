@@ -1,16 +1,16 @@
 ﻿using AutoMapper;
-using FastFood.Service.Helpers;
+using FastFood.Data.Contexts;
+using FastFood.Domain.Helpers;
 using FastFood.Data.IRepositories;
 using FastFood.Service.Extensions;
 using FastFood.Service.Exceptions;
+using Microsoft.EntityFrameworkCore;
 using FastFood.Service.DTOs.UserDto;
 using FastFood.Domain.Entities.Users;
 using FastFood.Domain.Configurations;
-using Microsoft.EntityFrameworkCore;
+using FastFood.Domain.Entities.Orders;
 using FastFood.Service.Interfaces.Users;
 using FastFood.Domain.Entities.Authorizations;
-using FastFood.Domain.Entities.Orders;
-using FastFood.Data.Contexts;
 
 namespace FastFood.Service.Services.Users
 {
@@ -81,9 +81,6 @@ namespace FastFood.Service.Services.Users
 
             return true;
         }
-
-
-
         public async ValueTask<UserForResultDto> ModifyAsync(long id, UserForUpdateDto model)
         {
             var entity = await userRepository.SelectAsync(x => x.Id == id);
@@ -96,7 +93,6 @@ namespace FastFood.Service.Services.Users
             await userRepository.UpdateAsync(mappedUser);
             return mapper.Map<UserForResultDto>(mappedUser);
         }
-
         public async ValueTask<IEnumerable<UserForResultDto>> RetrieveAll(PaginationParams @params)
         {
             var users = await userRepository.SelectAllAsync(u => !u.IsDeleted)
@@ -105,7 +101,6 @@ namespace FastFood.Service.Services.Users
 
             return mapper.Map<IEnumerable<UserForResultDto>>(users);
         }
-
         public async ValueTask<UserForResultDto> RetrieveAsync(long id)
         {
             var entity = await userRepository.SelectAsync(x => x.Id == id);

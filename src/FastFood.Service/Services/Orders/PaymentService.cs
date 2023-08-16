@@ -1,18 +1,18 @@
 ﻿using AutoMapper;
 using FastFood.Domain.Enums;
-using FastFood.Service.Helpers;
+using FastFood.Domain.Helpers;
 using FastFood.Data.IRepositories;
 using FastFood.Service.Exceptions;
 using FastFood.Service.Extensions;
+using Microsoft.EntityFrameworkCore;
 using FastFood.Domain.Configurations;
 using FastFood.Domain.Entities.Orders;
-using FastFood.Domain.Entities.Payments;
 using FastFood.Service.DTOs.Attachment;
 using FastFood.Service.DTOs.PaymentDto;
+using FastFood.Service.Interfaces.Users;
+using FastFood.Domain.Entities.Payments;
 using FastFood.Service.Interfaces.Orders;
 using FastFood.Service.Interfaces.Attachments;
-using Microsoft.EntityFrameworkCore;
-using FastFood.Service.Interfaces.Users;
 
 namespace FastFood.Service.Services.Orders
 {

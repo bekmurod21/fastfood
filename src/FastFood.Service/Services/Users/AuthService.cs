@@ -1,15 +1,14 @@
-﻿using FastFood.Domain.Entities.Users;
-using FastFood.Service.DTOs.LoginDto;
+﻿using System.Text;
+using System.Security.Claims;
+using FastFood.Domain.Helpers;
 using FastFood.Service.Exceptions;
-using FastFood.Service.Helpers;
-using FastFood.Service.Interfaces.Authorizations;
+using FastFood.Domain.Entities.Users;
+using Microsoft.IdentityModel.Tokens;
+using FastFood.Service.DTOs.LoginDto;
+using System.IdentityModel.Tokens.Jwt;
 using FastFood.Service.Interfaces.Users;
 using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
-using System.ComponentModel.DataAnnotations;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
+using FastFood.Service.Interfaces.Authorizations;
 
 namespace FastFood.Service.Services.Users;
 
@@ -61,4 +60,3 @@ public class AuthService : IAuthService
         return tokenHendler.WriteToken(token);
     }
 }
-

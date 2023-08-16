@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 using FastFood.Domain.Commons;
-using FastFood.Service.Helpers;
+using FastFood.Domain.Helpers;
 using FastFood.Service.Exceptions;
 using FastFood.Domain.Configurations;
 

@@ -1,4 +1,6 @@
-﻿namespace FastFood.Service.Helpers
+﻿using BCrypt.Net;
+
+namespace FastFood.Domain.Helpers
 {
     public class PasswordHelper
     {

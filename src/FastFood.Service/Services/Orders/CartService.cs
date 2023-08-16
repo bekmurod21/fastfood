@@ -1,14 +1,14 @@
 ﻿using AutoMapper;
-using FastFood.Service.Helpers;
+using FastFood.Domain.Helpers;
 using FastFood.Service.Extensions;
 using FastFood.Service.Exceptions;
 using FastFood.Data.IRepositories;
 using FastFood.Service.DTOs.CartDto;
+using Microsoft.EntityFrameworkCore;
 using FastFood.Domain.Configurations;
 using FastFood.Domain.Entities.Orders;
 using FastFood.Domain.Entities.Products;
 using FastFood.Service.Interfaces.Order;
-using Microsoft.EntityFrameworkCore;
 
 namespace FastFood.Service.Services.Orders
 {

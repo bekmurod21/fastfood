@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
+using FastFood.Domain.Helpers;
 using FastFood.Data.IRepositories;
-using FastFood.Domain.Configurations;
-using FastFood.Domain.Entities.Authorizations;
-using FastFood.Service.DTOs.PermissionDto;
 using FastFood.Service.Exceptions;
 using FastFood.Service.Extensions;
-using FastFood.Service.Helpers;
-using FastFood.Service.Interfaces.Authorizations;
 using Microsoft.EntityFrameworkCore;
+using FastFood.Domain.Configurations;
+using FastFood.Service.DTOs.PermissionDto;
+using FastFood.Domain.Entities.Authorizations;
+using FastFood.Service.Interfaces.Authorizations;
 
 namespace FastFood.Service.Services.Authorizations
 {
