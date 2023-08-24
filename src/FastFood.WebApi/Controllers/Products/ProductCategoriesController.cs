@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using FastFood.Domain.Configurations;
 using FastFood.Service.DTOs.ProductDto;
 using FastFood.Service.Interfaces.Products;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FastFood.WebApi.Controllers.Products
 {
@@ -14,7 +15,7 @@ namespace FastFood.WebApi.Controllers.Products
         {
             this.productCategoryService = productCategory;
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPost("product-category")]
         public async ValueTask<IActionResult> PostAsync(ProductCategoryForCreationDto dto)
             => Ok(new Response
@@ -23,7 +24,7 @@ namespace FastFood.WebApi.Controllers.Products
                 Message = "Ok",
                 Data = await this.productCategoryService.AddAsync(dto)
             });
-
+        [Authorize(Roles = "Admin")]
         [HttpPut("product-category")]
         public async ValueTask<IActionResult> PutAsync([FromQuery] long id, ProductCategoryForUpdateDto dto)
             => Ok(new Response
@@ -32,7 +33,7 @@ namespace FastFood.WebApi.Controllers.Products
                 Message = "Ok",
                 Data = await this.productCategoryService.ModifyAsync(id, dto)
             });
-
+        [Authorize(Roles = "Admin")]
         [HttpDelete("product-category")]
         public async ValueTask<IActionResult> DeleteAsync([FromQuery] long id)
             => Ok(new Response
@@ -52,7 +53,7 @@ namespace FastFood.WebApi.Controllers.Products
             });
 
         [HttpGet("product-categories")]
-        public async ValueTask<IActionResult> GetAsync([FromQuery] PaginationParams @params)
+        public async ValueTask<IActionResult> GetAllAsync([FromQuery] PaginationParams @params)
             => Ok(new Response
             {
                 Code = 200,

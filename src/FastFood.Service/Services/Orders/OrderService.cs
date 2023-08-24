@@ -45,7 +45,7 @@ public class OrderService : IOrderService
     {
         var address = await addressService.RetrieveAsync(dto.AddressId);
 
-        var cart = await this.cartRepository.SelectAsync(c => c.UserId == HttpContextHelper.UserId,
+        var cart = await this.cartRepository.SelectAsync(c => c.UserId == dto.UserId,
             new string[] { "Items.Product" });
         if (cart == null)
             throw new CustomException(404, "Cart not found");

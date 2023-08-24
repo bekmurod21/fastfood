@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using FastFood.Domain.Helpers;
 using FastFood.Service.Extensions;
 using FastFood.Service.Exceptions;
 using FastFood.Data.IRepositories;
@@ -9,6 +8,7 @@ using FastFood.Domain.Configurations;
 using FastFood.Domain.Entities.Orders;
 using FastFood.Domain.Entities.Products;
 using FastFood.Service.Interfaces.Order;
+using FastFood.Domain.Helpers;
 
 namespace FastFood.Service.Services.Orders
 {
@@ -48,7 +48,7 @@ namespace FastFood.Service.Services.Orders
                 AmountTotal = product.Price * dto.Amount
             };
 
-            var insertedCartItem = this.cartItemRepository.InsertAsync(cartItem);
+            CartItem insertedCartItem = await this.cartItemRepository.InsertAsync(cartItem);
             return mapper.Map<CartItemForResultDto>(insertedCartItem);
         }
 
@@ -64,7 +64,7 @@ namespace FastFood.Service.Services.Orders
             cartItem.AmountTotal = cartItem.Product.Price * dto.Amount;
             cartItem.UpdatedBy = HttpContextHelper.UserId;
             cartItem.UpdatedAt = DateTime.UtcNow;
-            var result = this.cartItemRepository.UpdateAsync(cartItem);
+            var result = await this.cartItemRepository.UpdateAsync(cartItem);
 
             return this.mapper.Map<CartItemForResultDto>(result);
         }
@@ -83,7 +83,7 @@ namespace FastFood.Service.Services.Orders
 
         public async ValueTask<IEnumerable<CartItemForResultDto>> RetrieveAllAsync(PaginationParams @params)
         {
-            var itemsQuery = this.cartItemRepository
+            var itemsQuery =  this.cartItemRepository
              .SelectAllAsync(item => !item.IsDeleted && !item.IsOrdered && item.Cart.UserId == HttpContextHelper.UserId,
              includes: new string[] { "Product" });
 

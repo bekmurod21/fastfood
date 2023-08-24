@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using FastFood.Service.DTOs.UserDto;
 using FastFood.Domain.Configurations;
 using FastFood.Service.Interfaces.Users;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FastFood.WebApi.Controllers.Users
 {
@@ -30,7 +31,7 @@ namespace FastFood.WebApi.Controllers.Users
                 Message = "Seccess",
                 Data = await service.AddAsync(dto)
             });
-        [HttpPut("id")]
+        [HttpPut("{id}")]
         public async ValueTask<IActionResult> PutAsync(long id, UserForUpdateDto dto) =>
             Ok(new Response
             {
@@ -38,6 +39,7 @@ namespace FastFood.WebApi.Controllers.Users
                 Message = "Success",
                 Data = await service.ModifyAsync(id, dto)
             });
+        [Authorize(Roles = "Admin")]
         [HttpDelete]
         public async ValueTask<IActionResult> DeleteAsync(long id) =>
             Ok(new Response
