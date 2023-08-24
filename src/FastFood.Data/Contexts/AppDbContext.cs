@@ -1,14 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using FastFood.Domain.Enums;
+using FastFood.Domain.Helpers;
+using Microsoft.EntityFrameworkCore;
 using FastFood.Domain.Entities.Users;
 using FastFood.Domain.Entities.Orders;
 using FastFood.Domain.Entities.Payments;
 using FastFood.Domain.Entities.Products;
-using FastFood.Domain.Entities.Authorizations;
 using FastFood.Domain.Entities.Attachments;
+using FastFood.Domain.Entities.Authorizations;
 using FastFood.Domain.Entities.Orders.Feedbacks;
-using FastFood.Domain.Enums;
-
-using FastFood.Domain.Helpers;
 
 namespace FastFood.Data.Contexts;
 public class AppDbContext:DbContext

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using FastFood.Domain.Configurations;
 using FastFood.Service.DTOs.ProductDto;
 using FastFood.Service.Interfaces.Products;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FastFood.WebApi.Controllers.Products
 {
@@ -14,6 +15,7 @@ namespace FastFood.WebApi.Controllers.Products
         {
             this.service = service;
         }
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async ValueTask<IActionResult> PostAsync(ProductForCreationDto dto)
         {
@@ -24,6 +26,7 @@ namespace FastFood.WebApi.Controllers.Products
                 Data = await service.AddAsync(dto)
             });
         }
+        [Authorize(Roles = "Admin")]
         [HttpPut]
         public async ValueTask<IActionResult> PutAsync(long id, ProductForUpdateDto dto)
         {
@@ -34,6 +37,7 @@ namespace FastFood.WebApi.Controllers.Products
                 Data = await service.ModifyAsync(id, dto)
             });
         }
+        [Authorize(Roles = "Admin")]
         [HttpDelete]
         public async ValueTask<IActionResult> DeleteAsync(long id) =>
             Ok(new Response
@@ -42,6 +46,7 @@ namespace FastFood.WebApi.Controllers.Products
                 Message = "Success",
                 Data = await service.RemoveAsync(id)
             });
+
         [HttpGet("{id}")]
         public async ValueTask<IActionResult> GetByIdAsync(long id) =>
             Ok(new Response
@@ -50,6 +55,7 @@ namespace FastFood.WebApi.Controllers.Products
                 Message = "Success",
                 Data = await service.RetrieveAsync(id)
             });
+
         [HttpGet]
         public async ValueTask<IActionResult> GetAllAsync([FromQuery] PaginationParams @params) =>
             Ok(new Response
