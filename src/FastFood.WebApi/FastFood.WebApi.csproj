@@ -22,8 +22,4 @@
     <ProjectReference Include="..\FastFood.Service\FastFood.Service.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Logs\" />
-  </ItemGroup>
-
 </Project>

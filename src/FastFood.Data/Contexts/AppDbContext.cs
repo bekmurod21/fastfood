@@ -48,11 +48,11 @@ public class AppDbContext:DbContext
             .HasForeignKey(o => o.UserId)
             .OnDelete(DeleteBehavior.NoAction);
 
-        modelBuilder.Entity<Order>()
-                .HasOne(o => o.Address)
-                .WithMany()
-                .HasForeignKey(o => o.AddressId)
-                .OnDelete(DeleteBehavior.NoAction);
+        //modelBuilder.Entity<Order>()
+        //        .HasOne(o => o.Address)
+        //        .WithMany()
+        //        .HasForeignKey(o => o.AddressId)
+        //        .OnDelete(DeleteBehavior.NoAction);
 
         modelBuilder.Entity<Order>()
             .HasOne(o => o.Payments)
@@ -93,18 +93,32 @@ public class AppDbContext:DbContext
                new Role() { Id = 5, Name = "Packer", CreatedAt = DateTime.UtcNow, IsDeleted = false, UpdatedBy = null, DeletedBy = null, UpdatedAt = null }
                );
         modelBuilder.Entity<User>().HasData(
-            new User() { Id = 1, FirstName = "Mukhammadkarim", LastName = "Tukhtaboyev", Email = "dotnetgo@icloud.com", Phone = "+998 991239999", RoleId = 2, Password = PasswordHelper.Hash("12345678"), CreatedAt = DateTime.UtcNow, UpdatedAt = null, Gender = Gender.Male },
-            new User() { Id = 2, FirstName = "Jamshid", LastName = "Ma'ruf", Email = "wonderboy1w3@gmail.com", Phone = "+998 991231999", RoleId = 3, Password = PasswordHelper.Hash("12345678"), CreatedAt = DateTime.UtcNow, UpdatedAt = null, Gender = Gender.Male },
-            new User() { Id = 3, FirstName = "Kabeer", LastName = "Solutions", Email = "kabeersolutions@gmail.com", Phone = "+998 991232999", RoleId = 4, Password = PasswordHelper.Hash("12345678"), CreatedAt = DateTime.UtcNow, UpdatedAt = null, Gender = Gender.Male },
-            new User() { Id = 4, FirstName = "Muzaffar", LastName = "Nurillayev", Email = "nurillaewmuzaffar@gmail.com", Phone = "+998 995030110", RoleId = 5, Password = PasswordHelper.Hash("12345678"), CreatedAt = DateTime.UtcNow, UpdatedAt = null, Gender = Gender.Male },
-            new User() { Id = 5, FirstName = "Azim", LastName = "Ochilov", Email = "azimochilov@icloud.com", Phone = "+998 991233999", RoleId = 1, Password = PasswordHelper.Hash("12345678"), CreatedAt = DateTime.UtcNow, UpdatedAt = null, Gender = Gender.Male },
-            new User() { Id = 6, FirstName = "Abdulloh", LastName = "Ahmadjonov", Email = "abdulloh@icloud.com", Phone = "+998 991236999", RoleId = 1, Password = PasswordHelper.Hash("12345678"), CreatedAt = DateTime.UtcNow, UpdatedAt = null, Gender = Gender.Male },
-            new User() { Id = 7, FirstName = "Komron", LastName = "Rahmonov", Email = "komron2052@gmail.com", Phone = "+998 991234999", RoleId = 4, Password = PasswordHelper.Hash("12345678"), CreatedAt = DateTime.UtcNow, UpdatedAt = null, Gender = Gender.Male },
-            new User() { Id = 8, FirstName = "Nozimjon", LastName = "Usmonaliyev", Email = "nozimjon@gmail.com", Phone = "+998 991235999", RoleId = 1, Password = PasswordHelper.Hash("12345678"), CreatedAt = DateTime.UtcNow, UpdatedAt = null , Gender = Gender.Male },
-            new User() { Id = 9, FirstName = "AlJavhar", LastName = "Boyaliyev", Email = "aljavhar@gmail.com", Phone = "+998 902344545", RoleId = 4, Password = PasswordHelper.Hash("12345678"), CreatedAt = DateTime.UtcNow, UpdatedAt = null , Gender = Gender.Male },
-            new User() { Id = 10, FirstName = "Muhammad", LastName = "Rahimboyev", Email = "muhammad@gmail.com", Phone = "+998 937770202", RoleId = 5, Password = PasswordHelper.Hash("12345678"), CreatedAt = DateTime.UtcNow, UpdatedAt = null , Gender = Gender.Male },
-            new User() { Id = 11, FirstName = "Bekmurod", LastName = "Boqiyev", Email = "boqiyev482@gmail.com", Phone = "998 90 848 05 210", Gender = Gender.Male, CreatedAt = DateTime.UtcNow, IsDeleted = false, Password = PasswordHelper.Hash("Bekmurod21"), RoleId = 2 }
+            new User() { Id = 1, FirstName = "Mukhammadkarim", LastName = "Tukhtaboyev",UserName = "Mukhammadkarim" ,Email = "dotnetgo@icloud.com", Phone = "+998 991239999", RoleId = 2, Password = PasswordHelper.Hash("12345678"), CreatedAt = DateTime.UtcNow, UpdatedAt = null, Gender = Gender.Male },
+            new User() { Id = 2, FirstName = "Jamshid", LastName = "Ma'ruf",UserName = "Jamshid" ,Email = "wonderboy1w3@gmail.com", Phone = "+998 991231999", RoleId = 3, Password = PasswordHelper.Hash("12345678"), CreatedAt = DateTime.UtcNow, UpdatedAt = null, Gender = Gender.Male },
+            new User() { Id = 3, FirstName = "Kabeer", LastName = "Solutions", UserName = "Kabeer", Email = "kabeersolutions@gmail.com", Phone = "+998 991232999", RoleId = 4, Password = PasswordHelper.Hash("12345678"), CreatedAt = DateTime.UtcNow, UpdatedAt = null, Gender = Gender.Male },
+            new User() { Id = 4, FirstName = "Muzaffar", LastName = "Nurillayev", UserName = "Muzaffar", Email = "nurillaewmuzaffar@gmail.com", Phone = "+998 995030110", RoleId = 5, Password = PasswordHelper.Hash("12345678"), CreatedAt = DateTime.UtcNow, UpdatedAt = null, Gender = Gender.Male },
+            new User() { Id = 5, FirstName = "Azim", LastName = "Ochilov", UserName = "Azim", Email = "azimochilov@icloud.com", Phone = "+998 991233999", RoleId = 1, Password = PasswordHelper.Hash("12345678"), CreatedAt = DateTime.UtcNow, UpdatedAt = null, Gender = Gender.Male },
+            new User() { Id = 6, FirstName = "Abdulloh", LastName = "Ahmadjonov",   UserName = "Abdulloh", Email = "abdulloh@icloud.com", Phone = "+998 991236999", RoleId = 1, Password = PasswordHelper.Hash("12345678"), CreatedAt = DateTime.UtcNow, UpdatedAt = null, Gender = Gender.Male },
+            new User() { Id = 7, FirstName = "Komron", LastName = "Rahmonov", UserName = "Komron", Email = "komron2052@gmail.com", Phone = "+998 991234999", RoleId = 4, Password = PasswordHelper.Hash("12345678"), CreatedAt = DateTime.UtcNow, UpdatedAt = null, Gender = Gender.Male },
+            new User() { Id = 8, FirstName = "Nozimjon", LastName = "Usmonaliyev", UserName = "Nozimjon", Email = "nozimjon@gmail.com", Phone = "+998 991235999", RoleId = 1, Password = PasswordHelper.Hash("12345678"), CreatedAt = DateTime.UtcNow, UpdatedAt = null , Gender = Gender.Male },
+            new User() { Id = 9, FirstName = "AlJavhar", LastName = "Boyaliyev", UserName = "AlJavhar", Email = "aljavhar@gmail.com", Phone = "+998 902344545", RoleId = 4, Password = PasswordHelper.Hash("12345678"), CreatedAt = DateTime.UtcNow, UpdatedAt = null , Gender = Gender.Male },
+            new User() { Id = 10, FirstName = "Muhammad", LastName = "Rahimboyev", UserName = "Muhammad",Email = "muhammad@gmail.com", Phone = "+998 937770202", RoleId = 5, Password = PasswordHelper.Hash("12345678"), CreatedAt = DateTime.UtcNow, UpdatedAt = null , Gender = Gender.Male },
+            new User() { Id = 11, FirstName = "Bekmurod", LastName = "Boqiyev",UserName = "Bekmurodt" ,Email = "boqiyev482@gmail.com", Phone = "998 90 848 05 210", Gender = Gender.Male, CreatedAt = DateTime.UtcNow, IsDeleted = false, Password = PasswordHelper.Hash("Bekmurod21"), RoleId = 2 }
             );
+        modelBuilder.Entity<Cart>().HasData(
+            new Cart() { Id = 1, UserId = 1, Items = null },
+            new Cart() { Id = 2, UserId = 2, Items = null },
+            new Cart() { Id = 3, UserId = 3, Items = null },
+            new Cart() { Id = 4, UserId = 4, Items = null },
+            new Cart() { Id = 5, UserId = 5, Items = null },
+            new Cart() { Id = 6, UserId = 6, Items = null },
+            new Cart() { Id = 7, UserId = 7, Items = null },
+            new Cart() { Id = 8, UserId = 8, Items = null },
+            new Cart() { Id = 9, UserId = 9, Items = null },
+            new Cart() { Id = 10, UserId = 10, Items = null },
+            new Cart() { Id = 11, UserId = 11, Items = null }
+            );
+
         modelBuilder.Entity<ProductCategory>().HasData(
                 new ProductCategory() { Id = 1, Name = "APPETIZERS", CreatedAt = DateTime.UtcNow, UpdatedAt = null },
                 new ProductCategory() { Id = 2, Name = "Burgers", CreatedAt = DateTime.UtcNow, UpdatedAt = null },

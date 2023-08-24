@@ -13,4 +13,5 @@ public interface IUserService
     ValueTask<IEnumerable<UserForResultDto>> RetrieveAll(PaginationParams @params);
     ValueTask<User> RetrieveByEmailAsync(string email);
     Task<UserForResultDto> ChangePasswordAsync(UserForChangePasswordDto dto);
+    ValueTask<User> RetrieveByLoginAsync(string login);
 }
