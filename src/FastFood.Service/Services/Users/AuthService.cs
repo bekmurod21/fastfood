@@ -24,9 +24,9 @@ public class AuthService : IAuthService
         this.roleService = roleService;
     }
 
-    public async Task<LoginForResultDto> AuthenticateAsync(string email, string password)
+    public async Task<LoginForResultDto> AuthenticateAsync(string login, string password)
     {
-        var user = await this.userService.RetrieveByEmailAsync(email);
+        var user = await this.userService.RetrieveByLoginAsync(login);
         if (user == null || !PasswordHelper.Verify(password, user.Password))
             throw new CustomException(400, "Email or password is incorrect");
 

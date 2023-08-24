@@ -14,7 +14,11 @@ namespace FastFood.WebApi.Controllers.Users
         {
             this.authService = authService;
         }
-
+        /// <summary>
+        /// login is email,username or phone
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <returns></returns>
         [HttpPost("authenticate")]
         public async Task<IActionResult> AuthenticateAsync(LoginForCreationDto dto)
         {

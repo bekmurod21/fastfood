@@ -135,5 +135,21 @@ namespace FastFood.Service.Services.Users
             await dbContext.SaveChangesAsync();
             return mapper.Map<UserForResultDto>(user);
         }
+
+        public async ValueTask<User> RetrieveByLoginAsync(string login)
+        {
+            var phone = await this.userRepository.SelectAsync(u=>u.Phone == login && !u.IsDeleted);
+            if (phone is not null)
+                return phone;
+            var username = await this.userRepository.SelectAsync(u=>u.UserName == login && !u.IsDeleted);
+            if (username is not null)
+                return username;
+            var email = await this.userRepository.SelectAsync(u=>u.Email == login && !u.IsDeleted);
+            if (username is not null)
+                return email;
+            if (email is null || phone is null || username is null)
+                throw new CustomException(404, "User is not found");
+            return email;
+        }
     }
 }
