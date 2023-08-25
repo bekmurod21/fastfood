@@ -3,24 +3,26 @@ using System;
 using FastFood.Data.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
 namespace FastFood.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230824190839_Init")]
+    partial class Init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "6.0.20")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
             modelBuilder.Entity("FastFood.Domain.Entities.Attachments.Attachment", b =>
                 {
@@ -28,31 +30,31 @@ namespace FastFood.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long?>("CreatedBy")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("DeletedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long?>("DeletedBy")
                         .HasColumnType("bigint");
 
                     b.Property<string>("FileName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("FilePath")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                        .HasColumnType("boolean");
 
                     b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long?>("UpdatedBy")
                         .HasColumnType("bigint");
@@ -68,28 +70,28 @@ namespace FastFood.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long?>("CreatedBy")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("DeletedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long?>("DeletedBy")
                         .HasColumnType("bigint");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                        .HasColumnType("boolean");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long?>("UpdatedBy")
                         .HasColumnType("bigint");
@@ -105,28 +107,28 @@ namespace FastFood.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long?>("CreatedBy")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("DeletedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long?>("DeletedBy")
                         .HasColumnType("bigint");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                        .HasColumnType("boolean");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long?>("UpdatedBy")
                         .HasColumnType("bigint");
@@ -139,7 +141,7 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 1L,
-                            CreatedAt = new DateTime(2023, 8, 25, 16, 56, 42, 577, DateTimeKind.Utc).AddTicks(8159),
+                            CreatedAt = new DateTime(2023, 8, 24, 19, 8, 35, 996, DateTimeKind.Utc).AddTicks(6122),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "User"
@@ -147,7 +149,7 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 2L,
-                            CreatedAt = new DateTime(2023, 8, 25, 16, 56, 42, 577, DateTimeKind.Utc).AddTicks(8162),
+                            CreatedAt = new DateTime(2023, 8, 24, 19, 8, 35, 996, DateTimeKind.Utc).AddTicks(6125),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "Admin"
@@ -155,7 +157,7 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 3L,
-                            CreatedAt = new DateTime(2023, 8, 25, 16, 56, 42, 577, DateTimeKind.Utc).AddTicks(8165),
+                            CreatedAt = new DateTime(2023, 8, 24, 19, 8, 35, 996, DateTimeKind.Utc).AddTicks(6126),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "Driver"
@@ -163,7 +165,7 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 4L,
-                            CreatedAt = new DateTime(2023, 8, 25, 16, 56, 42, 577, DateTimeKind.Utc).AddTicks(8166),
+                            CreatedAt = new DateTime(2023, 8, 24, 19, 8, 35, 996, DateTimeKind.Utc).AddTicks(6127),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "Picker"
@@ -171,7 +173,7 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 5L,
-                            CreatedAt = new DateTime(2023, 8, 25, 16, 56, 42, 577, DateTimeKind.Utc).AddTicks(8167),
+                            CreatedAt = new DateTime(2023, 8, 24, 19, 8, 35, 996, DateTimeKind.Utc).AddTicks(6128),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "Packer"
@@ -184,22 +186,22 @@ namespace FastFood.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long?>("CreatedBy")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("DeletedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long?>("DeletedBy")
                         .HasColumnType("bigint");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                        .HasColumnType("boolean");
 
                     b.Property<long>("PermissionId")
                         .HasColumnType("bigint");
@@ -208,7 +210,7 @@ namespace FastFood.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long?>("UpdatedBy")
                         .HasColumnType("bigint");
@@ -228,25 +230,25 @@ namespace FastFood.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long?>("CreatedBy")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("DeletedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long?>("DeletedBy")
                         .HasColumnType("bigint");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                        .HasColumnType("boolean");
 
                     b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long?>("UpdatedBy")
                         .HasColumnType("bigint");
@@ -355,40 +357,40 @@ namespace FastFood.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<int>("Amount")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<decimal>("AmountTotal")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("numeric");
 
                     b.Property<long>("CartId")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long?>("CreatedBy")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("DeletedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long?>("DeletedBy")
                         .HasColumnType("bigint");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                        .HasColumnType("boolean");
 
                     b.Property<bool>("IsOrdered")
-                        .HasColumnType("bit");
+                        .HasColumnType("boolean");
 
                     b.Property<long>("ProductId")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long?>("UpdatedBy")
                         .HasColumnType("bigint");
@@ -408,31 +410,31 @@ namespace FastFood.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long?>("CreatedBy")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("DeletedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long?>("DeletedBy")
                         .HasColumnType("bigint");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                        .HasColumnType("boolean");
 
                     b.Property<string>("Message")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<long>("OrderId")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long?>("UpdatedBy")
                         .HasColumnType("bigint");
@@ -450,19 +452,19 @@ namespace FastFood.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<long>("AttachmentId")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long?>("CreatedBy")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("DeletedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long?>("DeletedBy")
                         .HasColumnType("bigint");
@@ -471,10 +473,10 @@ namespace FastFood.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                        .HasColumnType("boolean");
 
                     b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long?>("UpdatedBy")
                         .HasColumnType("bigint");
@@ -494,37 +496,37 @@ namespace FastFood.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<long>("AddressId")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long?>("CreatedBy")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("DeletedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long?>("DeletedBy")
                         .HasColumnType("bigint");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                        .HasColumnType("boolean");
 
                     b.Property<long>("PaymentId")
                         .HasColumnType("bigint");
 
                     b.Property<int>("Status")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<decimal>("TotalAmount")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("numeric");
 
                     b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long?>("UpdatedBy")
                         .HasColumnType("bigint");
@@ -550,34 +552,34 @@ namespace FastFood.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<DateTime?>("ApproximateFinishTime")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long?>("CreatedBy")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("DeletedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long?>("DeletedBy")
                         .HasColumnType("bigint");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                        .HasColumnType("boolean");
 
                     b.Property<long>("OrderId")
                         .HasColumnType("bigint");
 
                     b.Property<int>("Status")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long?>("UpdatedBy")
                         .HasColumnType("bigint");
@@ -595,28 +597,28 @@ namespace FastFood.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<int>("Amount")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<decimal>("AmountTotal")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("numeric");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long?>("CreatedBy")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("DeletedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long?>("DeletedBy")
                         .HasColumnType("bigint");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                        .HasColumnType("boolean");
 
                     b.Property<long>("OrderId")
                         .HasColumnType("bigint");
@@ -625,7 +627,7 @@ namespace FastFood.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long?>("UpdatedBy")
                         .HasColumnType("bigint");
@@ -645,22 +647,22 @@ namespace FastFood.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long?>("CreatedBy")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("DeletedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long?>("DeletedBy")
                         .HasColumnType("bigint");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                        .HasColumnType("boolean");
 
                     b.Property<long>("OrderId")
                         .HasColumnType("bigint");
@@ -669,7 +671,7 @@ namespace FastFood.Data.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long?>("UpdatedBy")
                         .HasColumnType("bigint");
@@ -685,43 +687,43 @@ namespace FastFood.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<decimal?>("Amount")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("numeric");
 
                     b.Property<long>("AttachmentId")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long?>("CreatedBy")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("DeletedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long?>("DeletedBy")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<bool>("IsAdmin")
-                        .HasColumnType("bit");
+                        .HasColumnType("boolean");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                        .HasColumnType("boolean");
 
                     b.Property<long>("OrderId")
                         .HasColumnType("bigint");
 
                     b.Property<int>("Status")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long?>("UpdatedBy")
                         .HasColumnType("bigint");
@@ -744,43 +746,43 @@ namespace FastFood.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<long>("CategoryId")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long?>("CreatedBy")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("DeletedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long?>("DeletedBy")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                        .HasColumnType("boolean");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("numeric");
 
                     b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long?>("UpdatedBy")
                         .HasColumnType("bigint");
 
                     b.Property<double>("Weight")
-                        .HasColumnType("float");
+                        .HasColumnType("double precision");
 
                     b.HasKey("Id");
 
@@ -793,7 +795,7 @@ namespace FastFood.Data.Migrations
                         {
                             Id = 1L,
                             CategoryId = 2L,
-                            CreatedAt = new DateTime(2023, 8, 25, 16, 56, 45, 307, DateTimeKind.Utc).AddTicks(6462),
+                            CreatedAt = new DateTime(2023, 8, 24, 19, 8, 38, 636, DateTimeKind.Utc).AddTicks(7226),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Best Food",
                             IsDeleted = false,
@@ -805,7 +807,7 @@ namespace FastFood.Data.Migrations
                         {
                             Id = 2L,
                             CategoryId = 2L,
-                            CreatedAt = new DateTime(2023, 8, 25, 16, 56, 45, 307, DateTimeKind.Utc).AddTicks(6464),
+                            CreatedAt = new DateTime(2023, 8, 24, 19, 8, 38, 636, DateTimeKind.Utc).AddTicks(7227),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Bigger burger",
                             IsDeleted = false,
@@ -817,7 +819,7 @@ namespace FastFood.Data.Migrations
                         {
                             Id = 3L,
                             CategoryId = 2L,
-                            CreatedAt = new DateTime(2023, 8, 25, 16, 56, 45, 307, DateTimeKind.Utc).AddTicks(6466),
+                            CreatedAt = new DateTime(2023, 8, 24, 19, 8, 38, 636, DateTimeKind.Utc).AddTicks(7229),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Cheese burger",
                             IsDeleted = false,
@@ -829,7 +831,7 @@ namespace FastFood.Data.Migrations
                         {
                             Id = 4L,
                             CategoryId = 2L,
-                            CreatedAt = new DateTime(2023, 8, 25, 16, 56, 45, 307, DateTimeKind.Utc).AddTicks(6467),
+                            CreatedAt = new DateTime(2023, 8, 24, 19, 8, 38, 636, DateTimeKind.Utc).AddTicks(7230),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "CHICKY BURGER",
                             IsDeleted = false,
@@ -841,7 +843,7 @@ namespace FastFood.Data.Migrations
                         {
                             Id = 5L,
                             CategoryId = 2L,
-                            CreatedAt = new DateTime(2023, 8, 25, 16, 56, 45, 307, DateTimeKind.Utc).AddTicks(6468),
+                            CreatedAt = new DateTime(2023, 8, 24, 19, 8, 38, 636, DateTimeKind.Utc).AddTicks(7230),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "chicky burger,cola,soup,free",
                             IsDeleted = false,
@@ -853,7 +855,7 @@ namespace FastFood.Data.Migrations
                         {
                             Id = 6L,
                             CategoryId = 2L,
-                            CreatedAt = new DateTime(2023, 8, 25, 16, 56, 45, 307, DateTimeKind.Utc).AddTicks(6470),
+                            CreatedAt = new DateTime(2023, 8, 24, 19, 8, 38, 636, DateTimeKind.Utc).AddTicks(7231),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "long burger",
                             IsDeleted = false,
@@ -865,7 +867,7 @@ namespace FastFood.Data.Migrations
                         {
                             Id = 7L,
                             CategoryId = 2L,
-                            CreatedAt = new DateTime(2023, 8, 25, 16, 56, 45, 307, DateTimeKind.Utc).AddTicks(6472),
+                            CreatedAt = new DateTime(2023, 8, 24, 19, 8, 38, 636, DateTimeKind.Utc).AddTicks(7232),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Simple burger",
                             IsDeleted = false,
@@ -877,7 +879,7 @@ namespace FastFood.Data.Migrations
                         {
                             Id = 8L,
                             CategoryId = 2L,
-                            CreatedAt = new DateTime(2023, 8, 25, 16, 56, 45, 307, DateTimeKind.Utc).AddTicks(6473),
+                            CreatedAt = new DateTime(2023, 8, 24, 19, 8, 38, 636, DateTimeKind.Utc).AddTicks(7233),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "double burger",
                             IsDeleted = false,
@@ -889,7 +891,7 @@ namespace FastFood.Data.Migrations
                         {
                             Id = 9L,
                             CategoryId = 2L,
-                            CreatedAt = new DateTime(2023, 8, 25, 16, 56, 45, 307, DateTimeKind.Utc).AddTicks(6474),
+                            CreatedAt = new DateTime(2023, 8, 24, 19, 8, 38, 636, DateTimeKind.Utc).AddTicks(7234),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "HAMBURGER",
                             IsDeleted = false,
@@ -901,7 +903,7 @@ namespace FastFood.Data.Migrations
                         {
                             Id = 10L,
                             CategoryId = 2L,
-                            CreatedAt = new DateTime(2023, 8, 25, 16, 56, 45, 307, DateTimeKind.Utc).AddTicks(6475),
+                            CreatedAt = new DateTime(2023, 8, 24, 19, 8, 38, 636, DateTimeKind.Utc).AddTicks(7235),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "short burger",
                             IsDeleted = false,
@@ -913,7 +915,7 @@ namespace FastFood.Data.Migrations
                         {
                             Id = 11L,
                             CategoryId = 2L,
-                            CreatedAt = new DateTime(2023, 8, 25, 16, 56, 45, 307, DateTimeKind.Utc).AddTicks(6477),
+                            CreatedAt = new DateTime(2023, 8, 24, 19, 8, 38, 636, DateTimeKind.Utc).AddTicks(7236),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "junior burger,cola,KFC,free",
                             IsDeleted = false,
@@ -925,7 +927,7 @@ namespace FastFood.Data.Migrations
                         {
                             Id = 12L,
                             CategoryId = 2L,
-                            CreatedAt = new DateTime(2023, 8, 25, 16, 56, 45, 307, DateTimeKind.Utc).AddTicks(6478),
+                            CreatedAt = new DateTime(2023, 8, 24, 19, 8, 38, 636, DateTimeKind.Utc).AddTicks(7237),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "long burger",
                             IsDeleted = false,
@@ -937,7 +939,7 @@ namespace FastFood.Data.Migrations
                         {
                             Id = 13L,
                             CategoryId = 2L,
-                            CreatedAt = new DateTime(2023, 8, 25, 16, 56, 45, 307, DateTimeKind.Utc).AddTicks(6479),
+                            CreatedAt = new DateTime(2023, 8, 24, 19, 8, 38, 636, DateTimeKind.Utc).AddTicks(7238),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "tasty burger",
                             IsDeleted = false,
@@ -953,29 +955,29 @@ namespace FastFood.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long?>("CreatedBy")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("DeletedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long?>("DeletedBy")
                         .HasColumnType("bigint");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                        .HasColumnType("boolean");
 
                     b.Property<string>("Name")
                         .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasColumnType("character varying(200)");
 
                     b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long?>("UpdatedBy")
                         .HasColumnType("bigint");
@@ -988,7 +990,7 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 1L,
-                            CreatedAt = new DateTime(2023, 8, 25, 16, 56, 45, 307, DateTimeKind.Utc).AddTicks(6400),
+                            CreatedAt = new DateTime(2023, 8, 24, 19, 8, 38, 636, DateTimeKind.Utc).AddTicks(7080),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "APPETIZERS"
@@ -996,7 +998,7 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 2L,
-                            CreatedAt = new DateTime(2023, 8, 25, 16, 56, 45, 307, DateTimeKind.Utc).AddTicks(6410),
+                            CreatedAt = new DateTime(2023, 8, 24, 19, 8, 38, 636, DateTimeKind.Utc).AddTicks(7088),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "Burgers"
@@ -1004,7 +1006,7 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 3L,
-                            CreatedAt = new DateTime(2023, 8, 25, 16, 56, 45, 307, DateTimeKind.Utc).AddTicks(6411),
+                            CreatedAt = new DateTime(2023, 8, 24, 19, 8, 38, 636, DateTimeKind.Utc).AddTicks(7192),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "Chicken"
@@ -1012,7 +1014,7 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 4L,
-                            CreatedAt = new DateTime(2023, 8, 25, 16, 56, 45, 307, DateTimeKind.Utc).AddTicks(6413),
+                            CreatedAt = new DateTime(2023, 8, 24, 19, 8, 38, 636, DateTimeKind.Utc).AddTicks(7193),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "Desserts"
@@ -1020,7 +1022,7 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 5L,
-                            CreatedAt = new DateTime(2023, 8, 25, 16, 56, 45, 307, DateTimeKind.Utc).AddTicks(6415),
+                            CreatedAt = new DateTime(2023, 8, 24, 19, 8, 38, 636, DateTimeKind.Utc).AddTicks(7194),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "Drinks"
@@ -1028,7 +1030,7 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 6L,
-                            CreatedAt = new DateTime(2023, 8, 25, 16, 56, 45, 307, DateTimeKind.Utc).AddTicks(6415),
+                            CreatedAt = new DateTime(2023, 8, 24, 19, 8, 38, 636, DateTimeKind.Utc).AddTicks(7194),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "Kids Meal"
@@ -1036,7 +1038,7 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 7L,
-                            CreatedAt = new DateTime(2023, 8, 25, 16, 56, 45, 307, DateTimeKind.Utc).AddTicks(6416),
+                            CreatedAt = new DateTime(2023, 8, 24, 19, 8, 38, 636, DateTimeKind.Utc).AddTicks(7195),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "Pizza"
@@ -1044,7 +1046,7 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 8L,
-                            CreatedAt = new DateTime(2023, 8, 25, 16, 56, 45, 307, DateTimeKind.Utc).AddTicks(6417),
+                            CreatedAt = new DateTime(2023, 8, 24, 19, 8, 38, 636, DateTimeKind.Utc).AddTicks(7196),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "Spinner"
@@ -1052,7 +1054,7 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 9L,
-                            CreatedAt = new DateTime(2023, 8, 25, 16, 56, 45, 307, DateTimeKind.Utc).AddTicks(6418),
+                            CreatedAt = new DateTime(2023, 8, 24, 19, 8, 38, 636, DateTimeKind.Utc).AddTicks(7197),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "Salad & other"
@@ -1060,7 +1062,7 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 10L,
-                            CreatedAt = new DateTime(2023, 8, 25, 16, 56, 45, 307, DateTimeKind.Utc).AddTicks(6420),
+                            CreatedAt = new DateTime(2023, 8, 24, 19, 8, 38, 636, DateTimeKind.Utc).AddTicks(7197),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "Combo"
@@ -1073,46 +1075,46 @@ namespace FastFood.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long?>("CreatedBy")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("DeletedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long?>("DeletedBy")
                         .HasColumnType("bigint");
 
                     b.Property<string>("District")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<int>("Home")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                        .HasColumnType("boolean");
 
                     b.Property<double>("Latitude")
-                        .HasColumnType("float");
+                        .HasColumnType("double precision");
 
                     b.Property<double>("Longitude")
-                        .HasColumnType("float");
+                        .HasColumnType("double precision");
 
                     b.Property<string>("Street")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long?>("UpdatedBy")
                         .HasColumnType("bigint");
 
                     b.Property<string>("ZipCode")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -1125,52 +1127,52 @@ namespace FastFood.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long?>("CreatedBy")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("DeletedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long?>("DeletedBy")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<int>("Gender")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                        .HasColumnType("boolean");
 
                     b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Phone")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<long>("RoleId")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<long?>("UpdatedBy")
                         .HasColumnType("bigint");
 
                     b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -1182,14 +1184,14 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 1L,
-                            CreatedAt = new DateTime(2023, 8, 25, 16, 56, 42, 784, DateTimeKind.Utc).AddTicks(7342),
+                            CreatedAt = new DateTime(2023, 8, 24, 19, 8, 36, 206, DateTimeKind.Utc).AddTicks(9164),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "dotnetgo@icloud.com",
                             FirstName = "Mukhammadkarim",
                             Gender = 1,
                             IsDeleted = false,
                             LastName = "Tukhtaboyev",
-                            Password = "$2a$11$0B.Vdi05CXJsi0KUA9SOGuxJLv6WYLYkOuG2LiG8ORwJeikkwFHnK",
+                            Password = "$2a$11$eTKEoP05lqCWEreIcynYmOTKyYnqgjT6h74KvD6X0GGHmfy9yd1D6",
                             Phone = "+998 991239999",
                             RoleId = 2L,
                             UserName = "Mukhammadkarim"
@@ -1197,13 +1199,14 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 2L,
-                            CreatedAt = new DateTime(2023, 8, 25, 16, 56, 42, 979, DateTimeKind.Utc).AddTicks(1631),
+                            CreatedAt = new DateTime(2023, 8, 24, 19, 8, 36, 417, DateTimeKind.Utc).AddTicks(648),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "wonderboy1w3@gmail.com",
                             FirstName = "Jamshid",
                             Gender = 1,
                             IsDeleted = false,
-                            Password = "$2a$11$mH8uUJw0wOilsrazs2v9cOENHqS4Sj2X8ImEt61TdnGJTQjGkO5dO",
+                            LastName = "Ma'ruf",
+                            Password = "$2a$11$OpW1de70SnYfWXSpjtX2Ce3fOl6JxT6/BaoKghh3UZrHoI6.B5nQm",
                             Phone = "+998 991231999",
                             RoleId = 3L,
                             UserName = "Jamshid"
@@ -1211,14 +1214,14 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 3L,
-                            CreatedAt = new DateTime(2023, 8, 25, 16, 56, 43, 202, DateTimeKind.Utc).AddTicks(7246),
+                            CreatedAt = new DateTime(2023, 8, 24, 19, 8, 36, 653, DateTimeKind.Utc).AddTicks(7444),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "kabeersolutions@gmail.com",
                             FirstName = "Kabeer",
                             Gender = 1,
                             IsDeleted = false,
                             LastName = "Solutions",
-                            Password = "$2a$11$hgHRr5OpSGvTJbSPSTS1SOfWfFPW0kcNK644OWg4CWYxdnn/wJZVO",
+                            Password = "$2a$11$klymcqGfwe.SD..Ozr9tV.EiMRpDjxQ5/4nAVSeTCe0.8U1ectMNu",
                             Phone = "+998 991232999",
                             RoleId = 4L,
                             UserName = "Kabeer"
@@ -1226,14 +1229,14 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 4L,
-                            CreatedAt = new DateTime(2023, 8, 25, 16, 56, 43, 385, DateTimeKind.Utc).AddTicks(8800),
+                            CreatedAt = new DateTime(2023, 8, 24, 19, 8, 36, 971, DateTimeKind.Utc).AddTicks(2426),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "nurillaewmuzaffar@gmail.com",
                             FirstName = "Muzaffar",
                             Gender = 1,
                             IsDeleted = false,
                             LastName = "Nurillayev",
-                            Password = "$2a$11$Dtchc6CCFNx7U63nXFLnP.9Jr79khvfU.X8Rpqb4CNcckaa4V44z2",
+                            Password = "$2a$11$2JoyBoWOQ3/NJ7UwQY1LYeflFjNgNghCM74gahK3wjHLkTdS/INZO",
                             Phone = "+998 995030110",
                             RoleId = 5L,
                             UserName = "Muzaffar"
@@ -1241,14 +1244,14 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 5L,
-                            CreatedAt = new DateTime(2023, 8, 25, 16, 56, 43, 614, DateTimeKind.Utc).AddTicks(889),
+                            CreatedAt = new DateTime(2023, 8, 24, 19, 8, 37, 180, DateTimeKind.Utc).AddTicks(2937),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "azimochilov@icloud.com",
                             FirstName = "Azim",
                             Gender = 1,
                             IsDeleted = false,
                             LastName = "Ochilov",
-                            Password = "$2a$11$f9dBWn4bwVapTd5p9PiqM.JtY3cCF224NtonGN3aA2Uc3rGNFcDPS",
+                            Password = "$2a$11$Q1s1E1i2rmiwIfh14hueHOdxepNMbGqQJXfGAL.ZcwJnr9.0B.xai",
                             Phone = "+998 991233999",
                             RoleId = 1L,
                             UserName = "Azim"
@@ -1256,14 +1259,14 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 6L,
-                            CreatedAt = new DateTime(2023, 8, 25, 16, 56, 43, 934, DateTimeKind.Utc).AddTicks(9955),
+                            CreatedAt = new DateTime(2023, 8, 24, 19, 8, 37, 402, DateTimeKind.Utc).AddTicks(2842),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "abdulloh@icloud.com",
                             FirstName = "Abdulloh",
                             Gender = 1,
                             IsDeleted = false,
                             LastName = "Ahmadjonov",
-                            Password = "$2a$11$zG/jwREfQAQ89caAFSTLheOTu2cEO2TDzhLtVU7kK8Oy9QiuHNLPq",
+                            Password = "$2a$11$5UBh7ETPt8msyIYv5zTLu.jXZcs2kUGtYUC3S/Nkkau8pLXck7KTi",
                             Phone = "+998 991236999",
                             RoleId = 1L,
                             UserName = "Abdulloh"
@@ -1271,14 +1274,14 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 7L,
-                            CreatedAt = new DateTime(2023, 8, 25, 16, 56, 44, 127, DateTimeKind.Utc).AddTicks(6811),
+                            CreatedAt = new DateTime(2023, 8, 24, 19, 8, 37, 711, DateTimeKind.Utc).AddTicks(9152),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "komron2052@gmail.com",
                             FirstName = "Komron",
                             Gender = 1,
                             IsDeleted = false,
                             LastName = "Rahmonov",
-                            Password = "$2a$11$vbX4vTHgXf9XekS1mOgsX.XL7DQ1vmgMZAMuVhieB4gObY/ccEPUK",
+                            Password = "$2a$11$jEteZ9QB/11DZgFjs0N4/enID6iOWwdZaPMk8cOXHxju8qyYVKb5.",
                             Phone = "+998 991234999",
                             RoleId = 4L,
                             UserName = "Komron"
@@ -1286,14 +1289,14 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 8L,
-                            CreatedAt = new DateTime(2023, 8, 25, 16, 56, 44, 408, DateTimeKind.Utc).AddTicks(8959),
+                            CreatedAt = new DateTime(2023, 8, 24, 19, 8, 37, 962, DateTimeKind.Utc).AddTicks(8792),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "nozimjon@gmail.com",
                             FirstName = "Nozimjon",
                             Gender = 1,
                             IsDeleted = false,
                             LastName = "Usmonaliyev",
-                            Password = "$2a$11$OHSWfqjJHlL2gy86KMWJrOd6zve98r2Q0vMuIunzG5fL9HgxJRkZO",
+                            Password = "$2a$11$ltZ9QnzVr.CoZjfRbUzSzu23VDFJtC5XelrpmzRCsbuXRdEflyyNy",
                             Phone = "+998 991235999",
                             RoleId = 1L,
                             UserName = "Nozimjon"
@@ -1301,14 +1304,14 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 9L,
-                            CreatedAt = new DateTime(2023, 8, 25, 16, 56, 44, 687, DateTimeKind.Utc).AddTicks(9413),
+                            CreatedAt = new DateTime(2023, 8, 24, 19, 8, 38, 183, DateTimeKind.Utc).AddTicks(5699),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "aljavhar@gmail.com",
                             FirstName = "AlJavhar",
                             Gender = 1,
                             IsDeleted = false,
                             LastName = "Boyaliyev",
-                            Password = "$2a$11$pFYFurB3zbilg1YjbD.X4u.VGeRqq/rn0zB8dyrv5teMc23JIar/O",
+                            Password = "$2a$11$elgZ9KaNKpne0Od1xxivJutu6GKiotCG1DFr.kl2RJxqQbxmWJUqK",
                             Phone = "+998 902344545",
                             RoleId = 4L,
                             UserName = "AlJavhar"
@@ -1316,14 +1319,14 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 10L,
-                            CreatedAt = new DateTime(2023, 8, 25, 16, 56, 45, 0, DateTimeKind.Utc).AddTicks(1604),
+                            CreatedAt = new DateTime(2023, 8, 24, 19, 8, 38, 453, DateTimeKind.Utc).AddTicks(7644),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "muhammad@gmail.com",
                             FirstName = "Muhammad",
                             Gender = 1,
                             IsDeleted = false,
                             LastName = "Rahimboyev",
-                            Password = "$2a$11$tElJSx1Y1oOb0guSCVvCVeYUFJKGGbB9fgZ5opei4K7Ohag784INa",
+                            Password = "$2a$11$P2fU9IR8kV/FoCrn57SQSupZ5shhJxiIKUFWR6vP9H2YNNy7Pt5Eu",
                             Phone = "+998 937770202",
                             RoleId = 5L,
                             UserName = "Muhammad"
@@ -1331,14 +1334,14 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 11L,
-                            CreatedAt = new DateTime(2023, 8, 25, 16, 56, 45, 0, DateTimeKind.Utc).AddTicks(1626),
+                            CreatedAt = new DateTime(2023, 8, 24, 19, 8, 38, 453, DateTimeKind.Utc).AddTicks(7671),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "boqiyev482@gmail.com",
                             FirstName = "Bekmurod",
                             Gender = 1,
                             IsDeleted = false,
                             LastName = "Boqiyev",
-                            Password = "$2a$11$Hp6C0Ql1NSyzuOBTt6oAKuj36M6CpAK3rDsL6rNX1q7FKeYebaCJO",
+                            Password = "$2a$11$mF16NpurFlSs/SzgoIOp0u9o15syr95C/f9ir6fwW8ivA/84UCDL.",
                             Phone = "998 90 848 05 210",
                             RoleId = 2L,
                             UserName = "Bekmurodt"
