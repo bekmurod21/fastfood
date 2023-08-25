@@ -26,7 +26,7 @@ namespace FastFood.WebApi.Controllers.Users
             {
                 Code = 200,
                 Message = "Success",
-                Data = await authService.AuthenticateAsync(dto.Email, dto.Password)
+                Data = await authService.AuthenticateAsync(dto)
             });
         }
     }
