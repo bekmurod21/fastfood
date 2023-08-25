@@ -4,6 +4,7 @@ using FastFood.Data.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FastFood.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230825165645_Init")]
+    partial class Init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1203,6 +1205,7 @@ namespace FastFood.Data.Migrations
                             FirstName = "Jamshid",
                             Gender = 1,
                             IsDeleted = false,
+                            LastName = "Ma'ruf",
                             Password = "$2a$11$mH8uUJw0wOilsrazs2v9cOENHqS4Sj2X8ImEt61TdnGJTQjGkO5dO",
                             Phone = "+998 991231999",
                             RoleId = 3L,

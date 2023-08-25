@@ -24,10 +24,10 @@ public class AuthService : IAuthService
         this.roleService = roleService;
     }
 
-    public async Task<LoginForResultDto> AuthenticateAsync(string login, string password)
+    public async Task<LoginForResultDto> AuthenticateAsync(LoginForCreationDto dto)
     {
-        var user = await this.userService.RetrieveByLoginAsync(login);
-        if (user == null || !PasswordHelper.Verify(password, user.Password))
+        var user = await this.userService.RetrieveByLoginAsync(dto.Login);
+        if (user == null || !PasswordHelper.Verify(dto.Password, user.Password))
             throw new CustomException(400, "Email or password is incorrect");
 
         var role = await this.roleService.RetrieveByIdForAuthAsync(user.RoleId);

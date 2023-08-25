@@ -4,6 +4,6 @@ namespace FastFood.Service.Interfaces.Users
 {
     public interface IAuthService
     {
-        Task<LoginForResultDto> AuthenticateAsync(string login, string password);
+        Task<LoginForResultDto> AuthenticateAsync(LoginForCreationDto dto);
     }
 }
