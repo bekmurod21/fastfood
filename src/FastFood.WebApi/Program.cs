@@ -21,7 +21,7 @@ builder.Services.ConfigureSwagger();
 builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
+    options.UseNpgsql(builder.Configuration.GetConnectionString("PostgresConnection"),
     b => b.MigrationsAssembly("FastFood.Data")));
 
 builder.Services.AddCustomService();

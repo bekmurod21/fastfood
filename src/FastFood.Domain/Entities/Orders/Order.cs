@@ -15,11 +15,12 @@ namespace FastFood.Domain.Entities.Orders
         public long AddressId { get; set; }
         public Address Address { get; set; }
 
-        public long PaymentId { get; set; }
+        public long? PaymentId { get; set; }
         public Payment Payments { get; set; }
-
-        public decimal TotalAmount { get; set; }
-
+        public bool IsSaved { get; set; }
+       // public decimal TotalAmount { get; set; }
+        public PaymentStatus PaymentStatus { get; set; }
+        public PaymentType PaymentType { get; set; }
         public OrderStatus Status { get; set; }
         [JsonIgnore]
         public ICollection<OrderItem> OrderItems { get; set; }

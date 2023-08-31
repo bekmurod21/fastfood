@@ -43,11 +43,11 @@ namespace FastFood.Service.Mappers
             CreateMap<FeedbackForCreationDto, Feedback>().ReverseMap();
             CreateMap<FeedbackForUpdateDto, Feedback>().ReverseMap();
 
-            CreateMap<OrderItemForCreationDto, OrderItem>().ReverseMap();
+           // CreateMap<OrderItemForCreationDto, OrderItem>().ReverseMap();
             CreateMap<OrderItemForResultDto, OrderItem>().ReverseMap();
             CreateMap<OrderForCreationDto,Order>().ReverseMap();
             CreateMap<OrderForResultDto,Order>().ReverseMap();
-            CreateMap<OrderProductForCreationDto, OrderProduct>().ReverseMap();
+           // CreateMap<OrderProductForCreationDto, OrderProduct>().ReverseMap();
 
             CreateMap<PaymentForResultDto,Payment>().ReverseMap();
             CreateMap<PaymentForCreationDto,Payment>().ReverseMap();

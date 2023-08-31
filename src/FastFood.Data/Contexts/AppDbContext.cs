@@ -48,11 +48,11 @@ public class AppDbContext:DbContext
             .HasForeignKey(o => o.UserId)
             .OnDelete(DeleteBehavior.NoAction);
 
-        //modelBuilder.Entity<Order>()
-        //        .HasOne(o => o.Address)
-        //        .WithMany()
-        //        .HasForeignKey(o => o.AddressId)
-        //        .OnDelete(DeleteBehavior.NoAction);
+        modelBuilder.Entity<Order>()
+                .HasOne(o => o.Address)
+                .WithMany()
+                .HasForeignKey(o => o.AddressId)
+                .OnDelete(DeleteBehavior.NoAction);
 
         modelBuilder.Entity<Order>()
             .HasOne(o => o.Payments)

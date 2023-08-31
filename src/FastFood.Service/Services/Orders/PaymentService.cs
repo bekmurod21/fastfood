@@ -40,7 +40,7 @@ namespace FastFood.Service.Services.Orders
         public async ValueTask<PaymentForResultDto> AddAsync(PaymentForCreationDto model,
             AttachmentForCreationDto attachment)
         {
-            var user = await userService.RetrieveAsync(model.UserId);
+            var user = await userService.RetrieveAsync((long)HttpContextHelper.UserId);
             var order = await orderRepository.SelectAsync(order => order.Id == model.OrderId);
             var file = await this.attachmentService.UploadAsync(attachment);
 
