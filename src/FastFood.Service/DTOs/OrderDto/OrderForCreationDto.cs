@@ -5,7 +5,6 @@ namespace FastFood.Service.DTOs.OrderDto
 {
     public class OrderForCreationDto
     {
-        public long UserId { get; set; }
         public long AddressId { get; set; }
         public OrderStatus Status { get; set; }
     }

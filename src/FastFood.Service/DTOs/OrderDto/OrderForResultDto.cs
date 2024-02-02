@@ -17,8 +17,9 @@ namespace FastFood.Service.DTOs.OrderDto
         public UserForResultDto User { get; set; }
         public long AddressId { get; set; }
         public AddressForResultDto Address { get; set; }
+        public bool IsSaved { get; set; }
         public OrderStatus Status { get; set; }
-
-        public ICollection<OrderProductForCreationDto> OrderProducts { get; set; }
+        public PaymentStatus PaymentStatus { get; set; }
+        public ICollection<OrderItemForResultDto> OrderItems { get; set; }
     }
 }

@@ -45,10 +45,11 @@ public class OrderService : IOrderService
     {
         var address = await addressService.RetrieveAsync(dto.AddressId);
 
-        var cart = await this.cartRepository.SelectAsync(c => c.UserId == dto.UserId,
+        var cart = await this.cartRepository.SelectAsync(c => c.UserId == HttpContextHelper.UserId,
             new string[] { "Items.Product" });
         if (cart == null)
             throw new CustomException(404, "Cart not found");
+
         var cartItems = await this.cartItemRepository.SelectAllAsync(item => !item.IsDeleted && 
             item.CartId == cart.Id &&
             !item.IsOrdered,
@@ -73,9 +74,6 @@ public class OrderService : IOrderService
                 ProductId = cartItem.ProductId,
                 CreatedAt = cartItem.CreatedAt
             });
-            cartItem.IsOrdered = true;
-            order.TotalAmount += cartItem.Product.Price;
-
         }
 
         var insertedOrder = await orderRepository.InsertAsync(order);

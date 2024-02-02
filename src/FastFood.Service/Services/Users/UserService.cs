@@ -103,7 +103,7 @@ namespace FastFood.Service.Services.Users
         }
         public async ValueTask<UserForResultDto> RetrieveAsync(long id)
         {
-            var entity = await userRepository.SelectAsync(x => x.Id == id);
+            var entity = await userRepository.SelectAsync(x => x.Id == HttpContextHelper.UserId);
             if (entity is null||entity.IsDeleted)
                 throw new CustomException(404, "User not found");
 
