@@ -4,6 +4,7 @@ using FastFood.Domain.Configurations;
 using FastFood.Service.DTOs.ProductDto;
 using FastFood.Service.Interfaces.Products;
 using Microsoft.AspNetCore.Authorization;
+using FastFood.WebApi.Attributes;
 
 namespace FastFood.WebApi.Controllers.Products
 {
@@ -15,7 +16,7 @@ namespace FastFood.WebApi.Controllers.Products
         {
             this.service = service;
         }
-        [Authorize(Roles = "Admin")]
+        [Authorize(),CustomAuthorizeAttribute]
         [HttpPost]
         public async ValueTask<IActionResult> PostAsync(ProductForCreationDto dto)
         {

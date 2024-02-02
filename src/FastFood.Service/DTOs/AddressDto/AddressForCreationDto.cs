@@ -10,6 +10,7 @@ public class AddressForCreationDto
     public string Street { get; set; }
     [Required]
     public int Home { get; set; }
+    public long UserId { get; set; }
 
 
 }

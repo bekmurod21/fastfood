@@ -8,4 +8,7 @@ public class Address:Auditable
     public string District { get; set; }
     public string Street { get; set; }
     public int Home { get; set; }
+
+    public ICollection<Order> Orders { get; set; }
+
 }
