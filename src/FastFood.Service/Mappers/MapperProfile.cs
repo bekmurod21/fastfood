@@ -31,7 +31,7 @@ namespace FastFood.Service.Mappers
             CreateMap<PermissionForUpdateDto,Permission>().ReverseMap();
 
             CreateMap<RolePermissionForCreationDto, Permission>().ReverseMap();
-            CreateMap<RolePermissionForResultDto, Permission>().ReverseMap();
+            CreateMap<RolePermissionForResultDto, RolePermission>().ReverseMap();
             CreateMap<RolePermissionForUpdateDto, Permission>().ReverseMap();
 
             CreateMap<CartForResultDto,Cart>().ReverseMap();

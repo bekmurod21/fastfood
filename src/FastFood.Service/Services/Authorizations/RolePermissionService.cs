@@ -10,21 +10,20 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FastFood.Service.Services.Authorizations
 {
-    public class RolePermissionService : IRolePermissionService
+    public class RolePermissionService(IRepository<Role> roleRepository,
+                                       IRepository<Permission> permissionRepository,
+                                       IRepository<RolePermission> repository,
+                                       IMapper mapper) 
+        : IRolePermissionService
     {
-        private readonly IMapper mapper;
-        private readonly IRepository<RolePermission> repository;
-        public RolePermissionService(IMapper mapper, IRepository<RolePermission> repository)
-        {
-            this.mapper = mapper;
-            this.repository = repository;
-        }
+        private readonly IMapper mapper = mapper;
+        private readonly IRepository<RolePermission> repository = repository;
 
         public async Task<bool> CheckPermission(string role, string accessedMethod)
         {
 
             var permissions = await this.repository
-                .SelectAllAsync(p => p.Roles.Name.ToLower() == role.ToLower() && p.Permissions.IsDeleted == false && p.Roles.IsDeleted == false, new string[] { "Permisson" })
+                .SelectAllAsync(p => p.Roles.Name.ToLower() == role.ToLower() && p.IsDeleted== false, new string[] { "Permissions" })
                 .ToListAsync();
             foreach (var permission in permissions)
             {
@@ -37,11 +36,18 @@ namespace FastFood.Service.Services.Authorizations
 
         public async Task<RolePermissionForResultDto> CreateAsync(RolePermissionForCreationDto permission)
         {
-            var rolePermission = await this.repository.SelectAsync(rp => rp.RoleId == permission.RoleId && rp.PermissionId == permission.PermissonId && rp.IsDeleted == true);
-            if (rolePermission is not null)
-                throw new CustomException(409, "RolePermission is already exist");
-            var mappedPermission = this.mapper.Map<RolePermission>(rolePermission);
-            mappedPermission.CreatedAt = DateTime.UtcNow;
+            var role = await roleRepository.SelectAsync(role => role.Id == permission.RoleId && role.IsDeleted ==false);
+            if (role is null)
+                throw new CustomException(404, "Role is not found Exception");
+            var permision = await permissionRepository.SelectAsync(p => p.Id == permission.PermissonId && p.IsDeleted == false);
+            if (permision is null)
+                throw new CustomException(404, "Permission not found Exception");
+            var mappedPermission = new RolePermission()
+            {
+                RoleId = role.Id,
+                PermissionId = permision.Id,
+                CreatedAt = DateTime.UtcNow,
+            };
             return mapper.Map<RolePermissionForResultDto>(await this.repository.InsertAsync(mappedPermission));
         }
 
