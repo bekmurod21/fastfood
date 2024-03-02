@@ -4,10 +4,14 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace FastFood.Data.Migrations
 {
-    public partial class INit1 : Migration
+    /// <inheritdoc />
+    public partial class Init1 : Migration
     {
+        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
@@ -71,6 +75,26 @@ namespace FastFood.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Carts", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Companies",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: true),
+                    UpdatedBy = table.Column<long>(type: "bigint", nullable: true),
+                    DeletedBy = table.Column<long>(type: "bigint", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    DeletedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    CreatedBy = table.Column<long>(type: "bigint", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Companies", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -512,16 +536,16 @@ namespace FastFood.Data.Migrations
                 columns: new[] { "Id", "CreatedAt", "CreatedBy", "DeletedAt", "DeletedBy", "IsDeleted", "Name", "UpdatedAt", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1L, new DateTime(2024, 3, 2, 7, 46, 11, 729, DateTimeKind.Utc).AddTicks(2645), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "APPETIZERS", null, null },
-                    { 2L, new DateTime(2024, 3, 2, 7, 46, 11, 729, DateTimeKind.Utc).AddTicks(2651), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "Burgers", null, null },
-                    { 3L, new DateTime(2024, 3, 2, 7, 46, 11, 729, DateTimeKind.Utc).AddTicks(2652), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "Chicken", null, null },
-                    { 4L, new DateTime(2024, 3, 2, 7, 46, 11, 729, DateTimeKind.Utc).AddTicks(2653), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "Desserts", null, null },
-                    { 5L, new DateTime(2024, 3, 2, 7, 46, 11, 729, DateTimeKind.Utc).AddTicks(2654), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "Drinks", null, null },
-                    { 6L, new DateTime(2024, 3, 2, 7, 46, 11, 729, DateTimeKind.Utc).AddTicks(2655), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "Kids Meal", null, null },
-                    { 7L, new DateTime(2024, 3, 2, 7, 46, 11, 729, DateTimeKind.Utc).AddTicks(2656), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "Pizza", null, null },
-                    { 8L, new DateTime(2024, 3, 2, 7, 46, 11, 729, DateTimeKind.Utc).AddTicks(2657), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "Spinner", null, null },
-                    { 9L, new DateTime(2024, 3, 2, 7, 46, 11, 729, DateTimeKind.Utc).AddTicks(2658), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "Salad & other", null, null },
-                    { 10L, new DateTime(2024, 3, 2, 7, 46, 11, 729, DateTimeKind.Utc).AddTicks(2659), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "Combo", null, null }
+                    { 1L, new DateTime(2024, 3, 2, 9, 45, 23, 926, DateTimeKind.Utc).AddTicks(146), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "APPETIZERS", null, null },
+                    { 2L, new DateTime(2024, 3, 2, 9, 45, 23, 926, DateTimeKind.Utc).AddTicks(150), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "Burgers", null, null },
+                    { 3L, new DateTime(2024, 3, 2, 9, 45, 23, 926, DateTimeKind.Utc).AddTicks(151), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "Chicken", null, null },
+                    { 4L, new DateTime(2024, 3, 2, 9, 45, 23, 926, DateTimeKind.Utc).AddTicks(155), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "Desserts", null, null },
+                    { 5L, new DateTime(2024, 3, 2, 9, 45, 23, 926, DateTimeKind.Utc).AddTicks(156), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "Drinks", null, null },
+                    { 6L, new DateTime(2024, 3, 2, 9, 45, 23, 926, DateTimeKind.Utc).AddTicks(157), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "Kids Meal", null, null },
+                    { 7L, new DateTime(2024, 3, 2, 9, 45, 23, 926, DateTimeKind.Utc).AddTicks(158), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "Pizza", null, null },
+                    { 8L, new DateTime(2024, 3, 2, 9, 45, 23, 926, DateTimeKind.Utc).AddTicks(159), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "Spinner", null, null },
+                    { 9L, new DateTime(2024, 3, 2, 9, 45, 23, 926, DateTimeKind.Utc).AddTicks(160), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "Salad & other", null, null },
+                    { 10L, new DateTime(2024, 3, 2, 9, 45, 23, 926, DateTimeKind.Utc).AddTicks(161), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "Combo", null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -529,11 +553,11 @@ namespace FastFood.Data.Migrations
                 columns: new[] { "Id", "CreatedAt", "CreatedBy", "DeletedAt", "DeletedBy", "IsDeleted", "Name", "UpdatedAt", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1L, new DateTime(2024, 3, 2, 7, 46, 10, 449, DateTimeKind.Utc).AddTicks(5615), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "User", null, null },
-                    { 2L, new DateTime(2024, 3, 2, 7, 46, 10, 449, DateTimeKind.Utc).AddTicks(5619), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "Admin", null, null },
-                    { 3L, new DateTime(2024, 3, 2, 7, 46, 10, 449, DateTimeKind.Utc).AddTicks(5621), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "Driver", null, null },
-                    { 4L, new DateTime(2024, 3, 2, 7, 46, 10, 449, DateTimeKind.Utc).AddTicks(5622), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "Picker", null, null },
-                    { 5L, new DateTime(2024, 3, 2, 7, 46, 10, 449, DateTimeKind.Utc).AddTicks(5623), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "Packer", null, null }
+                    { 1L, new DateTime(2024, 3, 2, 9, 45, 22, 569, DateTimeKind.Utc).AddTicks(881), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "User", null, null },
+                    { 2L, new DateTime(2024, 3, 2, 9, 45, 22, 569, DateTimeKind.Utc).AddTicks(885), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "Admin", null, null },
+                    { 3L, new DateTime(2024, 3, 2, 9, 45, 22, 569, DateTimeKind.Utc).AddTicks(887), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "Driver", null, null },
+                    { 4L, new DateTime(2024, 3, 2, 9, 45, 22, 569, DateTimeKind.Utc).AddTicks(889), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "Picker", null, null },
+                    { 5L, new DateTime(2024, 3, 2, 9, 45, 22, 569, DateTimeKind.Utc).AddTicks(890), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, "Packer", null, null }
                 });
 
             migrationBuilder.InsertData(
@@ -541,19 +565,19 @@ namespace FastFood.Data.Migrations
                 columns: new[] { "Id", "CategoryId", "CreatedAt", "CreatedBy", "DeletedAt", "DeletedBy", "Description", "IsDeleted", "Name", "Price", "UpdatedAt", "UpdatedBy", "Weight" },
                 values: new object[,]
                 {
-                    { 1L, 2L, new DateTime(2024, 3, 2, 7, 46, 11, 729, DateTimeKind.Utc).AddTicks(2823), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Best Food", false, "Beef Longer", 26000m, null, null, 180.0 },
-                    { 2L, 2L, new DateTime(2024, 3, 2, 7, 46, 11, 729, DateTimeKind.Utc).AddTicks(2825), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Bigger burger", false, "Bigger", 25000m, null, null, 200.0 },
-                    { 3L, 2L, new DateTime(2024, 3, 2, 7, 46, 11, 729, DateTimeKind.Utc).AddTicks(2827), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Cheese burger", false, "CHEESE BURGER", 29000m, null, null, 190.0 },
-                    { 4L, 2L, new DateTime(2024, 3, 2, 7, 46, 11, 729, DateTimeKind.Utc).AddTicks(2830), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "CHICKY BURGER", false, "CHICKY BURGER", 18000m, null, null, 150.0 },
-                    { 5L, 2L, new DateTime(2024, 3, 2, 7, 46, 11, 729, DateTimeKind.Utc).AddTicks(2866), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "chicky burger,cola,soup,free", false, "CHICKY BURGER SET", 36000m, null, null, 300.0 },
-                    { 6L, 2L, new DateTime(2024, 3, 2, 7, 46, 11, 729, DateTimeKind.Utc).AddTicks(2867), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "long burger", false, "CHILI LONGER", 26000m, null, null, 190.0 },
-                    { 7L, 2L, new DateTime(2024, 3, 2, 7, 46, 11, 729, DateTimeKind.Utc).AddTicks(2869), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Simple burger", false, "CLASSIC", 19000m, null, null, 180.0 },
-                    { 8L, 2L, new DateTime(2024, 3, 2, 7, 46, 11, 729, DateTimeKind.Utc).AddTicks(2871), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "double burger", false, "DOUBLE CHEESE BURGER", 44000m, null, null, 360.0 },
-                    { 9L, 2L, new DateTime(2024, 3, 2, 7, 46, 11, 729, DateTimeKind.Utc).AddTicks(2872), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "HAMBURGER", false, "HAMBURGER", 26000m, null, null, 190.0 },
-                    { 10L, 2L, new DateTime(2024, 3, 2, 7, 46, 11, 729, DateTimeKind.Utc).AddTicks(4523), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "short burger", false, "JUNIOR BURGER", 18000m, null, null, 150.0 },
-                    { 11L, 2L, new DateTime(2024, 3, 2, 7, 46, 11, 729, DateTimeKind.Utc).AddTicks(4529), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "junior burger,cola,KFC,free", false, "JUNIOR BURGER SET", 33000m, null, null, 300.0 },
-                    { 12L, 2L, new DateTime(2024, 3, 2, 7, 46, 11, 729, DateTimeKind.Utc).AddTicks(4531), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "long burger", false, "Longer", 22000m, null, null, 220.0 },
-                    { 13L, 2L, new DateTime(2024, 3, 2, 7, 46, 11, 729, DateTimeKind.Utc).AddTicks(4533), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "tasty burger", false, "ROAST BURGER", 27000m, null, null, 200.0 }
+                    { 1L, 2L, new DateTime(2024, 3, 2, 9, 45, 23, 926, DateTimeKind.Utc).AddTicks(2537), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Best Food", false, "Beef Longer", 26000m, null, null, 180.0 },
+                    { 2L, 2L, new DateTime(2024, 3, 2, 9, 45, 23, 926, DateTimeKind.Utc).AddTicks(2540), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Bigger burger", false, "Bigger", 25000m, null, null, 200.0 },
+                    { 3L, 2L, new DateTime(2024, 3, 2, 9, 45, 23, 926, DateTimeKind.Utc).AddTicks(2541), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Cheese burger", false, "CHEESE BURGER", 29000m, null, null, 190.0 },
+                    { 4L, 2L, new DateTime(2024, 3, 2, 9, 45, 23, 926, DateTimeKind.Utc).AddTicks(2543), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "CHICKY BURGER", false, "CHICKY BURGER", 18000m, null, null, 150.0 },
+                    { 5L, 2L, new DateTime(2024, 3, 2, 9, 45, 23, 926, DateTimeKind.Utc).AddTicks(2544), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "chicky burger,cola,soup,free", false, "CHICKY BURGER SET", 36000m, null, null, 300.0 },
+                    { 6L, 2L, new DateTime(2024, 3, 2, 9, 45, 23, 926, DateTimeKind.Utc).AddTicks(2546), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "long burger", false, "CHILI LONGER", 26000m, null, null, 190.0 },
+                    { 7L, 2L, new DateTime(2024, 3, 2, 9, 45, 23, 926, DateTimeKind.Utc).AddTicks(2548), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Simple burger", false, "CLASSIC", 19000m, null, null, 180.0 },
+                    { 8L, 2L, new DateTime(2024, 3, 2, 9, 45, 23, 926, DateTimeKind.Utc).AddTicks(2549), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "double burger", false, "DOUBLE CHEESE BURGER", 44000m, null, null, 360.0 },
+                    { 9L, 2L, new DateTime(2024, 3, 2, 9, 45, 23, 926, DateTimeKind.Utc).AddTicks(2551), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "HAMBURGER", false, "HAMBURGER", 26000m, null, null, 190.0 },
+                    { 10L, 2L, new DateTime(2024, 3, 2, 9, 45, 23, 926, DateTimeKind.Utc).AddTicks(2558), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "short burger", false, "JUNIOR BURGER", 18000m, null, null, 150.0 },
+                    { 11L, 2L, new DateTime(2024, 3, 2, 9, 45, 23, 926, DateTimeKind.Utc).AddTicks(2560), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "junior burger,cola,KFC,free", false, "JUNIOR BURGER SET", 33000m, null, null, 300.0 },
+                    { 12L, 2L, new DateTime(2024, 3, 2, 9, 45, 23, 926, DateTimeKind.Utc).AddTicks(2561), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "long burger", false, "Longer", 22000m, null, null, 220.0 },
+                    { 13L, 2L, new DateTime(2024, 3, 2, 9, 45, 23, 926, DateTimeKind.Utc).AddTicks(2563), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "tasty burger", false, "ROAST BURGER", 27000m, null, null, 200.0 }
                 });
 
             migrationBuilder.InsertData(
@@ -561,17 +585,17 @@ namespace FastFood.Data.Migrations
                 columns: new[] { "Id", "CreatedAt", "CreatedBy", "DeletedAt", "DeletedBy", "Email", "FirstName", "Gender", "IsDeleted", "LastName", "Password", "Phone", "RoleId", "UpdatedAt", "UpdatedBy", "UserName" },
                 values: new object[,]
                 {
-                    { 1L, new DateTime(2024, 3, 2, 7, 46, 10, 567, DateTimeKind.Utc).AddTicks(8217), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "dotnetgo@icloud.com", "Mukhammadkarim", 1, false, "Tukhtaboyev", "$2a$11$190O79.KA88uH00.vbnXce.s.pwlqjznQepBORRq7ESEH7KwItw9q", "+998 991239999", 2L, null, null, "Mukhammadkarim" },
-                    { 2L, new DateTime(2024, 3, 2, 7, 46, 10, 687, DateTimeKind.Utc).AddTicks(7665), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "wonderboy1w3@gmail.com", "Jamshid", 1, false, "Ma'ruf", "$2a$11$V..B13J9JojVbyqIPTL.t.Y6UtDWmaY7mo9wadGY/vWZ3c/b7vuUW", "+998 991231999", 3L, null, null, "Jamshid" },
-                    { 3L, new DateTime(2024, 3, 2, 7, 46, 10, 804, DateTimeKind.Utc).AddTicks(9854), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "kabeersolutions@gmail.com", "Kabeer", 1, false, "Solutions", "$2a$11$icv.Wep6ZN9kGsFgSo3wh.36kaknrleLQcHiEIrVvQ8Tbv2M1gC8K", "+998 991232999", 4L, null, null, "Kabeer" },
-                    { 4L, new DateTime(2024, 3, 2, 7, 46, 10, 920, DateTimeKind.Utc).AddTicks(3571), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "nurillaewmuzaffar@gmail.com", "Muzaffar", 1, false, "Nurillayev", "$2a$11$kIe1ypwgXLbrdCZ4sKsujuYDy7yg5DVGpcYol8EDBF6CpJMHiPxTq", "+998 995030110", 5L, null, null, "Muzaffar" },
-                    { 5L, new DateTime(2024, 3, 2, 7, 46, 11, 37, DateTimeKind.Utc).AddTicks(581), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "azimochilov@icloud.com", "Azim", 1, false, "Ochilov", "$2a$11$M/pS4cjr/eNWVS9JMTIgXOmJILrE/bS3OPh3QThFr0so3secH3TzS", "+998 991233999", 1L, null, null, "Azim" },
-                    { 6L, new DateTime(2024, 3, 2, 7, 46, 11, 152, DateTimeKind.Utc).AddTicks(1293), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "abdulloh@icloud.com", "Abdulloh", 1, false, "Ahmadjonov", "$2a$11$w3EtvQC3jFkFJEdZXjE6feDCIwWtyoYKCT2qbycYfDFoIWFpRxJb.", "+998 991236999", 1L, null, null, "Abdulloh" },
-                    { 7L, new DateTime(2024, 3, 2, 7, 46, 11, 269, DateTimeKind.Utc).AddTicks(361), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "komron2052@gmail.com", "Komron", 1, false, "Rahmonov", "$2a$11$1vN9xsQbUgTX1AWfyF1GjeBI1LA8v0zmfMFy.LyALceAKJZGnGEZq", "+998 991234999", 4L, null, null, "Komron" },
-                    { 8L, new DateTime(2024, 3, 2, 7, 46, 11, 384, DateTimeKind.Utc).AddTicks(1721), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "nozimjon@gmail.com", "Nozimjon", 1, false, "Usmonaliyev", "$2a$11$mby0o2ecOCH7H3lQ222PreNlRjF6aN2vTTJGnYAF4KpMnZkpZJgzq", "+998 991235999", 1L, null, null, "Nozimjon" },
-                    { 9L, new DateTime(2024, 3, 2, 7, 46, 11, 499, DateTimeKind.Utc).AddTicks(3890), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "aljavhar@gmail.com", "AlJavhar", 1, false, "Boyaliyev", "$2a$11$E/J3Wa.vU2yV2LRg58ltvO5agPetQ2mqe./1MIwItml7wLIqEuWae", "+998 902344545", 4L, null, null, "AlJavhar" },
-                    { 10L, new DateTime(2024, 3, 2, 7, 46, 11, 614, DateTimeKind.Utc).AddTicks(4160), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "muhammad@gmail.com", "Muhammad", 1, false, "Rahimboyev", "$2a$11$.NszMAqe6ZLGMwv86NRXtuZGU1UusBTcbkB7mqwYYiFQfFE.sM5ye", "+998 937770202", 5L, null, null, "Muhammad" },
-                    { 11L, new DateTime(2024, 3, 2, 7, 46, 11, 614, DateTimeKind.Utc).AddTicks(4179), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "boqiyev482@gmail.com", "Bekmurod", 1, false, "Boqiyev", "$2a$11$rbEp/LKO5vhp8db3RmoJ9Ot9h8FriGSIIoGmECqi58OaM/vPUd.hq", "998 90 848 05 210", 2L, null, null, "Bekmurodt" }
+                    { 1L, new DateTime(2024, 3, 2, 9, 45, 22, 686, DateTimeKind.Utc).AddTicks(8487), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "dotnetgo@icloud.com", "Mukhammadkarim", 1, false, "Tukhtaboyev", "$2a$11$E/TqPZRJTtMrIQluxmlZSezbEnZEdbWwHuSIBq3eNkeGJXvE/ZNZS", "+998 991239999", 2L, null, null, "Mukhammadkarim" },
+                    { 2L, new DateTime(2024, 3, 2, 9, 45, 22, 807, DateTimeKind.Utc).AddTicks(1912), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "wonderboy1w3@gmail.com", "Jamshid", 1, false, "Ma'ruf", "$2a$11$en4g9WwrGQriLCWqqrc46ufexO288ev9UXy/JkICGY/UzDHSlDwyK", "+998 991231999", 3L, null, null, "Jamshid" },
+                    { 3L, new DateTime(2024, 3, 2, 9, 45, 22, 966, DateTimeKind.Utc).AddTicks(5098), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "kabeersolutions@gmail.com", "Kabeer", 1, false, "Solutions", "$2a$11$UtmkSo43Id1wqqtggALMCeRIdHVc97OPIhed/fdbQxYW/2SORPYQa", "+998 991232999", 4L, null, null, "Kabeer" },
+                    { 4L, new DateTime(2024, 3, 2, 9, 45, 23, 85, DateTimeKind.Utc).AddTicks(3612), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "nurillaewmuzaffar@gmail.com", "Muzaffar", 1, false, "Nurillayev", "$2a$11$ZKdWnFVpuUymBs1f5IbtfeCgGwazCmDDiYhzKtfXKfM1jlEMhQb5q", "+998 995030110", 5L, null, null, "Muzaffar" },
+                    { 5L, new DateTime(2024, 3, 2, 9, 45, 23, 206, DateTimeKind.Utc).AddTicks(1443), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "azimochilov@icloud.com", "Azim", 1, false, "Ochilov", "$2a$11$GcD/FgmBTnaICY82/srkSOC.FsXRt5CGNCSgmrXfetp7PScfoyz4C", "+998 991233999", 1L, null, null, "Azim" },
+                    { 6L, new DateTime(2024, 3, 2, 9, 45, 23, 325, DateTimeKind.Utc).AddTicks(3184), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "abdulloh@icloud.com", "Abdulloh", 1, false, "Ahmadjonov", "$2a$11$5vmng0oHV90Im.LLe7afz.YjqtS44kd5wGpkYHYJdR7fEzXNGXfRG", "+998 991236999", 1L, null, null, "Abdulloh" },
+                    { 7L, new DateTime(2024, 3, 2, 9, 45, 23, 446, DateTimeKind.Utc).AddTicks(6576), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "komron2052@gmail.com", "Komron", 1, false, "Rahmonov", "$2a$11$5Ngjkm91qADmlkJFWp/h5Og6iUsHLQotXRN7huYTaGaM9Rlyp8BVS", "+998 991234999", 4L, null, null, "Komron" },
+                    { 8L, new DateTime(2024, 3, 2, 9, 45, 23, 569, DateTimeKind.Utc).AddTicks(286), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "nozimjon@gmail.com", "Nozimjon", 1, false, "Usmonaliyev", "$2a$11$4Y5IJ5Bu9P1eBa4lETmBi.7ggyx3iC5rdC/y.oYUsWayG6mM11hva", "+998 991235999", 1L, null, null, "Nozimjon" },
+                    { 9L, new DateTime(2024, 3, 2, 9, 45, 23, 689, DateTimeKind.Utc).AddTicks(1234), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "aljavhar@gmail.com", "AlJavhar", 1, false, "Boyaliyev", "$2a$11$vCrAfHsFutYu/gqbQzxZSu2jzjSRiws9S0q41dO0h5PDmnNG7fLyG", "+998 902344545", 4L, null, null, "AlJavhar" },
+                    { 10L, new DateTime(2024, 3, 2, 9, 45, 23, 805, DateTimeKind.Utc).AddTicks(1928), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "muhammad@gmail.com", "Muhammad", 1, false, "Rahimboyev", "$2a$11$guDFpJ1DeifPOFq3tD..r.bc2yDrmUP/4uO6ANa5mdOSrWyPHZhye", "+998 937770202", 5L, null, null, "Muhammad" },
+                    { 11L, new DateTime(2024, 3, 2, 9, 45, 23, 805, DateTimeKind.Utc).AddTicks(1947), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "boqiyev482@gmail.com", "Bekmurod", 1, false, "Boqiyev", "$2a$11$NnVNS1R9l957yONRKzOQNecFnZBGnEVd2fl7AhCyOqHj8oPF9c5WS", "998 90 848 05 210", 2L, null, null, "Bekmurodt" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -666,10 +690,14 @@ namespace FastFood.Data.Migrations
                 column: "RoleId");
         }
 
+        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
                 name: "CartItems");
+
+            migrationBuilder.DropTable(
+                name: "Companies");
 
             migrationBuilder.DropTable(
                 name: "FeedbackAttachments");

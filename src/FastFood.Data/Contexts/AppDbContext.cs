@@ -8,6 +8,7 @@ using FastFood.Domain.Entities.Products;
 using FastFood.Domain.Entities.Attachments;
 using FastFood.Domain.Entities.Authorizations;
 using FastFood.Domain.Entities.Orders.Feedbacks;
+using FastFood.Domain.Entities.Companies;
 
 namespace FastFood.Data.Contexts;
 public class AppDbContext:DbContext
@@ -32,6 +33,7 @@ public class AppDbContext:DbContext
     public virtual DbSet<OrderProduct> OrderProducts { get; set; }
     public virtual DbSet<RolePermission> RolePermissions { get; set; }
     public virtual DbSet<FeedbackAttachment> FeedbackAttachments { get; set; }
+    public virtual DbSet<Company> Companies { get; set; }
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

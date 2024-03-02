@@ -3,6 +3,7 @@ using System;
 using FastFood.Data.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FastFood.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240302094524_Init1")]
+    partial class Init1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -139,7 +142,7 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 1L,
-                            CreatedAt = new DateTime(2024, 3, 2, 9, 48, 27, 401, DateTimeKind.Utc).AddTicks(2506),
+                            CreatedAt = new DateTime(2024, 3, 2, 9, 45, 22, 569, DateTimeKind.Utc).AddTicks(881),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "User"
@@ -147,7 +150,7 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 2L,
-                            CreatedAt = new DateTime(2024, 3, 2, 9, 48, 27, 401, DateTimeKind.Utc).AddTicks(2511),
+                            CreatedAt = new DateTime(2024, 3, 2, 9, 45, 22, 569, DateTimeKind.Utc).AddTicks(885),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "Admin"
@@ -155,7 +158,7 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 3L,
-                            CreatedAt = new DateTime(2024, 3, 2, 9, 48, 27, 401, DateTimeKind.Utc).AddTicks(2513),
+                            CreatedAt = new DateTime(2024, 3, 2, 9, 45, 22, 569, DateTimeKind.Utc).AddTicks(887),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "Driver"
@@ -163,7 +166,7 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 4L,
-                            CreatedAt = new DateTime(2024, 3, 2, 9, 48, 27, 401, DateTimeKind.Utc).AddTicks(2514),
+                            CreatedAt = new DateTime(2024, 3, 2, 9, 45, 22, 569, DateTimeKind.Utc).AddTicks(889),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "Picker"
@@ -171,7 +174,7 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 5L,
-                            CreatedAt = new DateTime(2024, 3, 2, 9, 48, 27, 401, DateTimeKind.Utc).AddTicks(2516),
+                            CreatedAt = new DateTime(2024, 3, 2, 9, 45, 22, 569, DateTimeKind.Utc).AddTicks(890),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "Packer"
@@ -841,7 +844,7 @@ namespace FastFood.Data.Migrations
                         {
                             Id = 1L,
                             CategoryId = 2L,
-                            CreatedAt = new DateTime(2024, 3, 2, 9, 48, 28, 703, DateTimeKind.Utc).AddTicks(6889),
+                            CreatedAt = new DateTime(2024, 3, 2, 9, 45, 23, 926, DateTimeKind.Utc).AddTicks(2537),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Best Food",
                             IsDeleted = false,
@@ -853,7 +856,7 @@ namespace FastFood.Data.Migrations
                         {
                             Id = 2L,
                             CategoryId = 2L,
-                            CreatedAt = new DateTime(2024, 3, 2, 9, 48, 28, 703, DateTimeKind.Utc).AddTicks(6891),
+                            CreatedAt = new DateTime(2024, 3, 2, 9, 45, 23, 926, DateTimeKind.Utc).AddTicks(2540),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Bigger burger",
                             IsDeleted = false,
@@ -865,7 +868,7 @@ namespace FastFood.Data.Migrations
                         {
                             Id = 3L,
                             CategoryId = 2L,
-                            CreatedAt = new DateTime(2024, 3, 2, 9, 48, 28, 703, DateTimeKind.Utc).AddTicks(6893),
+                            CreatedAt = new DateTime(2024, 3, 2, 9, 45, 23, 926, DateTimeKind.Utc).AddTicks(2541),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Cheese burger",
                             IsDeleted = false,
@@ -877,7 +880,7 @@ namespace FastFood.Data.Migrations
                         {
                             Id = 4L,
                             CategoryId = 2L,
-                            CreatedAt = new DateTime(2024, 3, 2, 9, 48, 28, 703, DateTimeKind.Utc).AddTicks(6894),
+                            CreatedAt = new DateTime(2024, 3, 2, 9, 45, 23, 926, DateTimeKind.Utc).AddTicks(2543),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "CHICKY BURGER",
                             IsDeleted = false,
@@ -889,7 +892,7 @@ namespace FastFood.Data.Migrations
                         {
                             Id = 5L,
                             CategoryId = 2L,
-                            CreatedAt = new DateTime(2024, 3, 2, 9, 48, 28, 703, DateTimeKind.Utc).AddTicks(6896),
+                            CreatedAt = new DateTime(2024, 3, 2, 9, 45, 23, 926, DateTimeKind.Utc).AddTicks(2544),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "chicky burger,cola,soup,free",
                             IsDeleted = false,
@@ -901,7 +904,7 @@ namespace FastFood.Data.Migrations
                         {
                             Id = 6L,
                             CategoryId = 2L,
-                            CreatedAt = new DateTime(2024, 3, 2, 9, 48, 28, 703, DateTimeKind.Utc).AddTicks(6898),
+                            CreatedAt = new DateTime(2024, 3, 2, 9, 45, 23, 926, DateTimeKind.Utc).AddTicks(2546),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "long burger",
                             IsDeleted = false,
@@ -913,7 +916,7 @@ namespace FastFood.Data.Migrations
                         {
                             Id = 7L,
                             CategoryId = 2L,
-                            CreatedAt = new DateTime(2024, 3, 2, 9, 48, 28, 703, DateTimeKind.Utc).AddTicks(6900),
+                            CreatedAt = new DateTime(2024, 3, 2, 9, 45, 23, 926, DateTimeKind.Utc).AddTicks(2548),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Simple burger",
                             IsDeleted = false,
@@ -925,7 +928,7 @@ namespace FastFood.Data.Migrations
                         {
                             Id = 8L,
                             CategoryId = 2L,
-                            CreatedAt = new DateTime(2024, 3, 2, 9, 48, 28, 703, DateTimeKind.Utc).AddTicks(6901),
+                            CreatedAt = new DateTime(2024, 3, 2, 9, 45, 23, 926, DateTimeKind.Utc).AddTicks(2549),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "double burger",
                             IsDeleted = false,
@@ -937,7 +940,7 @@ namespace FastFood.Data.Migrations
                         {
                             Id = 9L,
                             CategoryId = 2L,
-                            CreatedAt = new DateTime(2024, 3, 2, 9, 48, 28, 703, DateTimeKind.Utc).AddTicks(6903),
+                            CreatedAt = new DateTime(2024, 3, 2, 9, 45, 23, 926, DateTimeKind.Utc).AddTicks(2551),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "HAMBURGER",
                             IsDeleted = false,
@@ -949,7 +952,7 @@ namespace FastFood.Data.Migrations
                         {
                             Id = 10L,
                             CategoryId = 2L,
-                            CreatedAt = new DateTime(2024, 3, 2, 9, 48, 28, 703, DateTimeKind.Utc).AddTicks(6913),
+                            CreatedAt = new DateTime(2024, 3, 2, 9, 45, 23, 926, DateTimeKind.Utc).AddTicks(2558),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "short burger",
                             IsDeleted = false,
@@ -961,7 +964,7 @@ namespace FastFood.Data.Migrations
                         {
                             Id = 11L,
                             CategoryId = 2L,
-                            CreatedAt = new DateTime(2024, 3, 2, 9, 48, 28, 703, DateTimeKind.Utc).AddTicks(6914),
+                            CreatedAt = new DateTime(2024, 3, 2, 9, 45, 23, 926, DateTimeKind.Utc).AddTicks(2560),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "junior burger,cola,KFC,free",
                             IsDeleted = false,
@@ -973,7 +976,7 @@ namespace FastFood.Data.Migrations
                         {
                             Id = 12L,
                             CategoryId = 2L,
-                            CreatedAt = new DateTime(2024, 3, 2, 9, 48, 28, 703, DateTimeKind.Utc).AddTicks(6916),
+                            CreatedAt = new DateTime(2024, 3, 2, 9, 45, 23, 926, DateTimeKind.Utc).AddTicks(2561),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "long burger",
                             IsDeleted = false,
@@ -985,7 +988,7 @@ namespace FastFood.Data.Migrations
                         {
                             Id = 13L,
                             CategoryId = 2L,
-                            CreatedAt = new DateTime(2024, 3, 2, 9, 48, 28, 703, DateTimeKind.Utc).AddTicks(6917),
+                            CreatedAt = new DateTime(2024, 3, 2, 9, 45, 23, 926, DateTimeKind.Utc).AddTicks(2563),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "tasty burger",
                             IsDeleted = false,
@@ -1036,7 +1039,7 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 1L,
-                            CreatedAt = new DateTime(2024, 3, 2, 9, 48, 28, 703, DateTimeKind.Utc).AddTicks(6665),
+                            CreatedAt = new DateTime(2024, 3, 2, 9, 45, 23, 926, DateTimeKind.Utc).AddTicks(146),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "APPETIZERS"
@@ -1044,7 +1047,7 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 2L,
-                            CreatedAt = new DateTime(2024, 3, 2, 9, 48, 28, 703, DateTimeKind.Utc).AddTicks(6671),
+                            CreatedAt = new DateTime(2024, 3, 2, 9, 45, 23, 926, DateTimeKind.Utc).AddTicks(150),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "Burgers"
@@ -1052,7 +1055,7 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 3L,
-                            CreatedAt = new DateTime(2024, 3, 2, 9, 48, 28, 703, DateTimeKind.Utc).AddTicks(6673),
+                            CreatedAt = new DateTime(2024, 3, 2, 9, 45, 23, 926, DateTimeKind.Utc).AddTicks(151),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "Chicken"
@@ -1060,7 +1063,7 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 4L,
-                            CreatedAt = new DateTime(2024, 3, 2, 9, 48, 28, 703, DateTimeKind.Utc).AddTicks(6674),
+                            CreatedAt = new DateTime(2024, 3, 2, 9, 45, 23, 926, DateTimeKind.Utc).AddTicks(155),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "Desserts"
@@ -1068,7 +1071,7 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 5L,
-                            CreatedAt = new DateTime(2024, 3, 2, 9, 48, 28, 703, DateTimeKind.Utc).AddTicks(6675),
+                            CreatedAt = new DateTime(2024, 3, 2, 9, 45, 23, 926, DateTimeKind.Utc).AddTicks(156),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "Drinks"
@@ -1076,7 +1079,7 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 6L,
-                            CreatedAt = new DateTime(2024, 3, 2, 9, 48, 28, 703, DateTimeKind.Utc).AddTicks(6676),
+                            CreatedAt = new DateTime(2024, 3, 2, 9, 45, 23, 926, DateTimeKind.Utc).AddTicks(157),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "Kids Meal"
@@ -1084,7 +1087,7 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 7L,
-                            CreatedAt = new DateTime(2024, 3, 2, 9, 48, 28, 703, DateTimeKind.Utc).AddTicks(6677),
+                            CreatedAt = new DateTime(2024, 3, 2, 9, 45, 23, 926, DateTimeKind.Utc).AddTicks(158),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "Pizza"
@@ -1092,7 +1095,7 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 8L,
-                            CreatedAt = new DateTime(2024, 3, 2, 9, 48, 28, 703, DateTimeKind.Utc).AddTicks(6679),
+                            CreatedAt = new DateTime(2024, 3, 2, 9, 45, 23, 926, DateTimeKind.Utc).AddTicks(159),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "Spinner"
@@ -1100,7 +1103,7 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 9L,
-                            CreatedAt = new DateTime(2024, 3, 2, 9, 48, 28, 703, DateTimeKind.Utc).AddTicks(6680),
+                            CreatedAt = new DateTime(2024, 3, 2, 9, 45, 23, 926, DateTimeKind.Utc).AddTicks(160),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "Salad & other"
@@ -1108,7 +1111,7 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 10L,
-                            CreatedAt = new DateTime(2024, 3, 2, 9, 48, 28, 703, DateTimeKind.Utc).AddTicks(6682),
+                            CreatedAt = new DateTime(2024, 3, 2, 9, 45, 23, 926, DateTimeKind.Utc).AddTicks(161),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "Combo"
@@ -1221,14 +1224,14 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 1L,
-                            CreatedAt = new DateTime(2024, 3, 2, 9, 48, 27, 517, DateTimeKind.Utc).AddTicks(1890),
+                            CreatedAt = new DateTime(2024, 3, 2, 9, 45, 22, 686, DateTimeKind.Utc).AddTicks(8487),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "dotnetgo@icloud.com",
                             FirstName = "Mukhammadkarim",
                             Gender = 1,
                             IsDeleted = false,
                             LastName = "Tukhtaboyev",
-                            Password = "$2a$11$u1oLKdIo.h5c.q/2CfTBr.puK.HVqetEuVCfHpuE4lMzKT97wdwLe",
+                            Password = "$2a$11$E/TqPZRJTtMrIQluxmlZSezbEnZEdbWwHuSIBq3eNkeGJXvE/ZNZS",
                             Phone = "+998 991239999",
                             RoleId = 2L,
                             UserName = "Mukhammadkarim"
@@ -1236,14 +1239,14 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 2L,
-                            CreatedAt = new DateTime(2024, 3, 2, 9, 48, 27, 637, DateTimeKind.Utc).AddTicks(7858),
+                            CreatedAt = new DateTime(2024, 3, 2, 9, 45, 22, 807, DateTimeKind.Utc).AddTicks(1912),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "wonderboy1w3@gmail.com",
                             FirstName = "Jamshid",
                             Gender = 1,
                             IsDeleted = false,
                             LastName = "Ma'ruf",
-                            Password = "$2a$11$I7bGAmb1cqOPwik9nB/NJeu/lPhzj1dHQz6jzCtxXcbkpvgPfUBVe",
+                            Password = "$2a$11$en4g9WwrGQriLCWqqrc46ufexO288ev9UXy/JkICGY/UzDHSlDwyK",
                             Phone = "+998 991231999",
                             RoleId = 3L,
                             UserName = "Jamshid"
@@ -1251,14 +1254,14 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 3L,
-                            CreatedAt = new DateTime(2024, 3, 2, 9, 48, 27, 759, DateTimeKind.Utc).AddTicks(2249),
+                            CreatedAt = new DateTime(2024, 3, 2, 9, 45, 22, 966, DateTimeKind.Utc).AddTicks(5098),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "kabeersolutions@gmail.com",
                             FirstName = "Kabeer",
                             Gender = 1,
                             IsDeleted = false,
                             LastName = "Solutions",
-                            Password = "$2a$11$3r0NuN6UC84iKxfsk6L4QuwO2qNweWTtgX6H4WsimZgY6jD5376ka",
+                            Password = "$2a$11$UtmkSo43Id1wqqtggALMCeRIdHVc97OPIhed/fdbQxYW/2SORPYQa",
                             Phone = "+998 991232999",
                             RoleId = 4L,
                             UserName = "Kabeer"
@@ -1266,14 +1269,14 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 4L,
-                            CreatedAt = new DateTime(2024, 3, 2, 9, 48, 27, 878, DateTimeKind.Utc).AddTicks(2125),
+                            CreatedAt = new DateTime(2024, 3, 2, 9, 45, 23, 85, DateTimeKind.Utc).AddTicks(3612),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "nurillaewmuzaffar@gmail.com",
                             FirstName = "Muzaffar",
                             Gender = 1,
                             IsDeleted = false,
                             LastName = "Nurillayev",
-                            Password = "$2a$11$prtV54bPFU/zLiSPPlnhUeRwEi8yaiwYXXyxxM6qZ4xpaQw0zO8Gi",
+                            Password = "$2a$11$ZKdWnFVpuUymBs1f5IbtfeCgGwazCmDDiYhzKtfXKfM1jlEMhQb5q",
                             Phone = "+998 995030110",
                             RoleId = 5L,
                             UserName = "Muzaffar"
@@ -1281,14 +1284,14 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 5L,
-                            CreatedAt = new DateTime(2024, 3, 2, 9, 48, 27, 996, DateTimeKind.Utc).AddTicks(9368),
+                            CreatedAt = new DateTime(2024, 3, 2, 9, 45, 23, 206, DateTimeKind.Utc).AddTicks(1443),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "azimochilov@icloud.com",
                             FirstName = "Azim",
                             Gender = 1,
                             IsDeleted = false,
                             LastName = "Ochilov",
-                            Password = "$2a$11$y8fYcn45OHNqXr/Q1DzgZu6XPxrWMez6JRnAUM6g45wYwEFOgnOgS",
+                            Password = "$2a$11$GcD/FgmBTnaICY82/srkSOC.FsXRt5CGNCSgmrXfetp7PScfoyz4C",
                             Phone = "+998 991233999",
                             RoleId = 1L,
                             UserName = "Azim"
@@ -1296,14 +1299,14 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 6L,
-                            CreatedAt = new DateTime(2024, 3, 2, 9, 48, 28, 114, DateTimeKind.Utc).AddTicks(5354),
+                            CreatedAt = new DateTime(2024, 3, 2, 9, 45, 23, 325, DateTimeKind.Utc).AddTicks(3184),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "abdulloh@icloud.com",
                             FirstName = "Abdulloh",
                             Gender = 1,
                             IsDeleted = false,
                             LastName = "Ahmadjonov",
-                            Password = "$2a$11$Xstj8E6NpQHwqwGousHcC.WbzrCQkjew5iLKmfLj5Rn46TKfGykKa",
+                            Password = "$2a$11$5vmng0oHV90Im.LLe7afz.YjqtS44kd5wGpkYHYJdR7fEzXNGXfRG",
                             Phone = "+998 991236999",
                             RoleId = 1L,
                             UserName = "Abdulloh"
@@ -1311,14 +1314,14 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 7L,
-                            CreatedAt = new DateTime(2024, 3, 2, 9, 48, 28, 231, DateTimeKind.Utc).AddTicks(36),
+                            CreatedAt = new DateTime(2024, 3, 2, 9, 45, 23, 446, DateTimeKind.Utc).AddTicks(6576),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "komron2052@gmail.com",
                             FirstName = "Komron",
                             Gender = 1,
                             IsDeleted = false,
                             LastName = "Rahmonov",
-                            Password = "$2a$11$NmeDPgy69s7YMhUqeYfnxeg1.K1bQo8oA0cs4sAaSUHjDkiXIv5ma",
+                            Password = "$2a$11$5Ngjkm91qADmlkJFWp/h5Og6iUsHLQotXRN7huYTaGaM9Rlyp8BVS",
                             Phone = "+998 991234999",
                             RoleId = 4L,
                             UserName = "Komron"
@@ -1326,14 +1329,14 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 8L,
-                            CreatedAt = new DateTime(2024, 3, 2, 9, 48, 28, 348, DateTimeKind.Utc).AddTicks(7431),
+                            CreatedAt = new DateTime(2024, 3, 2, 9, 45, 23, 569, DateTimeKind.Utc).AddTicks(286),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "nozimjon@gmail.com",
                             FirstName = "Nozimjon",
                             Gender = 1,
                             IsDeleted = false,
                             LastName = "Usmonaliyev",
-                            Password = "$2a$11$zXtbBubTtSOCyIwwJyt7n.yv77sw8MFfj8bZcifspu1anyvCGzASe",
+                            Password = "$2a$11$4Y5IJ5Bu9P1eBa4lETmBi.7ggyx3iC5rdC/y.oYUsWayG6mM11hva",
                             Phone = "+998 991235999",
                             RoleId = 1L,
                             UserName = "Nozimjon"
@@ -1341,14 +1344,14 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 9L,
-                            CreatedAt = new DateTime(2024, 3, 2, 9, 48, 28, 466, DateTimeKind.Utc).AddTicks(4569),
+                            CreatedAt = new DateTime(2024, 3, 2, 9, 45, 23, 689, DateTimeKind.Utc).AddTicks(1234),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "aljavhar@gmail.com",
                             FirstName = "AlJavhar",
                             Gender = 1,
                             IsDeleted = false,
                             LastName = "Boyaliyev",
-                            Password = "$2a$11$Rs29ThqjeotjPCDpmkyPMuE9fgMoBmnjxw3GLEk5P7p69S4KGOzo.",
+                            Password = "$2a$11$vCrAfHsFutYu/gqbQzxZSu2jzjSRiws9S0q41dO0h5PDmnNG7fLyG",
                             Phone = "+998 902344545",
                             RoleId = 4L,
                             UserName = "AlJavhar"
@@ -1356,14 +1359,14 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 10L,
-                            CreatedAt = new DateTime(2024, 3, 2, 9, 48, 28, 584, DateTimeKind.Utc).AddTicks(2633),
+                            CreatedAt = new DateTime(2024, 3, 2, 9, 45, 23, 805, DateTimeKind.Utc).AddTicks(1928),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "muhammad@gmail.com",
                             FirstName = "Muhammad",
                             Gender = 1,
                             IsDeleted = false,
                             LastName = "Rahimboyev",
-                            Password = "$2a$11$5LNo8Tfn2ACKI2RWA6zDJ.eKI0BnyCKZCLrcqw6SV.f29fKK9cGOG",
+                            Password = "$2a$11$guDFpJ1DeifPOFq3tD..r.bc2yDrmUP/4uO6ANa5mdOSrWyPHZhye",
                             Phone = "+998 937770202",
                             RoleId = 5L,
                             UserName = "Muhammad"
@@ -1371,14 +1374,14 @@ namespace FastFood.Data.Migrations
                         new
                         {
                             Id = 11L,
-                            CreatedAt = new DateTime(2024, 3, 2, 9, 48, 28, 584, DateTimeKind.Utc).AddTicks(2652),
+                            CreatedAt = new DateTime(2024, 3, 2, 9, 45, 23, 805, DateTimeKind.Utc).AddTicks(1947),
                             DeletedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "boqiyev482@gmail.com",
                             FirstName = "Bekmurod",
                             Gender = 1,
                             IsDeleted = false,
                             LastName = "Boqiyev",
-                            Password = "$2a$11$6MKVgyS.aaG6lVbPWs8RTuZcB/DOFo3bm8gW5UxTIZOpIdg7AJ9sC",
+                            Password = "$2a$11$NnVNS1R9l957yONRKzOQNecFnZBGnEVd2fl7AhCyOqHj8oPF9c5WS",
                             Phone = "998 90 848 05 210",
                             RoleId = 2L,
                             UserName = "Bekmurodt"
