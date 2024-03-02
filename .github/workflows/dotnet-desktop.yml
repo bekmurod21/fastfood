@@ -9,10 +9,7 @@ on:
 env:
   API_IMAGE_NAME: fastfood-dev
   API_CONTAINER_NAME: fastfood-dev
-  DATABASE_IMAGE_NAME: fastfood-dev-database
-  DATABASE_CONTAINER_NAME: fastfood-dev-database
   API_PORT: 90:8080
-  DATABASE_PORT: 5434:5432
   
   REPO_NAME: ${{ github.repository }}
   REGISTRY: ghcr.io
@@ -50,15 +47,6 @@ jobs:
           cache-from: type=registry,ref=${{ env.REGISTRY }}/${{ env.REPO_NAME}}/${{ env.API_IMAGE_NAME }}:buildcache
           cache-to: type=registry,ref=${{ env.REGISTRY }}/${{ env.REPO_NAME}}/${{ env.API_IMAGE_NAME }}:buildcache,mode=max
           
-      - name: Build and push Database Docker image
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          file: ./apps/postgres/Dockerfile
-          push: true
-          tags: ${{ env.REGISTRY }}/${{ env.REPO_NAME}}/${{ env.DATABASE_IMAGE_NAME }}:${{ github.sha }}
-          cache-from: type=registry,ref=${{ env.REGISTRY }}/${{ env.REPO_NAME}}/${{ env.DATABASE_IMAGE_NAME }}:buildcache
-          cache-to: type=registry,ref=${{ env.REGISTRY }}/${{ env.REPO_NAME}}/${{ env.DATABASE_IMAGE_NAME }}:buildcache,mode=max
   deploy:
     needs: build_and_push
     runs-on: ubuntu-latest
@@ -75,10 +63,6 @@ jobs:
           script: |
             echo ${{ secrets.GITHUB_TOKEN }} | docker login -u ${{ github.actor }} --password-stdin ${{ env.REGISTRY }}
             docker pull "${{ env.REGISTRY }}/${{ env.REPO_NAME}}/${{ env.API_IMAGE_NAME }}-${{ github.sha }}"
-            docker pull "${{ env.REGISTRY }}/${{ env.REPO_NAME}}/${{ env.DATABASE_IMAGE_NAME }}-${{ github.sha }}"
-            docker stop "${{ env.DATABASE_CONTAINER_NAME }}" || true
             docker stop "${{ env.API_CONTAINER_NAME }}" || true
-            docker rm "${{ env.DATABASE_CONTAINER_NAME }}" || true
             docker rm "${{ env.API_CONTAINER_NAME }}" || true
             docker run -d --name "${{ env.API_CONTAINER_NAME }}" -p "${{ env.API_PORT }}" "${{ env.REGISTRY }}/${{ env.REPO_NAME}}/${{ env.API_IMAGE_NAME }}:${{ github.sha }}"
-            docker run -d --name "${{ env.DATABASE_CONTAINER_NAME }}" -p "${{ env.DATABASE_PORT }}" "${{ env.REGISTRY }}/${{ env.REPO_NAME}}/${{ env.DATABASE_IMAGE_NAME }}:${{ github.sha }}"     
