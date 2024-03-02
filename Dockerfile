@@ -1,8 +1,21 @@
-FROM debian:buster-slim
+FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine AS build
+WORKDIR /source
 
-RUN apt-get update
-RUN apt-get install -y nginx
+COPY ./src ./
+WORKDIR /src
 
-COPY ./src/FastFood.WebApi/bin/Release/net6.0/win-x64/publish ./var/www/FastFood
+CMD [ "dotnet","restore" ]
+RUN dotnet publish -c Release -o test
 
-CMD [ "nginx","-g","daemon off; " ] 
+FROM mcr.microsoft.com/dotnet/aspnet:8.0-alpine AS serve
+WORKDIR /app
+COPY --from=build /src/test .
+
+EXPOSE 80
+EXPOSE 443
+EXPOSE 5000
+Expose 8080
+
+VOLUME ["/app/uploads"]
+
+ENTRYPOINT [ "dotnet", "ERP-System_Server.Api.dll" ]
