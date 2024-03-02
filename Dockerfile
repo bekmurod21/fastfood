@@ -18,4 +18,4 @@ Expose 8080
 
 VOLUME ["/app/uploads"]
 
-ENTRYPOINT [ "dotnet", "ERP-System_Server.Api.dll" ]
+ENTRYPOINT [ "dotnet", "FastFood.WebApi.dll" ]
