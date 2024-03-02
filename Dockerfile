@@ -1,5 +1,5 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine AS build
-WORKDIR /source
+WORKDIR /src
 
 COPY ./src ./
 WORKDIR /src
@@ -13,9 +13,7 @@ COPY --from=build /src/test .
 
 EXPOSE 80
 EXPOSE 443
-EXPOSE 5000
 Expose 8080
-
-VOLUME ["/app/uploads"]
+EXPOSE 5000
 
 ENTRYPOINT [ "dotnet", "FastFood.WebApi.dll" ]
