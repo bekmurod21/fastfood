@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastFood.Data", "src\FastFood.Data\FastFood.Data.csproj", "{F8E3AE58-0275-4350-B3E2-82536E479E4E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastFood.Data", "FastFood.Data\FastFood.Data.csproj", "{F8E3AE58-0275-4350-B3E2-82536E479E4E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastFood.Domain", "src\FastFood.Domain\FastFood.Domain.csproj", "{E4AA5046-6CE5-4189-BBF9-204F21B7E598}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastFood.Domain", "FastFood.Domain\FastFood.Domain.csproj", "{E4AA5046-6CE5-4189-BBF9-204F21B7E598}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastFood.Service", "src\FastFood.Service\FastFood.Service.csproj", "{AF9B6A44-678B-4A87-80C7-32B47354EC9B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastFood.Service", "FastFood.Service\FastFood.Service.csproj", "{AF9B6A44-678B-4A87-80C7-32B47354EC9B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastFood.WebApi", "src\FastFood.WebApi\FastFood.WebApi.csproj", "{A1F29C2D-8BDE-4F30-8419-E9AFA5BF8A20}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastFood.WebApi", "FastFood.WebApi\FastFood.WebApi.csproj", "{A1F29C2D-8BDE-4F30-8419-E9AFA5BF8A20}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FastFood.Shared", "FastFood.Shared\FastFood.Shared.csproj", "{570A4DC3-8747-4B76-94F9-9B0EB6BD38C6}"
 EndProject
